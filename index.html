@@ -1,0 +1,632 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>대학 면접 시뮬레이터</title>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap');
+
+:root{
+  --ink:#14201F;
+  --paper:#EFF1EE;
+  --paper-dim:#E2E6E2;
+  --pine:#1E5F52;
+  --pine-deep:#164A40;
+  --amber:#B8830F;
+  --rose:#9E3A2E;
+  --muted:#6E7A76;
+  --line:#CFD6D1;
+  --serif:'Nanum Myeongjo', serif;
+  --sans:'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit}
+:focus-visible{outline:2px solid var(--pine);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+
+/* ── 설정 ── */
+#setup{padding:64px 0 96px}
+.lede{font-family:var(--serif);font-size:32px;line-height:1.45;margin:0 0 12px;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:15px;margin:0 0 48px;max-width:58ch}
+.field{margin-bottom:30px}
+.field > label{display:block;font-size:14px;font-weight:600;margin-bottom:9px}
+.hint{font-size:12.5px;color:var(--muted);margin:6px 0 0;line-height:1.5}
+input[type=text],select,textarea{width:100%;padding:11px 13px;border:1px solid var(--line);background:#fff;border-radius:3px;font-size:15px;color:var(--ink)}
+textarea{resize:vertical;min-height:88px;line-height:1.6}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.row > *{flex:1;min-width:200px}
+.row.narrow > *{min-width:150px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:#fff;border-radius:3px;padding:9px 14px;font-size:14px;color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--pine);border-color:var(--pine);color:#fff}
+.chip small{display:block;font-size:11.5px;opacity:.7;margin-top:1px}
+.drop{border:1px dashed var(--line);background:#fff;border-radius:3px;padding:22px;text-align:center;color:var(--muted);font-size:14px}
+.drop strong{color:var(--ink);font-weight:600}
+.drop.on{border-color:var(--pine)}
+.filename{font-size:13.5px;color:var(--pine-deep);margin-top:10px;word-break:break-all}
+.notice{border-left:2px solid var(--amber);padding:12px 0 12px 14px;font-size:13px;margin:0 0 34px;line-height:1.65}
+.start{width:100%;padding:15px;background:var(--ink);color:var(--paper);border:0;border-radius:3px;font-size:16px;font-weight:600}
+.start:disabled{background:var(--paper-dim);color:var(--muted);cursor:not-allowed}
+
+/* ── 면접실 ── */
+#room{display:none;background:var(--ink);color:var(--paper);min-height:100vh;padding:0 0 56px}
+#room .wrap{max-width:760px}
+.roombar{display:flex;justify-content:space-between;align-items:baseline;padding:22px 0 0;font-size:12.5px;color:#8FA39D}
+.dots{display:flex;gap:5px;margin-top:26px}
+.dot{width:22px;height:2px;background:#33453F}
+.dot.done{background:#7FA89D}
+.dot.now{background:var(--paper)}
+.station{font-size:12.5px;color:#8FA39D;margin:28px 0 0}
+.stimulus{border:1px solid #2C3E39;background:#1A2825;border-radius:3px;padding:20px 22px;margin:16px 0 0;font-size:15px;line-height:1.85;white-space:pre-wrap;max-height:46vh;overflow:auto}
+.qtag{font-size:12px;color:var(--amber);margin:22px 0 -14px}
+.q{font-family:var(--serif);font-size:25px;line-height:1.6;margin:22px 0 0;letter-spacing:-.01em;animation:rise .45s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.timer{display:flex;align-items:center;gap:12px;margin:26px 0 10px}
+.clock{font-variant-numeric:tabular-nums;font-size:14px;color:#8FA39D;min-width:92px}
+.clock.warn{color:var(--amber)}
+.bar{flex:1;height:2px;background:#2C3E39}
+.bar span{display:block;height:100%;background:#7FA89D;width:100%}
+.bar.warn span{background:var(--amber)}
+#answer{width:100%;background:#1A2825;border:1px solid #2C3E39;color:var(--paper);border-radius:3px;padding:15px;font-size:15.5px;min-height:150px;line-height:1.7}
+#answer::placeholder{color:#5E706B}
+.controls{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.ctl{background:transparent;border:1px solid #3B4F49;color:var(--paper);padding:11px 16px;border-radius:3px;font-size:14px}
+.ctl.rec[aria-pressed="true"]{border-color:var(--rose);color:#E39A90}
+.send{background:var(--paper);color:var(--ink);border:0;padding:11px 22px;border-radius:3px;font-size:14px;font-weight:600;margin-left:auto}
+.send:disabled{opacity:.4;cursor:not-allowed}
+.thinking{color:#8FA39D;font-size:14px;margin-top:18px;min-height:22px}
+.thinking b{font-weight:400;color:var(--paper)}
+.ready{color:#5E706B;font-size:12px;margin-top:6px}
+
+/* ── 평가서 ── */
+#report{display:none;padding:56px 0 96px}
+.rtitle{font-family:var(--serif);font-size:29px;margin:0 0 4px}
+.rmeta{color:var(--muted);font-size:14px;margin:0 0 40px}
+.overall{border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:24px 0;margin-bottom:36px}
+.grade{font-family:var(--serif);font-size:52px;line-height:1;margin:0}
+.grade small{font-size:15px;color:var(--muted);font-family:var(--sans);margin-left:10px}
+.overall p{margin:14px 0 0;font-size:15px;line-height:1.75}
+.comp{margin-bottom:22px}
+.comp-head{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px;font-weight:600}
+.comp-head em{font-style:normal;color:var(--muted);font-weight:500;font-size:13px;font-variant-numeric:tabular-nums}
+.gauge{height:6px;background:var(--paper-dim);margin:8px 0 9px}
+.gauge span{display:block;height:100%;background:var(--pine)}
+.comp p{margin:0;font-size:14px;line-height:1.7}
+h2.sec{font-family:var(--serif);font-size:20px;margin:46px 0 18px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.qa{margin-bottom:28px}
+.qa .qq{font-weight:600;font-size:15px;margin:0 0 7px;line-height:1.6}
+.qa .aa{margin:0 0 10px;font-size:14px;color:var(--muted);line-height:1.7;white-space:pre-wrap}
+.qa .ff{margin:0;font-size:14.5px;line-height:1.75;border-left:2px solid var(--pine);padding-left:13px}
+.qa .kk{margin:10px 0 0;font-size:13.5px;line-height:1.7}
+ul.tips{margin:0;padding-left:18px;font-size:14.5px;line-height:1.85}
+.rbtns{display:flex;gap:10px;margin-top:44px;flex-wrap:wrap}
+.rbtn{border:1px solid var(--line);background:#fff;padding:11px 18px;border-radius:3px;font-size:14px;color:var(--ink)}
+.err{background:#FBECEA;border-left:2px solid var(--rose);padding:12px 14px;font-size:14px;margin:18px 0;color:#6E2820}
+@media print{.rbtns,.err{display:none}body{background:#fff}#report{padding:0}}
+@media (max-width:520px){.lede{font-size:26px}.q{font-size:21px}.grade{font-size:42px}.wrap{padding:0 18px}}
+</style>
+
+<!-- ═══════ 설정 ═══════ -->
+<section id="setup"><div class="wrap">
+  <h1 class="lede">면접실에 들어가기 전에,<br>몇 가지만 정해 둡시다.</h1>
+  <p class="sub">지원 대학과 모집단위, 면접 유형에 맞춰 질문이 생성됩니다. 답변에 따라 꼬리질문이 이어지고, 끝나면 학생부종합전형 공통 평가요소 기준으로 평가서가 나옵니다.</p>
+
+  <div class="field">
+    <label for="region">지역으로 대학 좁히기</label>
+    <select id="region">
+      <option value="전체">전체 보기</option>
+      <option>서울</option><option>경기·인천</option><option>강원</option>
+      <option>대전·세종·충청</option><option>광주·전라·제주</option>
+      <option>부산·울산·경남</option><option>대구·경북</option>
+      <option>과학기술원·특수대학</option><option>교육대학</option>
+    </select>
+    <p class="hint">목록을 줄여 주는 보조 기능입니다. 아래 칸에 직접 입력하면 목록에 없는 대학도 그대로 쓸 수 있습니다.</p>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="univ">지원 대학</label>
+      <input type="text" id="univ" list="univs" placeholder="예: 서울대학교" autocomplete="off">
+      <datalist id="univs"></datalist>
+      <p class="hint" id="univCount"></p>
+    </div>
+    <div class="field">
+      <label for="dept">모집단위(학과·학부)</label>
+      <input type="text" id="dept" placeholder="예: 컴퓨터공학부" autocomplete="off">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>면접 유형</label>
+    <div class="chips" id="types">
+      <button class="chip" data-v="서류기반" aria-pressed="true">서류 기반<small>학생부 확인·심화</small></button>
+      <button class="chip" data-v="제시문기반" aria-pressed="false">제시문 기반<small>자료 분석·논증</small></button>
+      <button class="chip" data-v="MMI" aria-pressed="false">MMI<small>상황·윤리 판단</small></button>
+      <button class="chip" data-v="인성" aria-pressed="false">인성<small>공동체역량</small></button>
+    </div>
+    <p class="hint">여러 개를 고르면 한 면접 안에서 유형이 섞여 나옵니다. 지원 대학이 실제로 어떤 유형을 실시하는지는 그 대학 입학처의 선행학습 영향평가 결과보고서에서 확인하세요.</p>
+  </div>
+
+  <div class="row narrow">
+    <div class="field">
+      <label for="count">문항 수</label>
+      <select id="count">
+        <option value="4">4문항</option>
+        <option value="6" selected>6문항</option>
+        <option value="8">8문항</option>
+        <option value="10">10문항</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="level">난이도</label>
+      <select id="level">
+        <option value="기본">기본 — 꼬리질문 최대 1회</option>
+        <option value="표준" selected>표준 — 꼬리질문 최대 2회</option>
+        <option value="심화">심화 — 꼬리질문 최대 3회</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="pace">진행 속도</label>
+      <select id="pace">
+        <option value="fast" selected>빠르게 — 질문을 미리 준비</option>
+        <option value="adaptive">맞춤형 — 직전 답변까지 반영</option>
+      </select>
+    </div>
+  </div>
+  <p class="hint" style="margin:-20px 0 30px">맞춤형은 앞선 답변 내용을 이어받아 다음 질문을 만들지만, 그만큼 질문이 나오기까지 기다려야 합니다.</p>
+
+  <div class="field">
+    <label for="file">학교생활기록부 (선택)</label>
+    <div class="drop" id="drop">
+      <strong>PDF를 끌어다 놓거나 눌러서 선택</strong><br>
+      올리면 학생부 내용을 근거로 한 확인·심화 질문이 나옵니다
+      <input type="file" id="file" accept="application/pdf" hidden>
+      <div class="filename" id="fname"></div>
+    </div>
+    <p class="hint">학생부가 없으면 아래 칸에 직접 적어도 됩니다.</p>
+  </div>
+
+  <div class="field">
+    <label for="manual">직접 입력하는 활동 요약 (선택)</label>
+    <textarea id="manual" placeholder="진로희망, 관심 분야, 세특·동아리·독서 중 면접에서 다뤄지길 바라는 내용을 적어 주세요."></textarea>
+  </div>
+
+  <div class="field">
+    <label>답변 제한 시간</label>
+    <div class="chips" id="timed">
+      <button class="chip" data-v="on" aria-pressed="true">제한 있음</button>
+      <button class="chip" data-v="off" aria-pressed="false">제한 없음</button>
+    </div>
+    <p class="hint">시간이 지나도 자동 제출되지는 않습니다. 남은 시간만 보여 줍니다.</p>
+  </div>
+
+  <p class="notice">
+    입력한 내용과 학생부 파일은 질문을 만들기 위해 인공지능 모델로 전송됩니다.
+    실제 학생에게 쓸 때는 이름·학교명·주민등록번호를 가린 사본을 올리게 하세요.
+    블라인드 면접 원칙과도 맞고 개인정보 노출도 줄일 수 있습니다.
+  </p>
+
+  <button class="start" id="go">면접 시작</button>
+  <div id="setupErr"></div>
+</div></section>
+
+<!-- ═══════ 면접실 ═══════ -->
+<section id="room"><div class="wrap">
+  <div class="roombar"><span id="rmLeft">면접 진행 중</span><span id="rmRight"></span></div>
+  <div class="dots" id="dots"></div>
+  <div class="station" id="station"></div>
+  <div class="stimulus" id="stimulus" style="display:none"></div>
+  <div class="qtag" id="qtag" style="display:none">꼬리질문</div>
+  <div class="q" id="question">면접위원이 자료를 살펴보고 있습니다…</div>
+  <div class="timer" id="timerBox" style="display:none">
+    <span class="clock" id="clock">00:00</span>
+    <span class="bar" id="bar"><span id="barFill"></span></span>
+  </div>
+  <textarea id="answer" placeholder="답변을 입력하세요. 실제 면접처럼 소리 내어 말한 뒤 옮겨 적어도 좋습니다."></textarea>
+  <div class="controls">
+    <button class="ctl rec" id="mic" aria-pressed="false">음성으로 답하기</button>
+    <button class="ctl" id="quit">면접 중단하고 평가 받기</button>
+    <button class="send" id="send">답변 제출</button>
+  </div>
+  <div class="thinking" id="thinking"></div>
+  <div class="ready" id="ready"></div>
+  <div id="roomErr"></div>
+</div></section>
+
+<!-- ═══════ 평가서 ═══════ -->
+<section id="report"><div class="wrap">
+  <h1 class="rtitle">면접 평가서</h1>
+  <p class="rmeta" id="rMeta"></p>
+  <div id="rBody"></div>
+  <div class="rbtns">
+    <button class="rbtn" onclick="window.print()">인쇄 · PDF로 저장</button>
+    <button class="rbtn" id="again">새 면접 시작</button>
+  </div>
+</div></section>
+
+<script>
+/* ═══════════ 대학 목록 ═══════════ */
+const UNIVS = {
+  "서울":["서울대학교","연세대학교","고려대학교","서강대학교","성균관대학교","한양대학교","중앙대학교","경희대학교","한국외국어대학교","서울시립대학교","건국대학교","동국대학교","홍익대학교","숙명여자대학교","이화여자대학교","성신여자대학교","덕성여자대학교","동덕여자대학교","서울여자대학교","광운대학교","국민대학교","명지대학교","상명대학교","서경대학교","서울과학기술대학교","세종대학교","숭실대학교","한성대학교","삼육대학교","가톨릭대학교","총신대학교","성공회대학교","장로회신학대학교","감리교신학대학교","서울기독대학교","한국성서대학교","추계예술대학교","서울한영대학교","한국체육대학교","한국예술종합학교","서울신학대학교"],
+  "경기·인천":["인하대학교","인천대학교","아주대학교","가천대학교","단국대학교","한양대학교 ERICA","경희대학교 국제캠퍼스","중앙대학교 다빈치캠퍼스","한국외국어대학교 글로벌캠퍼스","경기대학교","한국항공대학교","한국공학대학교","을지대학교","차의과학대학교","수원대학교","한신대학교","성결대학교","안양대학교","강남대학교","용인대학교","대진대학교","신한대학교","한세대학교","평택대학교","협성대학교","루터대학교","칼빈대학교","경동대학교","인천가톨릭대학교","청운대학교","동양대학교"],
+  "강원":["강원대학교","강릉원주대학교","한림대학교","연세대학교 미래캠퍼스","가톨릭관동대학교","상지대학교","한라대학교","경동대학교","한국폴리텍대학"],
+  "대전·세종·충청":["충남대학교","충북대학교","한밭대학교","공주대학교","한국교원대학교","한국기술교육대학교","순천향대학교","단국대학교 천안캠퍼스","호서대학교","선문대학교","남서울대학교","상명대학교 천안캠퍼스","백석대학교","나사렛대학교","한서대학교","중부대학교","세명대학교","건국대학교 글로컬캠퍼스","서원대학교","청주대학교","대전대학교","배재대학교","목원대학교","우송대학교","한남대학교","건양대학교","을지대학교 대전캠퍼스","침례신학대학교","금강대학교","극동대학교","유원대학교","한국교통대학교","한국전통문화대학교","고려대학교 세종캠퍼스","홍익대학교 세종캠퍼스"],
+  "광주·전라·제주":["전북대학교","전남대학교","군산대학교","목포대학교","순천대학교","목포해양대학교","조선대학교","호남대학교","광주대학교","남부대학교","송원대학교","광주여자대학교","동신대학교","초당대학교","세한대학교","원광대학교","전주대학교","우석대학교","호원대학교","예수대학교","한일장신대학교","광신대학교","제주대학교","제주국제대학교","한국에너지공과대학교"],
+  "부산·울산·경남":["부산대학교","부경대학교","한국해양대학교","경성대학교","동아대학교","동의대학교","부산외국어대학교","신라대학교","동서대학교","영산대학교","고신대학교","부산장신대학교","경상국립대학교","창원대학교","경남대학교","인제대학교","가야대학교","창신대학교","울산대학교"],
+  "대구·경북":["경북대학교","영남대학교","계명대학교","대구대학교","대구가톨릭대학교","금오공과대학교","안동대학교","대구한의대학교","경일대학교","위덕대학교","한동대학교","동국대학교 WISE캠퍼스","대구예술대학교","경운대학교","김천대학교"],
+  "과학기술원·특수대학":["KAIST 한국과학기술원","POSTECH 포항공과대학교","GIST 광주과학기술원","UNIST 울산과학기술원","DGIST 대구경북과학기술원","한국에너지공과대학교","한국방송통신대학교","한국농수산대학교","육군사관학교","해군사관학교","공군사관학교","국군간호사관학교","경찰대학","한국전통문화대학교","한국예술종합학교"],
+  "교육대학":["서울교육대학교","경인교육대학교","춘천교육대학교","청주교육대학교","공주교육대학교","전주교육대학교","광주교육대학교","대구교육대학교","부산교육대학교","진주교육대학교","제주대학교 교육대학","한국교원대학교","이화여자대학교 사범대학"]
+};
+function fillUnivs(region){
+  const list = region==='전체' ? Object.values(UNIVS).flat() : (UNIVS[region]||[]);
+  const uniq = [...new Set(list)].sort((a,b)=>a.localeCompare(b,'ko'));
+  document.getElementById('univs').innerHTML = uniq.map(u=>`<option>${u}</option>`).join('');
+  document.getElementById('univCount').textContent =
+    `${uniq.length}개 대학이 목록에 있습니다. 없는 대학은 직접 입력하면 그대로 반영됩니다.`;
+}
+
+/* ═══════════ 상태 ═══════════ */
+const S = {
+  univ:'', dept:'', types:['서류기반'], total:6, level:'표준', pace:'fast',
+  timed:true, profile:'', log:[], asked:[], current:null,
+  mainDone:0, fuUsed:0, busy:false, pending:null, ended:false
+};
+const $ = id => document.getElementById(id);
+const show = id => { ['setup','room','report'].forEach(s => $(s).style.display = s===id?'block':'none'); window.scrollTo(0,0); };
+const FU_MAX = { '기본':1, '표준':2, '심화':3 };
+
+/* ═══════════ API ═══════════ */
+async function ask(system, messages){
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:1000, system, messages })
+  });
+  if(!res.ok) throw new Error("응답 실패 "+res.status);
+  const data = await res.json();
+  return (data.content||[]).filter(b=>b.type==="text").map(b=>b.text).join("\n");
+}
+function parseJSON(text){
+  let t = text.replace(/```json/gi,'').replace(/```/g,'').trim();
+  const a = t.indexOf('{'), b = t.lastIndexOf('}');
+  if(a<0||b<0) throw new Error("형식 해석 실패");
+  return JSON.parse(t.slice(a,b+1));
+}
+function errBox(where,msg){ $(where).innerHTML = '<div class="err">'+msg+'</div>'; }
+
+/* ═══════════ 설정 화면 ═══════════ */
+$('region').addEventListener('change', e=>{ fillUnivs(e.target.value); $('univ').value=''; });
+fillUnivs('전체');
+
+function bindChips(boxId, multi, onChange){
+  $(boxId).addEventListener('click', e=>{
+    const c = e.target.closest('.chip'); if(!c) return;
+    if(multi){
+      const on = c.getAttribute('aria-pressed')==='true';
+      const others = [...$(boxId).querySelectorAll('.chip')].filter(x=>x!==c && x.getAttribute('aria-pressed')==='true');
+      if(on && others.length===0) return;
+      c.setAttribute('aria-pressed', on?'false':'true');
+    } else {
+      $(boxId).querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed','false'));
+      c.setAttribute('aria-pressed','true');
+    }
+    onChange();
+  });
+}
+const chipVals = id => [...$(id).querySelectorAll('.chip[aria-pressed="true"]')].map(c=>c.dataset.v);
+bindChips('types', true, ()=>{ S.types = chipVals('types'); });
+bindChips('timed', false, ()=>{ S.timed = chipVals('timed')[0]==='on'; });
+
+let pdfB64 = null;
+$('drop').addEventListener('click', ()=> $('file').click());
+$('drop').addEventListener('dragover', e=>{ e.preventDefault(); $('drop').classList.add('on'); });
+$('drop').addEventListener('dragleave', ()=> $('drop').classList.remove('on'));
+$('drop').addEventListener('drop', e=>{ e.preventDefault(); $('drop').classList.remove('on'); const f=e.dataTransfer.files[0]; if(f) takeFile(f); });
+$('file').addEventListener('change', e=>{ if(e.target.files[0]) takeFile(e.target.files[0]); });
+function takeFile(f){
+  if(f.type!=='application/pdf'){ $('fname').textContent='PDF 파일만 읽을 수 있습니다.'; return; }
+  if(f.size > 12*1024*1024){ $('fname').textContent='파일이 너무 큽니다. 12MB 이하로 줄여 주세요.'; return; }
+  const r = new FileReader();
+  r.onload = () => { pdfB64 = r.result.split(',')[1]; $('fname').textContent = f.name + ' — 읽을 준비 완료'; };
+  r.onerror = () => { $('fname').textContent = '파일을 읽지 못했습니다.'; };
+  r.readAsDataURL(f);
+}
+$('go').addEventListener('click', startInterview);
+
+/* ═══════════ 프롬프트 ═══════════ */
+const RULES = `[반드시 지킬 것]
+- 고등학교 교육과정의 범위와 수준을 벗어나지 않는다. 선행학습이나 사교육이 있어야 답할 수 있는 문항은 내지 않는다.
+- 블라인드 면접 원칙: 출신 고교명, 부모의 직업·학력, 교외 수상 실적, 공인어학성적은 묻지 않는다.
+- 질문은 한 번에 하나만. 말투는 면접위원답게 정중하고 건조하게.
+- 평가·칭찬·격려·조언을 하지 않는다.`;
+
+function planSystem(){
+  return `당신은 대한민국 대학입학 면접의 면접위원이다.
+대학 ${S.univ} / 모집단위 ${S.dept} / 면접 유형 ${S.types.join(', ')} / 난이도 ${S.level} / 본 질문 총 ${S.total}개
+
+[유형별 출제 원칙]
+- 서류기반: 지원자 학교생활기록부 내용에 근거해 사실을 확인하고 깊이를 묻는다. 자료에 없는 활동은 지어내지 않는다.
+- 제시문기반: 500~800자 제시문(글·표·사례)을 직접 작성해 stimulus에 담고, 그에 근거한 분석·적용·비판 질문을 한다. 기존 저작물을 인용하지 않는다.
+- MMI: 상황 시나리오를 stimulus에 담고 판단과 근거를 묻는다. 전공 전문지식이 아니라 의사소통·윤리적 판단·상황 대처를 본다.
+- 인성: 공동체역량(협업과 소통능력, 나눔과 배려, 성실성과 규칙준수, 리더십)이 드러나는 구체적 경험을 묻는다.
+
+${RULES}
+
+[출력] 다른 말 없이 아래 JSON만 출력한다. 설명을 덧붙이지 않는다.
+{"type":"서류기반|제시문기반|MMI|인성","station":"짧은 맥락 표시","stimulus":"제시문 전문 또는 null","question":"질문 한 개","prepSeconds":정수,"answerSeconds":정수}`;
+}
+
+function fuSystem(){
+  return `당신은 대학입학 면접의 면접위원이다. 방금 받은 답변에 꼬리질문이 필요한지 판단한다.
+필요한 경우: 주장만 있고 근거가 없음 / 추상적이고 구체적 경험이 없음 / 사실 확인이 필요함 / 제시문 논리에 빈틈이 있음.
+이 문항에서 꼬리질문은 최대 ${FU_MAX[S.level]}회까지 가능하며 현재 ${S.fuUsed}회 사용했다.
+답변이 충분하거나 한도를 채웠으면 꼬리질문 없이 넘어간다.
+${RULES}
+[출력] 다른 말 없이 JSON만. {"followup":"꼬리질문 한 문장" 또는 null}`;
+}
+
+/* ═══════════ 학생부 요약 ═══════════ */
+async function buildProfile(){
+  const manual = $('manual').value.trim();
+  if(!pdfB64 && !manual) return '';
+  const sys = `당신은 대학 입학사정관이다. 지원자의 학교생활기록부에서 면접 문항 제작에 필요한 정보만 뽑아 요약한다.
+개인 식별 정보(이름, 학교명, 주민등록번호, 주소, 부모 정보)는 요약에 포함하지 않는다.
+아래 항목으로 나눠 개조식으로 정리한다. 없는 항목은 생략. 전체 600자 이내.
+- 진로희망 / 관련 교과 이수와 성취 특징 / 세부능력 및 특기사항의 탐구 활동 / 동아리·자율·진로 활동 / 독서 / 공동체역량이 드러나는 장면 / 면접에서 사실 확인이 필요한 지점`;
+  const content = [];
+  if(pdfB64) content.push({ type:"document", source:{ type:"base64", media_type:"application/pdf", data:pdfB64 } });
+  let txt = "이 지원자의 자료를 요약해 주세요.";
+  if(manual) txt += `\n\n[지원자가 직접 적은 내용]\n${manual}`;
+  content.push({ type:"text", text: txt });
+  return await ask(sys, [{ role:"user", content }]);
+}
+
+/* ═══════════ 질문 생성 ═══════════ */
+function planUserMsg(){
+  let m = `다음 본 질문 1개를 만들어 주세요. 지금 만들 질문은 ${S.mainDone+1}번째이고 전체는 ${S.total}개입니다.`;
+  if(S.asked.length){
+    m += `\n\n[이미 낸 본 질문]\n` + S.asked.map((q,i)=>`${i+1}. (${q.type}) ${q.question}`).join('\n');
+    m += `\n같은 소재나 같은 유형이 반복되지 않게 하세요.`;
+  }
+  const left = S.types.filter(t=>!S.asked.some(q=>q.type===t));
+  if(left.length) m += `\n아직 나오지 않은 유형: ${left.join(', ')}. 이 중에서 고르세요.`;
+  if(S.profile) m += `\n\n[지원자 제출 자료 요약]\n${S.profile}`;
+  else m += `\n\n제출 서류는 없습니다. 서류기반 문항은 지원동기·진로계획·학업계획 질문으로 대신하세요.`;
+  if(S.pace==='adaptive' && S.log.length){
+    const last = S.log.slice(-2).map(t=>`Q: ${t.q}\nA: ${t.a}`).join('\n\n');
+    m += `\n\n[직전 답변]\n${last}\n이 답변에서 드러난 관심사나 빈틈을 고려해 다음 질문을 정하세요.`;
+  }
+  return m;
+}
+function fetchNextQuestion(){
+  return ask(planSystem(), [{ role:"user", content: planUserMsg() }]).then(parseJSON);
+}
+function prefetch(){
+  if(S.pace!=='fast') return;
+  if(S.mainDone >= S.total) { S.pending = null; return; }
+  S.pending = fetchNextQuestion().catch(()=>null);
+  $('ready').textContent = '다음 질문을 미리 준비하는 중';
+  S.pending.then(v=>{ $('ready').textContent = v ? '다음 질문 준비 완료' : ''; });
+}
+
+/* ═══════════ 면접 시작 ═══════════ */
+async function startInterview(){
+  S.univ = $('univ').value.trim(); S.dept = $('dept').value.trim();
+  if(!S.univ || !S.dept){ errBox('setupErr','대학과 모집단위를 입력해 주세요.'); return; }
+  S.types = chipVals('types'); S.timed = chipVals('timed')[0]==='on';
+  S.total = parseInt($('count').value,10); S.level = $('level').value; S.pace = $('pace').value;
+  S.log=[]; S.asked=[]; S.mainDone=0; S.fuUsed=0; S.ended=false; S.pending=null;
+  $('setupErr').innerHTML='';
+  $('go').disabled = true;
+  $('go').textContent = pdfB64 ? '학생부를 읽는 중…' : '면접위원이 준비하는 중…';
+
+  try{ S.profile = await buildProfile(); }
+  catch(e){ $('go').disabled=false; $('go').textContent='면접 시작'; errBox('setupErr','학생부를 읽지 못했습니다. 잠시 뒤 다시 시도해 주세요.'); return; }
+
+  show('room');
+  $('rmLeft').textContent = `${S.univ} ${S.dept}`;
+  $('answer').style.display=''; $('mic').style.display=''; $('send').style.display='';
+  $('quit').textContent='면접 중단하고 평가 받기';
+  $('roomErr').innerHTML='';
+  drawDots();
+  $('question').textContent = '면접위원이 자료를 살펴보고 있습니다…';
+  $('thinking').innerHTML = '<b>첫 질문을 준비하는 중…</b>';
+
+  try{
+    const q = await fetchNextQuestion();
+    deliverMain(q);
+  }catch(e){
+    $('thinking').textContent=''; errBox('roomErr','질문을 받아오지 못했습니다. 새로고침 후 다시 시도해 주세요.');
+  }finally{
+    $('go').disabled=false; $('go').textContent='면접 시작';
+  }
+}
+
+/* ═══════════ 질문 표시 ═══════════ */
+function deliverMain(q){
+  S.current = { ...q, phase:'question' };
+  S.asked.push(q); S.mainDone++; S.fuUsed = 0;
+  render(S.current, true);
+  drawDots();
+  prefetch();
+}
+function deliverFollowup(text){
+  S.fuUsed++;
+  S.current = { ...S.current, phase:'followup', question:text, stimulus:null, prepSeconds:0, answerSeconds:60 };
+  render(S.current, false);
+}
+function render(obj, newStimulus){
+  $('thinking').textContent='';
+  $('station').textContent = obj.station || '';
+  $('qtag').style.display = obj.phase==='followup' ? 'block' : 'none';
+  if(newStimulus){
+    if(obj.stimulus){ $('stimulus').textContent = obj.stimulus; $('stimulus').style.display='block'; }
+    else $('stimulus').style.display='none';
+  }
+  $('question').textContent = obj.question;
+  $('question').style.animation='none'; void $('question').offsetWidth; $('question').style.animation='';
+  $('rmRight').textContent = `본 질문 ${S.mainDone} / ${S.total}`;
+  $('answer').value=''; $('answer').disabled=false; $('send').disabled=false; $('answer').focus();
+  if(S.timed) startTimer((obj.prepSeconds||0)+(obj.answerSeconds||90));
+  else $('timerBox').style.display='none';
+}
+function drawDots(){
+  $('dots').innerHTML = Array.from({length:S.total},(_,i)=>{
+    const cls = i < S.mainDone-1 ? 'done' : (i === S.mainDone-1 ? 'now' : '');
+    return `<span class="dot ${cls}"></span>`;
+  }).join('');
+}
+
+/* ═══════════ 답변 제출 ═══════════ */
+$('send').addEventListener('click', submitAnswer);
+$('answer').addEventListener('keydown', e=>{ if((e.metaKey||e.ctrlKey)&&e.key==='Enter') submitAnswer(); });
+
+async function submitAnswer(){
+  if(S.busy || S.ended) return;
+  const a = $('answer').value.trim();
+  if(!a){ $('answer').focus(); return; }
+  stopTimer();
+  S.log.push({ q:S.current.question, station:S.current.station, type:S.current.type, phase:S.current.phase, a });
+
+  S.busy = true; $('send').disabled = true; $('answer').disabled = true;
+  $('thinking').innerHTML = '<b>면접위원이 답변을 검토하는 중…</b>';
+  $('roomErr').innerHTML='';
+
+  let fu = null;
+  if(S.fuUsed < FU_MAX[S.level]){
+    try{
+      const body = `[질문] ${S.current.question}\n[학생 답변] ${a}`;
+      fu = (parseJSON(await ask(fuSystem(), [{role:"user", content: body}]))||{}).followup || null;
+    }catch(e){ fu = null; }
+  }
+
+  S.busy = false; $('answer').disabled = false;
+  if(fu){ deliverFollowup(fu); return; }
+
+  if(S.mainDone >= S.total){ finish(); return; }
+
+  $('thinking').innerHTML = '<b>다음 질문…</b>';
+  let q = null;
+  if(S.pace==='fast' && S.pending){ q = await S.pending; }
+  if(!q){ try{ q = await fetchNextQuestion(); }catch(e){} }
+  if(!q){ errBox('roomErr','다음 질문을 받아오지 못했습니다. 답변 제출을 다시 눌러 주세요.'); $('send').disabled=false; $('thinking').textContent=''; return; }
+  deliverMain(q);
+}
+
+function finish(){
+  S.ended = true; stopTimer();
+  $('stimulus').style.display='none'; $('qtag').style.display='none'; $('timerBox').style.display='none';
+  $('answer').style.display='none'; $('mic').style.display='none'; $('send').style.display='none';
+  $('ready').textContent=''; $('thinking').textContent='';
+  $('station').textContent=''; $('question').textContent='수고하셨습니다. 면접을 마치겠습니다.';
+  setTimeout(makeReport, 1000);
+}
+$('quit').addEventListener('click', ()=>{
+  if(S.log.length===0){ show('setup'); return; }
+  stopTimer(); S.ended=true; makeReport();
+});
+
+/* ═══════════ 타이머 ═══════════ */
+let tId=null;
+function startTimer(total){
+  stopTimer(); let left=total;
+  $('timerBox').style.display='flex'; paint(left,total);
+  tId = setInterval(()=>{ left--; if(left<=0){ left=0; stopTimer(); } paint(left,total); },1000);
+}
+function paint(left,total){
+  $('clock').textContent = `${String(Math.floor(left/60)).padStart(2,'0')}:${String(left%60).padStart(2,'0')} 남음`;
+  $('barFill').style.width = (left/total*100)+'%';
+  const warn = left <= Math.min(20, total*0.2);
+  $('clock').classList.toggle('warn',warn); $('bar').classList.toggle('warn',warn);
+}
+function stopTimer(){ if(tId){ clearInterval(tId); tId=null; } }
+
+/* ═══════════ 음성 입력 ═══════════ */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec=null;
+if(!SR){ $('mic').disabled=true; $('mic').textContent='음성 입력 미지원 브라우저'; }
+$('mic').addEventListener('click', ()=>{
+  if(!SR) return;
+  if(rec){ rec.stop(); return; }
+  rec = new SR(); rec.lang='ko-KR'; rec.continuous=true; rec.interimResults=false;
+  const base = $('answer').value; let acc='';
+  rec.onresult = e => {
+    for(let i=e.resultIndex;i<e.results.length;i++) if(e.results[i].isFinal) acc += e.results[i][0].transcript+' ';
+    $('answer').value = (base? base+' ':'') + acc;
+  };
+  const off = () => { rec=null; $('mic').setAttribute('aria-pressed','false'); $('mic').textContent='음성으로 답하기'; };
+  rec.onend = off; rec.onerror = off;
+  rec.start(); $('mic').setAttribute('aria-pressed','true'); $('mic').textContent='● 녹음 중 — 누르면 종료';
+});
+
+/* ═══════════ 평가서 ═══════════ */
+function transcript(){
+  return S.log.map((t,i)=>`[${i+1}] (${t.phase==='followup'?'꼬리질문':'본질문'} / ${t.type}) ${t.q}\n답변: ${t.a}`).join('\n\n');
+}
+async function makeReport(){
+  show('report');
+  const mains = S.log.filter(t=>t.phase!=='followup');
+  $('rMeta').textContent = `${S.univ} ${S.dept} · ${S.types.join('·')} · 본 질문 ${mains.length}개 · ${new Date().toLocaleDateString('ko-KR')}`;
+  $('rBody').innerHTML = '<p style="color:var(--muted)">답변을 평가하는 중입니다…</p>';
+
+  const sysA = `당신은 대학 입학사정관이자 면접평가위원이다. 모의 면접 기록을 읽고 평가한다.
+평가 기준은 학생부종합전형 공통 평가요소다.
+- 학업역량: 학업성취도, 학업태도, 탐구력
+- 진로역량: 전공(계열) 관련 교과 이수 노력, 교과 성취도, 진로 탐색 활동과 경험
+- 공동체역량: 협업과 소통능력, 나눔과 배려, 성실성과 규칙준수, 리더십
+여기에 면접 수행 기준을 더한다. 논리성(주장과 근거의 연결), 구체성(자기 경험과 사실에 기반), 표현력(질문 대응과 전달).
+답변에서 실제로 드러난 근거만으로 평가한다. 드러나지 않은 역량은 점수를 낮추고 근거가 부족했다고 명시한다.
+막연한 칭찬은 쓰지 않는다. 학생이 무엇을 바꾸면 되는지 알 수 있게 구체적으로 쓴다.
+[출력] 다른 말 없이 JSON만.
+{"grade":"A+|A|B+|B|C+|C|D","headline":"한 문장 총평","overall":"3~4문장","competencies":[{"name":"학업역량","score":0~100,"comment":"2문장"},{"name":"진로역량","score":0~100,"comment":"2문장"},{"name":"공동체역량","score":0~100,"comment":"2문장"},{"name":"논리성","score":0~100,"comment":"1~2문장"},{"name":"구체성","score":0~100,"comment":"1~2문장"},{"name":"표현력","score":0~100,"comment":"1~2문장"}],"nextSteps":["고칠 점 3~4개, 각 한 문장"]}`;
+
+  const sysB = `당신은 대학 입학사정관이다. 모의 면접의 본 질문별 답변을 하나씩 짚어 준다.
+각 문항마다 (1) 무엇을 보려던 문항인지, (2) 답변에서 좋았던 점과 부족했던 점, (3) 어떻게 고쳐 말하면 되는지 한 문장 예시를 쓴다.
+막연한 칭찬 금지. 답변에 실제로 있던 내용만 근거로 삼는다.
+[출력] 다른 말 없이 JSON만.
+{"items":[{"n":1,"intent":"출제 의도 한 문장","feedback":"2~3문장","rewrite":"이렇게 말했다면 더 좋았을 한 문장"}],"followupsToExpect":["실제 면접에서 이어질 예상 꼬리질문 3개"]}`;
+
+  const body = `[면접 정보] ${S.univ} ${S.dept} / 유형 ${S.types.join(', ')}\n\n[면접 기록]\n${transcript()}`;
+  const [rA, rB] = await Promise.allSettled([
+    ask(sysA, [{role:"user", content: body}]),
+    ask(sysB, [{role:"user", content: body}])
+  ]);
+  let A=null, B=null;
+  try{ if(rA.status==='fulfilled') A = parseJSON(rA.value); }catch(e){}
+  try{ if(rB.status==='fulfilled') B = parseJSON(rB.value); }catch(e){}
+
+  if(!A && !B){ $('rBody').innerHTML = '<div class="err">평가를 생성하지 못했습니다. 잠시 뒤 다시 시도해 주세요.</div>'; return; }
+
+  let h='';
+  if(A){
+    h += `<div class="overall"><p class="grade">${A.grade||'-'}<small>${A.headline||''}</small></p><p>${A.overall||''}</p></div>`;
+    h += `<h2 class="sec">평가요소별 진단</h2>`;
+    (A.competencies||[]).forEach(c=>{
+      h += `<div class="comp"><div class="comp-head"><span>${c.name}</span><em>${c.score}</em></div>
+      <div class="gauge"><span style="width:${Math.max(0,Math.min(100,c.score))}%"></span></div><p>${c.comment||''}</p></div>`;
+    });
+  }
+  if(B && B.items){
+    h += `<h2 class="sec">문항별 피드백</h2>`;
+    B.items.forEach(it=>{
+      const t = mains[it.n-1] || S.log[it.n-1] || {};
+      h += `<div class="qa"><p class="qq">${it.n}. ${t.q||''}</p>
+      <p class="aa">${(t.a||'').slice(0,300)}</p>
+      <p class="ff">${it.feedback||''}</p>
+      <p class="kk">출제 의도 — ${it.intent||''}<br>이렇게 말했다면 — “${it.rewrite||''}”</p></div>`;
+    });
+  }
+  if(A && A.nextSteps) h += `<h2 class="sec">다음 연습에서 고칠 것</h2><ul class="tips">${A.nextSteps.map(s=>`<li>${s}</li>`).join('')}</ul>`;
+  if(B && B.followupsToExpect) h += `<h2 class="sec">대비해 둘 예상 꼬리질문</h2><ul class="tips">${B.followupsToExpect.map(s=>`<li>${s}</li>`).join('')}</ul>`;
+  $('rBody').innerHTML = h;
+}
+
+$('again').addEventListener('click', ()=>{
+  S.log=[]; S.asked=[]; S.mainDone=0; S.fuUsed=0; S.current=null; S.pending=null; S.ended=false;
+  $('ready').textContent=''; $('thinking').textContent=''; $('roomErr').innerHTML='';
+  show('setup');
+});
+</script>
