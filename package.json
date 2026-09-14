@@ -1,12 +1,34 @@
 {
-  "name": "univ-interview-archive",
-  "version": "2.0.0",
+  "name": "univ-interview",
+  "version": "1.0.0",
   "private": true,
-  "engines": { "node": "22.x" },
+  "description": "대입 면접 기출문제 · 입결 · 면접후기 통합 검색",
   "scripts": {
-    "dev": "node --env-file-if-exists=.env.local scripts/dev-server.js",
-    "build": "node scripts/build.js",
-    "check": "node scripts/check.js",
-    "test": "node --test tests/search.test.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "data:universities": "node scripts/build-universities.mjs",
+    "data:reports": "node scripts/collect/reports.mjs",
+    "data:parse": "python scripts/collect/parse_reports.py",
+    "data:adiga": "node scripts/collect/admission-results.mjs",
+    "data:validate": "node scripts/validate-data.mjs",
+    "data:all": "npm run data:universities && npm run data:reports && npm run data:parse && npm run data:adiga && npm run data:validate",
+    "data:tips": "python scripts/collect/parse_guides.py"
+  },
+  "dependencies": {
+    "next": "15.1.6",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.7",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "typescript": "5.7.3"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

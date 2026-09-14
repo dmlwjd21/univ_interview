@@ -1,45 +1,89 @@
-name: Update public admissions data
+name: 데이터 갱신
+
+# 선행학습 영향평가 보고서는 전형을 치른 이듬해 3월 무렵 공개된다.
+# 그래서 3~5월은 자주, 나머지 기간은 한 달에 한 번만 돌린다.
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '20 1 * * 1'
-permissions:
-  contents: write
+    - cron: "0 18 1,15 3-5 *" # 3~5월: 매월 1·15일 (KST 새벽 3시)
+    - cron: "0 18 1 1,2,6-12 *" # 그 외: 매월 1일
+  workflow_dispatch:
+    inputs:
+      use_llm:
+        description: "LLM 보정 사용 (API 키 필요)"
+        type: boolean
+        default: false
+
 concurrency:
-  group: admissions-data-update
+  group: update-data
   cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
-          ref: main
-          persist-credentials: true
+          node-version: "20"
+          cache: npm
+
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-      - name: Check official and fallback sources
-        run: python scripts/update_data.py --output update-candidates.json
-      - name: Validate published JSON
-        run: python scripts/update_data.py --validate-only
-      - name: Commit verified structured updates and source fingerprints
+          python-version: "3.12"
+
+      - name: 의존성 설치
         run: |
-          git add data/admissions.json data/interviews.json data/metadata.json sources/checksums.json
-          if git diff --cached --quiet; then
-            echo "No publishable data or fingerprint changes"
-            exit 0
+          npm ci
+          pip install pymupdf
+
+      - name: 대학 목록
+        run: npm run data:universities
+
+      - name: 보고서 수집
+        run: npm run data:reports
+
+      - name: 기출문항 추출
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ "${{ inputs.use_llm }}" = "true" ]; then
+            python scripts/collect/parse_reports.py --llm
+          else
+            python scripts/collect/parse_reports.py
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore(data): update public admissions sources"
-          git push origin HEAD:main
-      - name: Upload review report
-        if: always()
-        uses: actions/upload-artifact@v4
+
+      - name: 입시결과 수집
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+          DATA_GO_KR_ENDPOINT: ${{ secrets.DATA_GO_KR_ENDPOINT }}
+        run: npm run data:adiga
+
+      - name: 데이터 검증
+        run: npm run data:validate
+
+      - name: 빌드 확인
+        run: npm run build
+
+      # 검증과 빌드를 통과한 데이터만 올린다.
+      - name: 변경사항 PR 생성
+        uses: peter-evans/create-pull-request@v6
         with:
-          name: update-candidates
-          path: update-candidates.json
-          if-no-files-found: ignore
-          retention-days: 30
+          commit-message: "chore(data): 수집 데이터 갱신"
+          branch: auto/data-update
+          delete-branch: true
+          title: "데이터 갱신 — 면접 기출 · 입결"
+          body: |
+            수집 스크립트가 자동으로 만든 변경입니다.
+
+            병합 전에 확인할 것
+            - 기출문항 수가 이유 없이 크게 줄지 않았는지
+            - 새로 들어온 문항이 실제 면접 문항인지 (논술·행정 문서가 섞이지 않았는지)
+            - 대학 목록에서 사라진 학교가 통폐합 때문인지
+
+            잘못 들어온 값은 `data/overrides/universities.json` 에서 고칠 수 있습니다.

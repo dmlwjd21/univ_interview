@@ -1,0 +1,30 @@
+{
+  "_comment": "자동 수집 결과를 사람이 고치는 레이어. add=누락 학교 추가, patch=필드 덮어쓰기, remove=제외(id 또는 학교명).",
+  "add": [
+    {
+      "name": "서울대학교",
+      "type": "university",
+      "region": "서울",
+      "homepage": "https://www.snu.ac.kr",
+      "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90"
+    }
+  ],
+  "patch": {
+    "연세대학교": {
+      "region": "서울"
+    },
+    "동덕여자대학교": {
+      "region": "서울"
+    },
+    "국립목포대학교": {
+      "region": "전남"
+    }
+  },
+  "remove": [
+    "육군사관학교 교수부",
+    "합동참모대학",
+    "언더우드 국제대학",
+    "솔브릿지 국제경영대학",
+    "한국방송통신대학교"
+  ]
+}

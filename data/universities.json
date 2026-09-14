@@ -1,16 +1,2970 @@
 [
   {
-    "id": "pusan-national",
+    "id": "가야대학교",
+    "name": "가야대학교",
+    "type": "university",
+    "region": "경남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%80%EC%95%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "가천대학교",
+    "name": "가천대학교",
+    "type": "university",
+    "region": "인천",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%80%EC%B2%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "가톨릭관동대학교",
+    "name": "가톨릭관동대학교",
+    "type": "university",
+    "region": "강원",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%80%ED%86%A8%EB%A6%AD%EA%B4%80%EB%8F%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "가톨릭꽃동네대학교",
+    "name": "가톨릭꽃동네대학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%80%ED%86%A8%EB%A6%AD%EA%BD%83%EB%8F%99%EB%84%A4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "가톨릭대학교",
+    "name": "가톨릭대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.catholic.ac.kr/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%80%ED%86%A8%EB%A6%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "가톨릭상지대학교",
+    "name": "가톨릭상지대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%80%ED%86%A8%EB%A6%AD%EC%83%81%EC%A7%80%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "감리교신학대학교",
+    "name": "감리교신학대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.mtu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%90%EB%A6%AC%EA%B5%90%EC%8B%A0%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "강남대학교",
+    "name": "강남대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "강동대학교",
+    "name": "강동대학교",
+    "type": "college",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%8F%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "강릉영동대학교",
+    "name": "강릉영동대학교",
+    "type": "college",
+    "region": "강원",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%A6%89%EC%98%81%EB%8F%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "강서대학교",
+    "name": "강서대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%95%EC%84%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "강원대학교",
+    "name": "강원대학교",
+    "type": "university",
+    "region": "강원",
+    "homepage": "https://www.kangwon.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%95%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "강원도립대학교",
+    "name": "강원도립대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B0%95%EC%9B%90%EB%8F%84%EB%A6%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "거제대학교",
+    "name": "거제대학교",
+    "type": "college",
+    "region": "경남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B1%B0%EC%A0%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "건국대학교",
+    "name": "건국대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.konkuk.ac.kr/do/Index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B1%B4%EA%B5%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "건국대학교GLOCAL캠퍼스",
+    "name": "건국대학교 GLOCAL캠퍼스",
+    "type": "university",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B1%B4%EA%B5%AD%EB%8C%80%ED%95%99%EA%B5%90%20GLOCAL%EC%BA%A0%ED%8D%BC%EC%8A%A4"
+  },
+  {
+    "id": "건양대학교",
+    "name": "건양대학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B1%B4%EC%96%91%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "건양사이버대학교",
+    "name": "건양사이버대학교",
+    "type": "cyber",
+    "region": "대전",
+    "homepage": "http://www.kycu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B1%B4%EC%96%91%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경기과학기술대학교",
+    "name": "경기과학기술대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "http://www.gtec.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EA%B8%B0%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경기대학교",
+    "name": "경기대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.kyonggi.ac.kr/www/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EA%B8%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경남대학교",
+    "name": "경남대학교",
+    "type": "university",
+    "region": "경남",
+    "homepage": "http://www.kyungnam.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경남정보대학교",
+    "name": "경남정보대학교",
+    "type": "college",
+    "region": "부산",
+    "homepage": "http://www.kit.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EB%82%A8%EC%A0%95%EB%B3%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경동대학교",
+    "name": "경동대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EB%8F%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경민대학교",
+    "name": "경민대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EB%AF%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경복대학교",
+    "name": "경복대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EB%B3%B5%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경북과학대학교",
+    "name": "경북과학대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": "https://www.kbsu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EB%B6%81%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경북대학교",
+    "name": "경북대학교",
+    "type": "university",
+    "region": "대구",
+    "homepage": "https://www.knu.ac.kr/wbbs/wbbs/main/main.action",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EB%B6%81%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경북보건대학교",
+    "name": "경북보건대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": "http://www.gch.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EB%B6%81%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경북전문대학교",
+    "name": "경북전문대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": "http://www.kbc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EB%B6%81%EC%A0%84%EB%AC%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경상국립대학교",
+    "name": "경상국립대학교",
+    "type": "university",
+    "region": "경남",
+    "homepage": "http://www.gnu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%83%81%EA%B5%AD%EB%A6%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경성대학교",
+    "name": "경성대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": "http://www.ks.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%84%B1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경운대학교",
+    "name": "경운대학교",
+    "type": "university",
+    "region": "경북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%9A%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경인교육대학교",
+    "name": "경인교육대학교",
+    "type": "university",
+    "region": "인천",
+    "homepage": "https://www.ginue.ac.kr/kor/Main.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%9D%B8%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경인여자대학교",
+    "name": "경인여자대학교",
+    "type": "college",
+    "region": "인천",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%9D%B8%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경일대학교",
+    "name": "경일대학교",
+    "type": "university",
+    "region": "경북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%9D%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경찰대학",
+    "name": "경찰대학",
+    "type": "university",
+    "region": "충남",
+    "homepage": "http://www.police.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%B0%B0%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "경희대학교",
+    "name": "경희대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "경희사이버대학교",
+    "name": "경희사이버대학교",
+    "type": "cyber",
+    "region": "서울",
+    "homepage": "http://www.khcu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B2%BD%ED%9D%AC%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "계명대학교",
+    "name": "계명대학교",
+    "type": "university",
+    "region": "대구",
+    "homepage": "http://www.kmu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B3%84%EB%AA%85%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "계명문화대학교",
+    "name": "계명문화대학교",
+    "type": "college",
+    "region": "대구",
+    "homepage": "https://www.kmcu.ac.kr/kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B3%84%EB%AA%85%EB%AC%B8%ED%99%94%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "계원예술대학교",
+    "name": "계원예술대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "http://www.kaywon.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B3%84%EC%9B%90%EC%98%88%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "고구려대학교",
+    "name": "고구려대학교",
+    "type": "college",
+    "region": "전남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B3%A0%EA%B5%AC%EB%A0%A4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "고려대학교",
+    "name": "고려대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.korea.ac.kr/sites/ko/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B3%A0%EB%A0%A4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "고려대학교세종캠퍼스",
+    "name": "고려대학교 세종캠퍼스",
+    "type": "university",
+    "region": "세종",
+    "homepage": "http://sejong.korea.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B3%A0%EB%A0%A4%EB%8C%80%ED%95%99%EA%B5%90%20%EC%84%B8%EC%A2%85%EC%BA%A0%ED%8D%BC%EC%8A%A4"
+  },
+  {
+    "id": "고려사이버대학교",
+    "name": "고려사이버대학교",
+    "type": "cyber",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B3%A0%EB%A0%A4%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "고신대학교",
+    "name": "고신대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": "http://home.kosin.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B3%A0%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "공군사관학교",
+    "name": "공군사관학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B3%B5%EA%B5%B0%EC%82%AC%EA%B4%80%ED%95%99%EA%B5%90%20(%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD)"
+  },
+  {
+    "id": "공주교육대학교",
+    "name": "공주교육대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B3%B5%EC%A3%BC%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "광신대학교",
+    "name": "광신대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": "http://www.kwangshin.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B4%91%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "광양보건대학교",
+    "name": "광양보건대학교",
+    "type": "college",
+    "region": "전남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B4%91%EC%96%91%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "광운대학교",
+    "name": "광운대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.kw.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B4%91%EC%9A%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "광주가톨릭대학교",
+    "name": "광주가톨릭대학교",
+    "type": "university",
+    "region": "전남",
+    "homepage": "http://www.gjcatholic.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B4%91%EC%A3%BC%EA%B0%80%ED%86%A8%EB%A6%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "광주과학기술원",
+    "name": "광주과학기술원",
+    "type": "university",
+    "region": "광주",
+    "homepage": "http://www.gist.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B4%91%EC%A3%BC%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EC%9B%90"
+  },
+  {
+    "id": "광주교육대학교",
+    "name": "광주교육대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": "http://www.gnue.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B4%91%EC%A3%BC%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "광주대학교",
+    "name": "광주대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": "http://www.gwangju.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B4%91%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "광주보건대학교",
+    "name": "광주보건대학교",
+    "type": "college",
+    "region": "광주",
+    "homepage": "http://www.ghu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B4%91%EC%A3%BC%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "광주여자대학교",
+    "name": "광주여자대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B4%91%EC%A3%BC%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "구미대학교",
+    "name": "구미대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": "https://gumi.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AC%EB%AF%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국군간호사관학교",
+    "name": "국군간호사관학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": "http://www.kafna.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EA%B5%B0%EA%B0%84%ED%98%B8%EC%82%AC%EA%B4%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립강릉원주대학교",
+    "name": "국립강릉원주대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%EA%B0%95%EB%A6%89%EC%9B%90%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립경국대학교",
+    "name": "국립경국대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%EA%B2%BD%EA%B5%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립공주대학교",
+    "name": "국립공주대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": "http://www.kongju.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%EA%B3%B5%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립군산대학교",
+    "name": "국립군산대학교",
+    "type": "university",
+    "region": "전북",
+    "homepage": "https://www.kunsan.ac.kr/index.kunsan",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%EA%B5%B0%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립금오공과대학교",
+    "name": "국립금오공과대학교",
+    "type": "university",
+    "region": "경북",
+    "homepage": "https://www.kumoh.ac.kr/ko/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%EA%B8%88%EC%98%A4%EA%B3%B5%EA%B3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립목포대학교",
+    "name": "국립목포대학교",
+    "type": "university",
+    "region": "전남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%EB%AA%A9%ED%8F%AC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립목포해양대학교",
+    "name": "국립목포해양대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": "http://www.mmu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%EB%AA%A9%ED%8F%AC%ED%95%B4%EC%96%91%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립부경대학교",
+    "name": "국립부경대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%EB%B6%80%EA%B2%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립순천대학교",
+    "name": "국립순천대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": "http://www.scnu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%EC%88%9C%EC%B2%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립창원대학교",
+    "name": "국립창원대학교",
+    "type": "university",
+    "region": "경남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%EC%B0%BD%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립한국교통대학교",
+    "name": "국립한국교통대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.ut.ac.kr/kor.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%ED%95%9C%EA%B5%AD%EA%B5%90%ED%86%B5%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립한국해양대학교",
+    "name": "국립한국해양대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": "http://www.kmou.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%ED%95%9C%EA%B5%AD%ED%95%B4%EC%96%91%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국립한밭대학교",
+    "name": "국립한밭대학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": "http://www.hanbat.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%A6%BD%ED%95%9C%EB%B0%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국민대학교",
+    "name": "국민대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.kookmin.ac.kr/user/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%AF%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국방대학교",
+    "name": "국방대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%B0%A9%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "국제대학교",
+    "name": "국제대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "http://www.kookje.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EC%A0%9C%EB%8C%80%ED%95%99%EA%B5%90%20(%EA%B2%BD%EA%B8%B0)"
+  },
+  {
+    "id": "국제사이버대학교",
+    "name": "국제사이버대학교",
+    "type": "cyber",
+    "region": "경기",
+    "homepage": "http://www.gjcu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%AD%EC%A0%9C%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "군산간호대학교",
+    "name": "군산간호대학교",
+    "type": "college",
+    "region": "전북",
+    "homepage": "https://www.kcn.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%B0%EC%82%B0%EA%B0%84%ED%98%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "군장대학교",
+    "name": "군장대학교",
+    "type": "college",
+    "region": "전북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B5%B0%EC%9E%A5%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "극동대학교",
+    "name": "극동대학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B7%B9%EB%8F%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "글로벌사이버대학교",
+    "name": "글로벌사이버대학교",
+    "type": "cyber",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B8%80%EB%A1%9C%EB%B2%8C%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "금강대학교",
+    "name": "금강대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": "http://www.ggu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B8%88%EA%B0%95%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "기독간호대학교",
+    "name": "기독간호대학교",
+    "type": "college",
+    "region": "광주",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B8%B0%EB%8F%85%EA%B0%84%ED%98%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "김천대학교",
+    "name": "김천대학교",
+    "type": "university",
+    "region": "경북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B9%80%EC%B2%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "김포대학교",
+    "name": "김포대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B9%80%ED%8F%AC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "김해대학교",
+    "name": "김해대학교",
+    "type": "college",
+    "region": "경남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EA%B9%80%ED%95%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "나사렛대학교",
+    "name": "나사렛대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": "http://www.kornu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%82%98%EC%82%AC%EB%A0%9B%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "나주대학교",
+    "name": "나주대학교",
+    "type": "university",
+    "region": "전남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%82%98%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "남부대학교",
+    "name": "남부대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%82%A8%EB%B6%80%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "남서울대학교",
+    "name": "남서울대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": "http://www.nsu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%82%A8%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "농협대학교",
+    "name": "농협대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "http://www.nonghyup.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%86%8D%ED%98%91%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "단국대학교",
+    "name": "단국대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "https://www.dankook.ac.kr/web/kor",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8B%A8%EA%B5%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대경대학교",
+    "name": "대경대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B2%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대구가톨릭대학교",
+    "name": "대구가톨릭대학교",
+    "type": "university",
+    "region": "대구",
+    "homepage": "https://www.cu.ac.kr/index.php",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EA%B0%80%ED%86%A8%EB%A6%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대구경북과학기술원",
+    "name": "대구경북과학기술원",
+    "type": "university",
+    "region": "대구",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EA%B2%BD%EB%B6%81%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EC%9B%90"
+  },
+  {
+    "id": "대구공업대학교",
+    "name": "대구공업대학교",
+    "type": "college",
+    "region": "대구",
+    "homepage": "https://www.ttc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EA%B3%B5%EC%97%85%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대구과학대학교",
+    "name": "대구과학대학교",
+    "type": "college",
+    "region": "대구",
+    "homepage": "https://www.tsu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대구교육대학교",
+    "name": "대구교육대학교",
+    "type": "university",
+    "region": "대구",
+    "homepage": "http://www.dnue.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대구대학교",
+    "name": "대구대학교",
+    "type": "university",
+    "region": "대구",
+    "homepage": "http://www.daegu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대구보건대학교",
+    "name": "대구보건대학교",
+    "type": "college",
+    "region": "대구",
+    "homepage": "http://www.dhc.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대구사이버대학교",
+    "name": "대구사이버대학교",
+    "type": "cyber",
+    "region": "경북",
+    "homepage": "http://www.dcu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대구예술대학교",
+    "name": "대구예술대학교",
+    "type": "university",
+    "region": "경북",
+    "homepage": "http://www.dgau.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EC%98%88%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대구한의대학교",
+    "name": "대구한의대학교",
+    "type": "university",
+    "region": "대구",
+    "homepage": "http://www.dhu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%ED%95%9C%EC%9D%98%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대덕대학교",
+    "name": "대덕대학교",
+    "type": "college",
+    "region": "대전",
+    "homepage": "http://www.ddc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EB%8D%95%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대동대학교",
+    "name": "대동대학교",
+    "type": "college",
+    "region": "부산",
+    "homepage": "http://www.daedong.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EB%8F%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대림대학교",
+    "name": "대림대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EB%A6%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대신대학교",
+    "name": "대신대학교",
+    "type": "university",
+    "region": "경북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대원대학교",
+    "name": "대원대학교",
+    "type": "college",
+    "region": "충북",
+    "homepage": "http://www.daewon.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대전가톨릭대학교",
+    "name": "대전가톨릭대학교",
+    "type": "university",
+    "region": "세종",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%A0%84%EA%B0%80%ED%86%A8%EB%A6%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대전과학기술대학교",
+    "name": "대전과학기술대학교",
+    "type": "college",
+    "region": "대전",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%A0%84%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대전대학교",
+    "name": "대전대학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%A0%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대전보건대학교",
+    "name": "대전보건대학교",
+    "type": "college",
+    "region": "대전",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%A0%84%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대전신학대학교",
+    "name": "대전신학대학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": "http://www.daejeon.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%A0%84%EC%8B%A0%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "대진대학교",
+    "name": "대진대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%A7%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "덕성여자대학교",
+    "name": "덕성여자대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.duksung.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8D%95%EC%84%B1%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동강대학교",
+    "name": "동강대학교",
+    "type": "college",
+    "region": "광주",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EA%B0%95%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동국대학교",
+    "name": "동국대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.dongguk.edu",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EA%B5%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동국대학교WISE캠퍼스",
+    "name": "동국대학교 WISE캠퍼스",
+    "type": "university",
+    "region": "경북",
+    "homepage": "http://web.dongguk.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EA%B5%AD%EB%8C%80%ED%95%99%EA%B5%90%20WISE%EC%BA%A0%ED%8D%BC%EC%8A%A4"
+  },
+  {
+    "id": "동남보건대학교",
+    "name": "동남보건대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EB%82%A8%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동덕여자대학교",
+    "name": "동덕여자대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.dongduk.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EB%8D%95%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동명대학교",
+    "name": "동명대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": "http://www.tu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EB%AA%85%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동서대학교",
+    "name": "동서대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": "http://www.dongseo.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%84%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동서울대학교",
+    "name": "동서울대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동신대학교",
+    "name": "동신대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": "http://www.dsu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동아대학교",
+    "name": "동아대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": "https://www.donga.ac.kr/kor/Main.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%95%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동아방송예술대학교",
+    "name": "동아방송예술대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "https://www.dima.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%95%84%EB%B0%A9%EC%86%A1%EC%98%88%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동아보건대학교",
+    "name": "동아보건대학교",
+    "type": "college",
+    "region": "전남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%95%84%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동양대학교",
+    "name": "동양대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%96%91%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동양미래대학교",
+    "name": "동양미래대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": "http://www.dongyang.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%96%91%EB%AF%B8%EB%9E%98%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동원과학기술대학교",
+    "name": "동원과학기술대학교",
+    "type": "college",
+    "region": "경남",
+    "homepage": "http://www.dist.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%9B%90%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동원대학교",
+    "name": "동원대학교",
+    "type": "college",
+    "region": "광주",
+    "homepage": "http://www.tw.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동의과학대학교",
+    "name": "동의과학대학교",
+    "type": "college",
+    "region": "부산",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%9D%98%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "동의대학교",
+    "name": "동의대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": "http://www.deu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%8F%99%EC%9D%98%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "두원공과대학교",
+    "name": "두원공과대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%91%90%EC%9B%90%EA%B3%B5%EA%B3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "디지털서울문화예술대학교",
+    "name": "디지털서울문화예술대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%94%94%EC%A7%80%ED%84%B8%EC%84%9C%EC%9A%B8%EB%AC%B8%ED%99%94%EC%98%88%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "루터대학교",
+    "name": "루터대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.ltu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%A3%A8%ED%84%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "마산대학교",
+    "name": "마산대학교",
+    "type": "college",
+    "region": "경남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%A7%88%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "명지대학교",
+    "name": "명지대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.mju.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%AA%85%EC%A7%80%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "명지전문대학",
+    "name": "명지전문대학",
+    "type": "college",
+    "region": "서울",
+    "homepage": "http://www.mjc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%AA%85%EC%A7%80%EC%A0%84%EB%AC%B8%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "목원대학교",
+    "name": "목원대학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%AA%A9%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "목포가톨릭대학교",
+    "name": "목포가톨릭대학교",
+    "type": "university",
+    "region": "전남",
+    "homepage": "https://www.mcu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%AA%A9%ED%8F%AC%EA%B0%80%ED%86%A8%EB%A6%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "목포과학대학교",
+    "name": "목포과학대학교",
+    "type": "college",
+    "region": "전남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%AA%A9%ED%8F%AC%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "문경대학교",
+    "name": "문경대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%AC%B8%EA%B2%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "배재대학교",
+    "name": "배재대학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": "http://www.pcu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B0%B0%EC%9E%AC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "배화여자대학교",
+    "name": "배화여자대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B0%B0%ED%99%94%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "백석대학교",
+    "name": "백석대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": "http://www.bu.ac.kr/main_index.jsp",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B0%B1%EC%84%9D%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "백석문화대학교",
+    "name": "백석문화대학교",
+    "type": "college",
+    "region": "충남",
+    "homepage": "https://www.bscu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B0%B1%EC%84%9D%EB%AC%B8%ED%99%94%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "백석예술대학교",
+    "name": "백석예술대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.bau.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B0%B1%EC%84%9D%EC%98%88%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "백제예술대학교",
+    "name": "백제예술대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": "http://www.paekche.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B0%B1%EC%A0%9C%EC%98%88%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부산가톨릭대학교",
+    "name": "부산가톨릭대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EA%B0%80%ED%86%A8%EB%A6%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부산경상대학교",
+    "name": "부산경상대학교",
+    "type": "college",
+    "region": "부산",
+    "homepage": "https://www.bsks.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EA%B2%BD%EC%83%81%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부산과학기술대학교",
+    "name": "부산과학기술대학교",
+    "type": "college",
+    "region": "부산",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부산교육대학교",
+    "name": "부산교육대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": "https://www.bnue.ac.kr/home/main",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부산대학교",
     "name": "부산대학교",
-    "type": "4년제",
-    "region": "부산·울산·경남",
-    "programs": [
-      {"major":"치의예과","tracks":["학생부종합(지역인재전형)"]},
-      {"major":"IT응용공학과","tracks":["학생부종합(지역인재전형)"]},
-      {"major":"건축학과","tracks":["학생부종합(학생부종합전형)"]},
-      {"major":"화학과","tracks":["학생부종합(학생부종합전형)"]},
-      {"major":"독어독문학과","tracks":["학생부종합(학생부종합전형)"]},
-      {"major":"무역학부","tracks":["학생부종합(학생부종합전형)"]}
-    ]
+    "type": "university",
+    "region": "부산",
+    "homepage": "https://www.pusan.ac.kr/kor/Main.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부산디지털대학교",
+    "name": "부산디지털대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EB%94%94%EC%A7%80%ED%84%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부산보건대학교",
+    "name": "부산보건대학교",
+    "type": "college",
+    "region": "부산",
+    "homepage": "https://www.bhu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부산여자대학교",
+    "name": "부산여자대학교",
+    "type": "college",
+    "region": "부산",
+    "homepage": "http://www.bwc.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부산예술대학교",
+    "name": "부산예술대학교",
+    "type": "college",
+    "region": "부산",
+    "homepage": "http://www.busanarts.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EC%98%88%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부산외국어대학교",
+    "name": "부산외국어대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EC%99%B8%EA%B5%AD%EC%96%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부산장신대학교",
+    "name": "부산장신대학교",
+    "type": "university",
+    "region": "경남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EC%9E%A5%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "부천대학교",
+    "name": "부천대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "http://www.bc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%B2%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "사이버한국외국어대학교",
+    "name": "사이버한국외국어대학교",
+    "type": "cyber",
+    "region": "서울",
+    "homepage": "http://www.cufs.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%82%AC%EC%9D%B4%EB%B2%84%ED%95%9C%EA%B5%AD%EC%99%B8%EA%B5%AD%EC%96%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "삼육대학교",
+    "name": "삼육대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.syu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%82%BC%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "삼육보건대학교",
+    "name": "삼육보건대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": "http://www.shu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%82%BC%EC%9C%A1%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "상명대학교",
+    "name": "상명대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.smu.ac.kr/kor/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%83%81%EB%AA%85%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "상지대학교",
+    "name": "상지대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.sangji.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%83%81%EC%A7%80%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서강대학교",
+    "name": "서강대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.sogang.ac.kr/ko/home",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EA%B0%95%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서경대학교",
+    "name": "서경대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.skuniv.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EA%B2%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서라벌대학교",
+    "name": "서라벌대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": "http://home.sorabol.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EB%9D%BC%EB%B2%8C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서영대학교",
+    "name": "서영대학교",
+    "type": "college",
+    "region": "광주",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%98%81%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울과학기술대학교",
+    "name": "서울과학기술대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.seoultech.ac.kr/index.jsp",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울교육대학교",
+    "name": "서울교육대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.snue.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울기독대학교",
+    "name": "서울기독대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EA%B8%B0%EB%8F%85%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울대학교",
+    "name": "서울대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.snu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울디지털대학교",
+    "name": "서울디지털대학교",
+    "type": "cyber",
+    "region": "서울",
+    "homepage": "http://www.sdu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EB%94%94%EC%A7%80%ED%84%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울사이버대학교",
+    "name": "서울사이버대학교",
+    "type": "cyber",
+    "region": "서울",
+    "homepage": "https://www.iscu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울시립대학교",
+    "name": "서울시립대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.uos.ac.kr/main.do?epTicket=LOG",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EC%8B%9C%EB%A6%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울신학대학교",
+    "name": "서울신학대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "https://www.stu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EC%8B%A0%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울여자간호대학",
+    "name": "서울여자간호대학",
+    "type": "college",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EC%97%AC%EC%9E%90%EA%B0%84%ED%98%B8%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "서울여자간호대학교",
+    "name": "서울여자간호대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EC%97%AC%EC%9E%90%EA%B0%84%ED%98%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울여자대학교",
+    "name": "서울여자대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울예술대학교",
+    "name": "서울예술대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EC%98%88%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울장신대학교",
+    "name": "서울장신대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": "http://www.sjs.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EC%9E%A5%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서울한영대학교",
+    "name": "서울한영대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%ED%95%9C%EC%98%81%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서원대학교",
+    "name": "서원대학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서일대학교",
+    "name": "서일대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.seoil.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9D%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "서정대학교",
+    "name": "서정대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%A0%95%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "선린대학교",
+    "name": "선린대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": "http://www.sunlin.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%A0%EB%A6%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "선문대학교",
+    "name": "선문대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": "https://www.sunmoon.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%A0%EB%AC%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "성결대학교",
+    "name": "성결대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "https://www.sungkyul.ac.kr/mbs/skukr/index.jsp",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%B1%EA%B2%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "성공회대학교",
+    "name": "성공회대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.skhu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%B1%EA%B3%B5%ED%9A%8C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "성균관대학교",
+    "name": "성균관대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.skku.edu/skku/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%B1%EA%B7%A0%EA%B4%80%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "성덕대학교",
+    "name": "성덕대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": "http://www.sdc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%B1%EB%8D%95%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "성신여자대학교",
+    "name": "성신여자대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.sungshin.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%B1%EC%8B%A0%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "성운대학교",
+    "name": "성운대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": "http://www.sdc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%B1%EC%9A%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "세경대학교",
+    "name": "세경대학교",
+    "type": "college",
+    "region": "강원",
+    "homepage": "http://www.saekyung.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%B8%EA%B2%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "세명대학교",
+    "name": "세명대학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": "http://www.semyung.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%B8%EB%AA%85%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "세종대학교",
+    "name": "세종대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.sejong.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%B8%EC%A2%85%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "세종사이버대학교",
+    "name": "세종사이버대학교",
+    "type": "cyber",
+    "region": "서울",
+    "homepage": "http://home.sjcu.ac.kr/Main",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%B8%EC%A2%85%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "세한대학교",
+    "name": "세한대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": "http://www.sehan.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%84%B8%ED%95%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "송곡대학교",
+    "name": "송곡대학교",
+    "type": "college",
+    "region": "강원",
+    "homepage": "http://www.songgok.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%86%A1%EA%B3%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "송원대학교",
+    "name": "송원대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%86%A1%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "송호대학교",
+    "name": "송호대학교",
+    "type": "college",
+    "region": "강원",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%86%A1%ED%98%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "수성대학교",
+    "name": "수성대학교",
+    "type": "college",
+    "region": "대구",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%88%98%EC%84%B1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "수원가톨릭대학교",
+    "name": "수원가톨릭대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.suwoncatholic.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%88%98%EC%9B%90%EA%B0%80%ED%86%A8%EB%A6%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "수원과학대학교",
+    "name": "수원과학대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "http://www.ssc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%88%98%EC%9B%90%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "수원대학교",
+    "name": "수원대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.suwon.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%88%98%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "수원여자대학교",
+    "name": "수원여자대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "http://www.swc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%88%98%EC%9B%90%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "숙명여자대학교",
+    "name": "숙명여자대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.sookmyung.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%88%99%EB%AA%85%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "순천제일대학교",
+    "name": "순천제일대학교",
+    "type": "college",
+    "region": "광주",
+    "homepage": "http://www.suncheon.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%88%9C%EC%B2%9C%EC%A0%9C%EC%9D%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "순천향대학교",
+    "name": "순천향대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%88%9C%EC%B2%9C%ED%96%A5%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "숭실대학교",
+    "name": "숭실대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%88%AD%EC%8B%A4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "숭실사이버대학교",
+    "name": "숭실사이버대학교",
+    "type": "cyber",
+    "region": "서울",
+    "homepage": "http://www.kcu.ac",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%88%AD%EC%8B%A4%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "숭의여자대학교",
+    "name": "숭의여자대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": "https://www.sewu.ac.kr/sewu/main.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%88%AD%EC%9D%98%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "신경주대학교",
+    "name": "신경주대학교",
+    "type": "university",
+    "region": "경북",
+    "homepage": "http://www.sgu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%8B%A0%EA%B2%BD%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "신구대학교",
+    "name": "신구대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%8B%A0%EA%B5%AC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "신라대학교",
+    "name": "신라대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": "http://www.silla.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%8B%A0%EB%9D%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "신성대학교",
+    "name": "신성대학교",
+    "type": "college",
+    "region": "충남",
+    "homepage": "http://www.shinsung.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%8B%A0%EC%84%B1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "신안산대학교",
+    "name": "신안산대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%8B%A0%EC%95%88%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "신한대학교",
+    "name": "신한대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%8B%A0%ED%95%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "아신대학교",
+    "name": "아신대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%95%84%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "아주대학교",
+    "name": "아주대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%95%84%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "아주자동차대학교",
+    "name": "아주자동차대학교",
+    "type": "college",
+    "region": "충남",
+    "homepage": "http://www.motor.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%95%84%EC%A3%BC%EC%9E%90%EB%8F%99%EC%B0%A8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "안동과학대학교",
+    "name": "안동과학대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%95%88%EB%8F%99%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "안산대학교",
+    "name": "안산대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%95%88%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "안양대학교",
+    "name": "안양대학교",
+    "type": "university",
+    "region": "인천",
+    "homepage": "http://www.anyang.ac.kr/main.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%95%88%EC%96%91%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "여주대학교",
+    "name": "여주대학교",
+    "type": "college",
+    "region": "세종",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%97%AC%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "연성대학교",
+    "name": "연성대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "http://www.yeonsung.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%97%B0%EC%84%B1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "연세대학교",
+    "name": "연세대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.yonsei.ac.kr/sc/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%97%B0%EC%84%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "연세대학교미래캠퍼스",
+    "name": "연세대학교 미래캠퍼스",
+    "type": "university",
+    "region": "강원",
+    "homepage": "https://mirae.yonsei.ac.kr/wj/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%97%B0%EC%84%B8%EB%8C%80%ED%95%99%EA%B5%90%20%EB%AF%B8%EB%9E%98%EC%BA%A0%ED%8D%BC%EC%8A%A4"
+  },
+  {
+    "id": "연암공과대학교",
+    "name": "연암공과대학교",
+    "type": "college",
+    "region": "경남",
+    "homepage": "http://www.yc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%97%B0%EC%95%94%EA%B3%B5%EA%B3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "연암대학교",
+    "name": "연암대학교",
+    "type": "college",
+    "region": "충남",
+    "homepage": "http://www.yonam.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%97%B0%EC%95%94%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "영남대학교",
+    "name": "영남대학교",
+    "type": "university",
+    "region": "대구",
+    "homepage": "http://www.yu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%81%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "영남신학대학교",
+    "name": "영남신학대학교",
+    "type": "university",
+    "region": "경북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%81%EB%82%A8%EC%8B%A0%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "영남외국어대학",
+    "name": "영남외국어대학",
+    "type": "college",
+    "region": "경북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%81%EB%82%A8%EC%99%B8%EA%B5%AD%EC%96%B4%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "영남이공대학교",
+    "name": "영남이공대학교",
+    "type": "college",
+    "region": "대구",
+    "homepage": "https://www.ync.ac.kr/kor/Main.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%81%EB%82%A8%EC%9D%B4%EA%B3%B5%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "영산대학교",
+    "name": "영산대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": "http://www.ysu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%81%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "영산선학대학교",
+    "name": "영산선학대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": "https://www.youngsan.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%81%EC%82%B0%EC%84%A0%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "영진사이버대학교",
+    "name": "영진사이버대학교",
+    "type": "cyber",
+    "region": "대구",
+    "homepage": "https://ycc.ac.kr/kor/Main.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%81%EC%A7%84%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "영진전문대학",
+    "name": "영진전문대학",
+    "type": "college",
+    "region": "대구",
+    "homepage": "https://www.yju.ac.kr/kr/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%81%EC%A7%84%EC%A0%84%EB%AC%B8%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "영진전문대학교",
+    "name": "영진전문대학교",
+    "type": "college",
+    "region": "대구",
+    "homepage": "https://www.yju.ac.kr/kr/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%81%EC%A7%84%EC%A0%84%EB%AC%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "예수대학교",
+    "name": "예수대학교",
+    "type": "university",
+    "region": "전북",
+    "homepage": "http://www.jesus.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%88%EC%88%98%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "예원예술대학교",
+    "name": "예원예술대학교",
+    "type": "university",
+    "region": "전북",
+    "homepage": "http://www.yewon.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%88%EC%9B%90%EC%98%88%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "오산대학교",
+    "name": "오산대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "http://www.osan.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%98%A4%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "용인대학교",
+    "name": "용인대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9A%A9%EC%9D%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "용인예술과학대학교",
+    "name": "용인예술과학대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9A%A9%EC%9D%B8%EC%98%88%EC%88%A0%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "우석대학교",
+    "name": "우석대학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": "http://www.woosuk.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9A%B0%EC%84%9D%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "우송대학교",
+    "name": "우송대학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": "http://www.wsu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9A%B0%EC%86%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "우송정보대학",
+    "name": "우송정보대학",
+    "type": "college",
+    "region": "대전",
+    "homepage": "http://www.wsi.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9A%B0%EC%86%A1%EC%A0%95%EB%B3%B4%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "울산과학기술원",
+    "name": "울산과학기술원",
+    "type": "university",
+    "region": "울산",
+    "homepage": "https://www.unist.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9A%B8%EC%82%B0%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EC%9B%90"
+  },
+  {
+    "id": "울산과학대학교",
+    "name": "울산과학대학교",
+    "type": "college",
+    "region": "울산",
+    "homepage": "http://www.uc.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9A%B8%EC%82%B0%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "울산대학교",
+    "name": "울산대학교",
+    "type": "university",
+    "region": "울산",
+    "homepage": "http://www.ulsan.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9A%B8%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "웅지세무대학",
+    "name": "웅지세무대학",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9B%85%EC%A7%80%EC%84%B8%EB%AC%B4%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "웅지세무대학교",
+    "name": "웅지세무대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9B%85%EC%A7%80%EC%84%B8%EB%AC%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "원광대학교",
+    "name": "원광대학교",
+    "type": "university",
+    "region": "전북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9B%90%EA%B4%91%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "원광디지털대학교",
+    "name": "원광디지털대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.wdu.ac.kr/main.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9B%90%EA%B4%91%EB%94%94%EC%A7%80%ED%84%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "원광보건대학교",
+    "name": "원광보건대학교",
+    "type": "college",
+    "region": "전북",
+    "homepage": "http://www.wu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9B%90%EA%B4%91%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "위덕대학교",
+    "name": "위덕대학교",
+    "type": "university",
+    "region": "경북",
+    "homepage": "http://www.uu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9C%84%EB%8D%95%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "유원대학교",
+    "name": "유원대학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9C%A0%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "유타대학교",
+    "name": "유타 대학교",
+    "type": "university",
+    "region": "인천",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9C%A0%ED%83%80%20%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "유한대학교",
+    "name": "유한대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9C%A0%ED%95%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "육군사관학교",
+    "name": "육군사관학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9C%A1%EA%B5%B0%EC%82%AC%EA%B4%80%ED%95%99%EA%B5%90%20(%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD)"
+  },
+  {
+    "id": "을지대학교",
+    "name": "을지대학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9D%84%EC%A7%80%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "이화여자대학교",
+    "name": "이화여자대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.ewha.ac.kr/ewha/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9D%B4%ED%99%94%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "인덕대학교",
+    "name": "인덕대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": "https://www.induk.ac.kr/KR/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9D%B8%EB%8D%95%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "인제대학교",
+    "name": "인제대학교",
+    "type": "university",
+    "region": "부산",
+    "homepage": "http://www.inje.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9D%B8%EC%A0%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "인천가톨릭대학교",
+    "name": "인천가톨릭대학교",
+    "type": "university",
+    "region": "인천",
+    "homepage": "https://www.iccu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9D%B8%EC%B2%9C%EA%B0%80%ED%86%A8%EB%A6%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "인천대학교",
+    "name": "인천대학교",
+    "type": "university",
+    "region": "인천",
+    "homepage": "https://www.inu.ac.kr/inu/index.do?epTicket=LOG",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9D%B8%EC%B2%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "인하공업전문대학",
+    "name": "인하공업전문대학",
+    "type": "college",
+    "region": "인천",
+    "homepage": "http://www.inhatc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9D%B8%ED%95%98%EA%B3%B5%EC%97%85%EC%A0%84%EB%AC%B8%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "인하대학교",
+    "name": "인하대학교",
+    "type": "university",
+    "region": "인천",
+    "homepage": "http://www.inha.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9D%B8%ED%95%98%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "장로회신학대학교",
+    "name": "장로회신학대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.puts.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9E%A5%EB%A1%9C%ED%9A%8C%EC%8B%A0%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "장안대학교",
+    "name": "장안대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "http://www.jangan.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9E%A5%EC%95%88%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "재능대학교",
+    "name": "재능대학교",
+    "type": "college",
+    "region": "인천",
+    "homepage": "http://www.jeiu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9E%AC%EB%8A%A5%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "전남과학대학교",
+    "name": "전남과학대학교",
+    "type": "college",
+    "region": "광주",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%84%EB%82%A8%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "전남대학교",
+    "name": "전남대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": "https://www.jnu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%84%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "전북과학대학교",
+    "name": "전북과학대학교",
+    "type": "college",
+    "region": "전북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%84%EB%B6%81%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "전북대학교",
+    "name": "전북대학교",
+    "type": "university",
+    "region": "전북",
+    "homepage": "https://www.jbnu.ac.kr/kor/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%84%EB%B6%81%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "전주교육대학교",
+    "name": "전주교육대학교",
+    "type": "university",
+    "region": "전북",
+    "homepage": "https://www.jnue.kr/portal/jnue/main/main.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%84%EC%A3%BC%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "전주기전대학",
+    "name": "전주기전대학",
+    "type": "college",
+    "region": "전북",
+    "homepage": "https://www.kijeon.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%84%EC%A3%BC%EA%B8%B0%EC%A0%84%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "전주대학교",
+    "name": "전주대학교",
+    "type": "university",
+    "region": "전북",
+    "homepage": "http://www.jj.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%84%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "전주비전대학교",
+    "name": "전주비전대학교",
+    "type": "college",
+    "region": "전북",
+    "homepage": "http://www.jvision.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%84%EC%A3%BC%EB%B9%84%EC%A0%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "제주관광대학교",
+    "name": "제주관광대학교",
+    "type": "college",
+    "region": "제주",
+    "homepage": "http://www.ctc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%9C%EC%A3%BC%EA%B4%80%EA%B4%91%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "제주국제대학교",
+    "name": "제주국제대학교",
+    "type": "university",
+    "region": "제주",
+    "homepage": "http://www.jeju.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%9C%EC%A3%BC%EA%B5%AD%EC%A0%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "제주대학교",
+    "name": "제주대학교",
+    "type": "university",
+    "region": "제주",
+    "homepage": "https://www.jejunu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%9C%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "제주한라대학교",
+    "name": "제주한라대학교",
+    "type": "college",
+    "region": "제주",
+    "homepage": "http://www.chu.ac.kr/main/main/index.php",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A0%9C%EC%A3%BC%ED%95%9C%EB%9D%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "조선간호대학교",
+    "name": "조선간호대학교",
+    "type": "college",
+    "region": "광주",
+    "homepage": "http://www.cnc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A1%B0%EC%84%A0%EA%B0%84%ED%98%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "조선대학교",
+    "name": "조선대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": "http://www.chosun.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A1%B0%EC%84%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "조선이공대학교",
+    "name": "조선이공대학교",
+    "type": "college",
+    "region": "광주",
+    "homepage": "http://www.cst.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A1%B0%EC%84%A0%EC%9D%B4%EA%B3%B5%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "중부대학교",
+    "name": "중부대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.joongbu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A4%91%EB%B6%80%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "중앙대학교",
+    "name": "중앙대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.cau.ac.kr/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A4%91%EC%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "중앙승가대학교",
+    "name": "중앙승가대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.sangha.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A4%91%EC%95%99%EC%8A%B9%EA%B0%80%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "중원대학교",
+    "name": "중원대학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A4%91%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "진주교육대학교",
+    "name": "진주교육대학교",
+    "type": "university",
+    "region": "경남",
+    "homepage": "http://www.cue.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A7%84%EC%A3%BC%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "진주보건대학교",
+    "name": "진주보건대학교",
+    "type": "college",
+    "region": "경남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%A7%84%EC%A3%BC%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "차의과학대학교",
+    "name": "차의과학대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.cha.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B0%A8%EC%9D%98%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "창신대학교",
+    "name": "창신대학교",
+    "type": "university",
+    "region": "경남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B0%BD%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "창원문성대학",
+    "name": "창원문성대학",
+    "type": "college",
+    "region": "경남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B0%BD%EC%9B%90%EB%AC%B8%EC%84%B1%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "창원문성대학교",
+    "name": "창원문성대학교",
+    "type": "college",
+    "region": "경남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B0%BD%EC%9B%90%EB%AC%B8%EC%84%B1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "청강문화산업대학교",
+    "name": "청강문화산업대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": "https://www.ck.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EA%B0%95%EB%AC%B8%ED%99%94%EC%82%B0%EC%97%85%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "청암대학교",
+    "name": "청암대학교",
+    "type": "college",
+    "region": "광주",
+    "homepage": "https://www.ca.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%95%94%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "청운대학교",
+    "name": "청운대학교",
+    "type": "university",
+    "region": "인천",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%9A%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "청주교육대학교",
+    "name": "청주교육대학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": "https://www.cje.ac.kr/web/main.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%A3%BC%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "청주대학교",
+    "name": "청주대학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "초당대학교",
+    "name": "초당대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B4%88%EB%8B%B9%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "총신대학교",
+    "name": "총신대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B4%9D%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "추계예술대학교",
+    "name": "추계예술대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.chugye.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B6%94%EA%B3%84%EC%98%88%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "춘천교육대학교",
+    "name": "춘천교육대학교",
+    "type": "university",
+    "region": "강원",
+    "homepage": "http://www.cnue.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B6%98%EC%B2%9C%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "춘해보건대학교",
+    "name": "춘해보건대학교",
+    "type": "college",
+    "region": "울산",
+    "homepage": "http://www.ch.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B6%98%ED%95%B4%EB%B3%B4%EA%B1%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "충남대학교",
+    "name": "충남대학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": "https://plus.cnu.ac.kr/html/kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B6%A9%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "충남도립대학교",
+    "name": "충남도립대학교",
+    "type": "college",
+    "region": "충남",
+    "homepage": "http://www.cnsu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B6%A9%EB%82%A8%EB%8F%84%EB%A6%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "충북대학교",
+    "name": "충북대학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B6%A9%EB%B6%81%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "충북도립대학",
+    "name": "충북도립대학",
+    "type": "college",
+    "region": "충북",
+    "homepage": "http://www.cpu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B6%A9%EB%B6%81%EB%8F%84%EB%A6%BD%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "충북도립대학교",
+    "name": "충북도립대학교",
+    "type": "college",
+    "region": "충북",
+    "homepage": "http://www.cpu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B6%A9%EB%B6%81%EB%8F%84%EB%A6%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "충북보건과학대학교",
+    "name": "충북보건과학대학교",
+    "type": "college",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B6%A9%EB%B6%81%EB%B3%B4%EA%B1%B4%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "충청대학교",
+    "name": "충청대학교",
+    "type": "college",
+    "region": "충북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B6%A9%EC%B2%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "치킨대학교",
+    "name": "치킨대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B9%98%ED%82%A8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "칼빈대학교",
+    "name": "칼빈대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "https://calvin.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%EC%B9%BC%EB%B9%88%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "태재대학교",
+    "name": "태재대학교",
+    "type": "cyber",
+    "region": "서울",
+    "homepage": "https://www.taejae.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%83%9C%EC%9E%AC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "평택대학교",
+    "name": "평택대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.ptu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%8F%89%ED%83%9D%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "포항공과대학교",
+    "name": "포항공과대학교",
+    "type": "university",
+    "region": "경북",
+    "homepage": "http://www.postech.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%8F%AC%ED%95%AD%EA%B3%B5%EA%B3%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "포항대학교",
+    "name": "포항대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": "http://www.pohang.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%8F%AC%ED%95%AD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한경국립대학교",
+    "name": "한경국립대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "https://www.hknu.ac.kr/kor/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B2%BD%EA%B5%AD%EB%A6%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국골프과학기술대학교",
+    "name": "한국골프과학기술대학교",
+    "type": "college",
+    "region": "강원",
+    "homepage": "https://www.kg.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EA%B3%A8%ED%94%84%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국공학대학교",
+    "name": "한국공학대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EA%B3%B5%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국과학기술원",
+    "name": "한국과학기술원",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.kaist.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EC%9B%90"
+  },
+  {
+    "id": "한국관광대학교",
+    "name": "한국관광대학교",
+    "type": "college",
+    "region": "경기",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EA%B4%80%EA%B4%91%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국교원대학교",
+    "name": "한국교원대학교",
+    "type": "university",
+    "region": "충북",
+    "homepage": "https://knue.ac.kr/smain.html",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EA%B5%90%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국기술교육대학교",
+    "name": "한국기술교육대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": "http://www.koreatech.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EA%B8%B0%EC%88%A0%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국농수산대학교",
+    "name": "한국농수산대학교",
+    "type": "college",
+    "region": "전북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EB%86%8D%EC%88%98%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국뉴욕주립대학교",
+    "name": "한국뉴욕주립대학교",
+    "type": "university",
+    "region": "인천",
+    "homepage": "http://www.sunykorea.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EB%89%B4%EC%9A%95%EC%A3%BC%EB%A6%BD%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국복지사이버대학",
+    "name": "한국복지사이버대학",
+    "type": "cyber",
+    "region": "경북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EB%B3%B5%EC%A7%80%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "한국성서대학교",
+    "name": "한국성서대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EC%84%B1%EC%84%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국승강기대학교",
+    "name": "한국승강기대학교",
+    "type": "college",
+    "region": "경남",
+    "homepage": "http://www.klc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EC%8A%B9%EA%B0%95%EA%B8%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국열린사이버대학교",
+    "name": "한국열린사이버대학교",
+    "type": "cyber",
+    "region": "서울",
+    "homepage": "http://www.ocu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EC%97%B4%EB%A6%B0%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국영상대학교",
+    "name": "한국영상대학교",
+    "type": "college",
+    "region": "세종",
+    "homepage": "http://www3.pro.ac.kr/KoreaMain.pro",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EC%98%81%EC%83%81%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국외국어대학교",
+    "name": "한국외국어대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.hufs.ac.kr/hufs/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EC%99%B8%EA%B5%AD%EC%96%B4%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국전통문화대학교",
+    "name": "한국전통문화대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EC%A0%84%ED%86%B5%EB%AC%B8%ED%99%94%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국체육대학교",
+    "name": "한국체육대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.knsu.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EC%B2%B4%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국침례신학대학교",
+    "name": "한국침례신학대학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%EC%B9%A8%EB%A1%80%EC%8B%A0%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한국폴리텍I대학",
+    "name": "한국폴리텍I대학",
+    "type": "college",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%ED%8F%B4%EB%A6%AC%ED%85%8DI%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "한국폴리텍II대학",
+    "name": "한국폴리텍II대학",
+    "type": "college",
+    "region": "인천",
+    "homepage": "http://incheon.kopo.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%ED%8F%B4%EB%A6%AC%ED%85%8DII%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "한국폴리텍III대학",
+    "name": "한국폴리텍III대학",
+    "type": "college",
+    "region": "강원",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%ED%8F%B4%EB%A6%AC%ED%85%8DIII%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "한국폴리텍IV대학",
+    "name": "한국폴리텍IV대학",
+    "type": "college",
+    "region": "대전",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%ED%8F%B4%EB%A6%AC%ED%85%8DIV%EB%8C%80%ED%95%99"
+  },
+  {
+    "id": "한국항공대학교",
+    "name": "한국항공대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.kau.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EA%B5%AD%ED%95%AD%EA%B3%B5%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한남대학교",
+    "name": "한남대학교",
+    "type": "university",
+    "region": "대전",
+    "homepage": "http://www.hannam.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한동대학교",
+    "name": "한동대학교",
+    "type": "university",
+    "region": "경북",
+    "homepage": "http://www.handong.edu",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EB%8F%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한라대학교",
+    "name": "한라대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.halla.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EB%9D%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한림대학교",
+    "name": "한림대학교",
+    "type": "university",
+    "region": "강원",
+    "homepage": "http://www.hallym.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EB%A6%BC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한림성심대학교",
+    "name": "한림성심대학교",
+    "type": "college",
+    "region": "강원",
+    "homepage": "http://www.hsc.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EB%A6%BC%EC%84%B1%EC%8B%AC%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한서대학교",
+    "name": "한서대학교",
+    "type": "university",
+    "region": "충남",
+    "homepage": "http://www.hanseo.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EC%84%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한성대학교",
+    "name": "한성대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.hansung.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EC%84%B1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한세대학교",
+    "name": "한세대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.hansei.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EC%84%B8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한신대학교",
+    "name": "한신대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "http://www.hs.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한양대학교",
+    "name": "한양대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EC%96%91%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한양대학교ERICA캠퍼스",
+    "name": "한양대학교 ERICA캠퍼스",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.hanyang.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EC%96%91%EB%8C%80%ED%95%99%EA%B5%90%20ERICA%EC%BA%A0%ED%8D%BC%EC%8A%A4"
+  },
+  {
+    "id": "한양사이버대학교",
+    "name": "한양사이버대학교",
+    "type": "cyber",
+    "region": "서울",
+    "homepage": "http://www.hanyangcyber.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EC%96%91%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한양여자대학교",
+    "name": "한양여자대학교",
+    "type": "college",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EC%96%91%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한영대학교",
+    "name": "한영대학교",
+    "type": "college",
+    "region": "전남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EC%98%81%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "한일장신대학교",
+    "name": "한일장신대학교",
+    "type": "university",
+    "region": "전북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%9C%EC%9D%BC%EC%9E%A5%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "해군사관학교",
+    "name": "해군사관학교",
+    "type": "university",
+    "region": "경남",
+    "homepage": "http://www.navy.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%95%B4%EA%B5%B0%EC%82%AC%EA%B4%80%ED%95%99%EA%B5%90%20(%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD)"
+  },
+  {
+    "id": "헨트대학교",
+    "name": "헨트 대학교",
+    "type": "university",
+    "region": "인천",
+    "homepage": "http://ugent.be/en/ghentuniv",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%97%A8%ED%8A%B8%20%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "협성대학교",
+    "name": "협성대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "http://www.uhs.ac.kr",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%98%91%EC%84%B1%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "혜전대학교",
+    "name": "혜전대학교",
+    "type": "college",
+    "region": "충남",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%98%9C%EC%A0%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "호남대학교",
+    "name": "호남대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%98%B8%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "호남신학대학교",
+    "name": "호남신학대학교",
+    "type": "university",
+    "region": "광주",
+    "homepage": "http://www.htus.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%98%B8%EB%82%A8%EC%8B%A0%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "호산대학교",
+    "name": "호산대학교",
+    "type": "college",
+    "region": "경북",
+    "homepage": "https://www.hosan.ac.kr/front/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%98%B8%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "호서대학교",
+    "name": "호서대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%98%B8%EC%84%9C%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "호원대학교",
+    "name": "호원대학교",
+    "type": "university",
+    "region": "전북",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%98%B8%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "홍익대학교",
+    "name": "홍익대학교",
+    "type": "university",
+    "region": "서울",
+    "homepage": "https://www.hongik.ac.kr/kr/index.do",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%99%8D%EC%9D%B5%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "화성의과학대학교",
+    "name": "화성의과학대학교",
+    "type": "university",
+    "region": "경기",
+    "homepage": "https://www.hsmu.ac.kr/",
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%99%94%EC%84%B1%EC%9D%98%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "화신사이버대학교",
+    "name": "화신사이버대학교",
+    "type": "cyber",
+    "region": "부산",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/%ED%99%94%EC%8B%A0%EC%82%AC%EC%9D%B4%EB%B2%84%EB%8C%80%ED%95%99%EA%B5%90"
+  },
+  {
+    "id": "ICT폴리텍대학",
+    "name": "ICT폴리텍대학",
+    "type": "college",
+    "region": "광주",
+    "homepage": null,
+    "wikipedia": "https://ko.wikipedia.org/wiki/ICT%ED%8F%B4%EB%A6%AC%ED%85%8D%EB%8C%80%ED%95%99"
   }
 ]
