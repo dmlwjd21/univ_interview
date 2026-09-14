@@ -1,0 +1,9 @@
+.env
+.env.local
+.env.*
+.vercel/
+node_modules/
+public/
+__pycache__/
+*.pyc
+update-candidates.json

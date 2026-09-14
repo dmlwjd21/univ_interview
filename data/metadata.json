@@ -1,0 +1,11 @@
+{
+  "updatedAt":"2026-09-14",
+  "latestAdmissionYear":2026,
+  "windowYears":5,
+  "sampleNotice":"기존 저장소의 예시 질문을 분리한 자료입니다. 원문과 문항·전형 일치 여부는 아직 대조하지 않았습니다.",
+  "sourceGrades":{
+    "A":"대학 공식",
+    "B":"공공자료",
+    "C":"공개 응시후기"
+  }
+}
