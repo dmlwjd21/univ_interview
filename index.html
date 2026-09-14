@@ -1,632 +1,821 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>대학 면접 시뮬레이터</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>대입 면접 기출 자료실</title>
 <style>
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap');
-
 :root{
-  --ink:#14201F;
-  --paper:#EFF1EE;
-  --paper-dim:#E2E6E2;
-  --pine:#1E5F52;
-  --pine-deep:#164A40;
-  --amber:#B8830F;
-  --rose:#9E3A2E;
-  --muted:#6E7A76;
-  --line:#CFD6D1;
-  --serif:'Nanum Myeongjo', serif;
-  --sans:'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --ink:#17233a; --ink2:#41506b; --ink3:#77859e;
+  --paper:#ffffff; --bg:#eceff4; --line:#d5dbe5; --line2:#e6eaf1;
+  --blue:#27518f; --blue-soft:#eaf0fa; --blue-line:#b9cbe8;
+  --gold:#8a6a12; --gold-soft:#fbf3dd; --gold-line:#e3d19a;
+  --red:#9b3030; --red-soft:#fbeeee;
+  --r:6px;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6}
-button{font-family:inherit;cursor:pointer}
-input,select,textarea{font-family:inherit}
-:focus-visible{outline:2px solid var(--pine);outline-offset:2px}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+body{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",system-ui,sans-serif;
+  background:var(--bg); color:var(--ink); font-size:15px; line-height:1.62;
+  -webkit-text-size-adjust:100%;
+}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+a{color:var(--blue)}
 
-.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+/* ---------- 머리말 ---------- */
+.masthead{background:var(--ink);color:#fff;padding:18px 20px 16px}
+.mast-in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;justify-content:space-between}
+.mast-in h1{margin:0;font-size:21px;font-weight:800;letter-spacing:-.4px}
+.mast-in h1 span{font-weight:400;color:#9fb0cc;font-size:14px;margin-left:10px;letter-spacing:0}
+.mast-meta{font-size:12.5px;color:#9fb0cc}
+.mast-meta b{color:#fff;font-weight:700}
 
-/* ── 설정 ── */
-#setup{padding:64px 0 96px}
-.lede{font-family:var(--serif);font-size:32px;line-height:1.45;margin:0 0 12px;letter-spacing:-.01em}
-.sub{color:var(--muted);font-size:15px;margin:0 0 48px;max-width:58ch}
-.field{margin-bottom:30px}
-.field > label{display:block;font-size:14px;font-weight:600;margin-bottom:9px}
-.hint{font-size:12.5px;color:var(--muted);margin:6px 0 0;line-height:1.5}
-input[type=text],select,textarea{width:100%;padding:11px 13px;border:1px solid var(--line);background:#fff;border-radius:3px;font-size:15px;color:var(--ink)}
-textarea{resize:vertical;min-height:88px;line-height:1.6}
-.row{display:flex;gap:14px;flex-wrap:wrap}
-.row > *{flex:1;min-width:200px}
-.row.narrow > *{min-width:150px}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{border:1px solid var(--line);background:#fff;border-radius:3px;padding:9px 14px;font-size:14px;color:var(--ink)}
-.chip[aria-pressed="true"]{background:var(--pine);border-color:var(--pine);color:#fff}
-.chip small{display:block;font-size:11.5px;opacity:.7;margin-top:1px}
-.drop{border:1px dashed var(--line);background:#fff;border-radius:3px;padding:22px;text-align:center;color:var(--muted);font-size:14px}
-.drop strong{color:var(--ink);font-weight:600}
-.drop.on{border-color:var(--pine)}
-.filename{font-size:13.5px;color:var(--pine-deep);margin-top:10px;word-break:break-all}
-.notice{border-left:2px solid var(--amber);padding:12px 0 12px 14px;font-size:13px;margin:0 0 34px;line-height:1.65}
-.start{width:100%;padding:15px;background:var(--ink);color:var(--paper);border:0;border-radius:3px;font-size:16px;font-weight:600}
-.start:disabled{background:var(--paper-dim);color:var(--muted);cursor:not-allowed}
+/* ---------- 선택 패널 ---------- */
+.picker{background:var(--paper);border-bottom:1px solid var(--line);padding:16px 20px}
+.picker-in{max-width:1180px;margin:0 auto}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:12px}
+.seg button{background:var(--paper);border:0;padding:7px 18px;cursor:pointer;color:var(--ink2);font-weight:600;font-size:14px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.fields{display:grid;grid-template-columns:1.6fr 1fr 1.2fr 1.3fr;gap:10px;align-items:end}
+.f label{display:block;font-size:12.5px;color:var(--ink3);margin-bottom:4px;font-weight:600}
+.f input,.f select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:var(--r);background:var(--paper)}
+.f input:focus,.f select:focus{outline:2px solid var(--blue-line);outline-offset:-1px;border-color:var(--blue)}
+.hits{position:relative}
+.dropdown{position:absolute;z-index:40;left:0;right:0;top:100%;background:var(--paper);border:1px solid var(--line);border-top:0;max-height:280px;overflow:auto;box-shadow:0 8px 20px rgba(23,35,58,.14)}
+.dropdown div{padding:8px 11px;cursor:pointer;font-size:14px;border-bottom:1px solid var(--line2)}
+.dropdown div:hover,.dropdown div.on{background:var(--blue-soft)}
+.dropdown em{font-style:normal;color:var(--ink3);font-size:12px;margin-left:6px}
+.chosen{margin-top:12px;font-size:14px;color:var(--ink2)}
+.chosen b{color:var(--ink);font-size:17px;font-weight:800}
+.chosen .clear{background:none;border:0;color:var(--ink3);cursor:pointer;text-decoration:underline;font-size:12.5px;margin-left:8px}
 
-/* ── 면접실 ── */
-#room{display:none;background:var(--ink);color:var(--paper);min-height:100vh;padding:0 0 56px}
-#room .wrap{max-width:760px}
-.roombar{display:flex;justify-content:space-between;align-items:baseline;padding:22px 0 0;font-size:12.5px;color:#8FA39D}
-.dots{display:flex;gap:5px;margin-top:26px}
-.dot{width:22px;height:2px;background:#33453F}
-.dot.done{background:#7FA89D}
-.dot.now{background:var(--paper)}
-.station{font-size:12.5px;color:#8FA39D;margin:28px 0 0}
-.stimulus{border:1px solid #2C3E39;background:#1A2825;border-radius:3px;padding:20px 22px;margin:16px 0 0;font-size:15px;line-height:1.85;white-space:pre-wrap;max-height:46vh;overflow:auto}
-.qtag{font-size:12px;color:var(--amber);margin:22px 0 -14px}
-.q{font-family:var(--serif);font-size:25px;line-height:1.6;margin:22px 0 0;letter-spacing:-.01em;animation:rise .45s ease-out}
-@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.timer{display:flex;align-items:center;gap:12px;margin:26px 0 10px}
-.clock{font-variant-numeric:tabular-nums;font-size:14px;color:#8FA39D;min-width:92px}
-.clock.warn{color:var(--amber)}
-.bar{flex:1;height:2px;background:#2C3E39}
-.bar span{display:block;height:100%;background:#7FA89D;width:100%}
-.bar.warn span{background:var(--amber)}
-#answer{width:100%;background:#1A2825;border:1px solid #2C3E39;color:var(--paper);border-radius:3px;padding:15px;font-size:15.5px;min-height:150px;line-height:1.7}
-#answer::placeholder{color:#5E706B}
-.controls{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-.ctl{background:transparent;border:1px solid #3B4F49;color:var(--paper);padding:11px 16px;border-radius:3px;font-size:14px}
-.ctl.rec[aria-pressed="true"]{border-color:var(--rose);color:#E39A90}
-.send{background:var(--paper);color:var(--ink);border:0;padding:11px 22px;border-radius:3px;font-size:14px;font-weight:600;margin-left:auto}
-.send:disabled{opacity:.4;cursor:not-allowed}
-.thinking{color:#8FA39D;font-size:14px;margin-top:18px;min-height:22px}
-.thinking b{font-weight:400;color:var(--paper)}
-.ready{color:#5E706B;font-size:12px;margin-top:6px}
+/* ---------- 탭 ---------- */
+.tabs{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;gap:2px;overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:13px 14px;cursor:pointer;color:var(--ink3);font-weight:700;font-size:14.5px;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--blue)}
+.tabs .n{display:inline-block;min-width:19px;padding:0 5px;margin-left:5px;background:var(--line);color:var(--ink2);border-radius:9px;font-size:11.5px;font-weight:700;vertical-align:1px}
+.tabs button[aria-selected="true"] .n{background:var(--blue);color:#fff}
 
-/* ── 평가서 ── */
-#report{display:none;padding:56px 0 96px}
-.rtitle{font-family:var(--serif);font-size:29px;margin:0 0 4px}
-.rmeta{color:var(--muted);font-size:14px;margin:0 0 40px}
-.overall{border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:24px 0;margin-bottom:36px}
-.grade{font-family:var(--serif);font-size:52px;line-height:1;margin:0}
-.grade small{font-size:15px;color:var(--muted);font-family:var(--sans);margin-left:10px}
-.overall p{margin:14px 0 0;font-size:15px;line-height:1.75}
-.comp{margin-bottom:22px}
-.comp-head{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px;font-weight:600}
-.comp-head em{font-style:normal;color:var(--muted);font-weight:500;font-size:13px;font-variant-numeric:tabular-nums}
-.gauge{height:6px;background:var(--paper-dim);margin:8px 0 9px}
-.gauge span{display:block;height:100%;background:var(--pine)}
-.comp p{margin:0;font-size:14px;line-height:1.7}
-h2.sec{font-family:var(--serif);font-size:20px;margin:46px 0 18px;padding-bottom:9px;border-bottom:1px solid var(--line)}
-.qa{margin-bottom:28px}
-.qa .qq{font-weight:600;font-size:15px;margin:0 0 7px;line-height:1.6}
-.qa .aa{margin:0 0 10px;font-size:14px;color:var(--muted);line-height:1.7;white-space:pre-wrap}
-.qa .ff{margin:0;font-size:14.5px;line-height:1.75;border-left:2px solid var(--pine);padding-left:13px}
-.qa .kk{margin:10px 0 0;font-size:13.5px;line-height:1.7}
-ul.tips{margin:0;padding-left:18px;font-size:14.5px;line-height:1.85}
-.rbtns{display:flex;gap:10px;margin-top:44px;flex-wrap:wrap}
-.rbtn{border:1px solid var(--line);background:#fff;padding:11px 18px;border-radius:3px;font-size:14px;color:var(--ink)}
-.err{background:#FBECEA;border-left:2px solid var(--rose);padding:12px 14px;font-size:14px;margin:18px 0;color:#6E2820}
-@media print{.rbtns,.err{display:none}body{background:#fff}#report{padding:0}}
-@media (max-width:520px){.lede{font-size:26px}.q{font-size:21px}.grade{font-size:42px}.wrap{padding:0 18px}}
+main{max-width:1180px;margin:0 auto;padding:20px 20px 70px}
+
+/* ---------- 카드 ---------- */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);margin-bottom:14px;overflow:hidden}
+.card-hd{padding:12px 16px;border-bottom:1px solid var(--line2);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.card-hd .who{font-weight:800;font-size:15.5px}
+.card-bd{padding:14px 16px}
+.tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:12px;font-weight:700;border:1px solid}
+.t-year{background:var(--ink);color:#fff;border-color:var(--ink)}
+.t-adm{background:var(--blue-soft);color:var(--blue);border-color:var(--blue-line)}
+.t-src{background:var(--gold-soft);color:var(--gold);border-color:var(--gold-line)}
+.t-gray{background:var(--bg);color:var(--ink2);border-color:var(--line)}
+
+.qline{display:flex;gap:10px;padding:9px 0;border-bottom:1px dotted var(--line)}
+.qline:last-child{border-bottom:0}
+.qnum{flex:0 0 22px;height:22px;border-radius:3px;background:var(--ink);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.qtext{flex:1;font-size:15px}
+.qtext .follow{display:block;margin-top:5px;padding-left:11px;border-left:2px solid var(--blue-line);color:var(--ink2);font-size:14px}
+.meta{margin-top:12px;padding-top:11px;border-top:1px solid var(--line2);font-size:13px;color:var(--ink2)}
+.meta div{margin-bottom:3px}
+.meta b{color:var(--ink)}
+
+/* ---------- 안내 박스 ---------- */
+.note{background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:var(--r);padding:13px 15px;font-size:13.5px;color:#5c470c;margin-bottom:16px}
+.note b{color:#3d2f05}
+.info{background:var(--blue-soft);border:1px solid var(--blue-line);border-radius:var(--r);padding:13px 15px;font-size:13.5px;color:#1d3d6b;margin-bottom:16px}
+.empty{background:var(--paper);border:1px dashed var(--line);border-radius:var(--r);padding:34px 20px;text-align:center;color:var(--ink3)}
+.empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
+
+h2.sec{font-size:14px;font-weight:800;color:var(--ink2);margin:26px 0 10px;padding-bottom:7px;border-bottom:2px solid var(--line)}
+h2.sec:first-child{margin-top:0}
+
+/* ---------- 링크 목록 ---------- */
+.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:9px}
+.lk{display:block;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:11px 13px;text-decoration:none;color:var(--ink)}
+.lk:hover{border-color:var(--blue);background:var(--blue-soft)}
+.lk strong{display:block;font-size:14px;margin-bottom:2px}
+.lk span{font-size:12.5px;color:var(--ink3);word-break:break-all}
+
+/* ---------- 표 ---------- */
+table{width:100%;border-collapse:collapse;background:var(--paper);font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:var(--bg);font-weight:700;font-size:12.5px;color:var(--ink2)}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto;border-radius:var(--r)}
+
+/* ---------- 폼/버튼 ---------- */
+.btn{background:var(--ink);color:#fff;border:0;border-radius:var(--r);padding:9px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.btn:hover{background:#0e1727}
+.btn.ghost{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--bg)}
+.btn.danger{background:var(--paper);color:var(--red);border:1px solid #d8b4b4}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:10px}
+.row .f input,.row .f select,.row .f textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:var(--r)}
+textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:var(--r);min-height:110px;line-height:1.6}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 20px;border-radius:var(--r);font-size:14px;z-index:99;box-shadow:0 6px 22px rgba(0,0,0,.25)}
+
+details{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);margin-bottom:9px}
+summary{padding:11px 15px;cursor:pointer;font-weight:700;font-size:14.5px}
+details[open] summary{border-bottom:1px solid var(--line2)}
+details .dbody{padding:13px 15px;font-size:14px}
+details ul{margin:6px 0;padding-left:19px}
+details li{margin-bottom:5px}
+
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:4px 13px;font-size:13px;cursor:pointer;font-weight:600;color:var(--ink2)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+@media(max-width:760px){
+  .fields{grid-template-columns:1fr 1fr}
+  .fields .f.wide{grid-column:1/-1}
+  main{padding:16px 14px 60px}
+  .picker{padding:13px 14px}
+  .tabs{padding:0 14px}
+  .mast-in h1{font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
+</head>
+<body>
 
-<!-- ═══════ 설정 ═══════ -->
-<section id="setup"><div class="wrap">
-  <h1 class="lede">면접실에 들어가기 전에,<br>몇 가지만 정해 둡시다.</h1>
-  <p class="sub">지원 대학과 모집단위, 면접 유형에 맞춰 질문이 생성됩니다. 답변에 따라 꼬리질문이 이어지고, 끝나면 학생부종합전형 공통 평가요소 기준으로 평가서가 나옵니다.</p>
-
-  <div class="field">
-    <label for="region">지역으로 대학 좁히기</label>
-    <select id="region">
-      <option value="전체">전체 보기</option>
-      <option>서울</option><option>경기·인천</option><option>강원</option>
-      <option>대전·세종·충청</option><option>광주·전라·제주</option>
-      <option>부산·울산·경남</option><option>대구·경북</option>
-      <option>과학기술원·특수대학</option><option>교육대학</option>
-    </select>
-    <p class="hint">목록을 줄여 주는 보조 기능입니다. 아래 칸에 직접 입력하면 목록에 없는 대학도 그대로 쓸 수 있습니다.</p>
+<header class="masthead">
+  <div class="mast-in">
+    <h1>대입 면접 기출 자료실<span>대학 · 학과 · 전형별 최근 5년</span></h1>
+    <div class="mast-meta">기준 <b id="mYear"></b>학년도 · 수록 범위 <b id="mRange"></b> · 문항 <b id="mCount"></b>건<span id="mSync"></span></div>
   </div>
+</header>
 
-  <div class="row">
-    <div class="field">
-      <label for="univ">지원 대학</label>
-      <input type="text" id="univ" list="univs" placeholder="예: 서울대학교" autocomplete="off">
-      <datalist id="univs"></datalist>
-      <p class="hint" id="univCount"></p>
+<section class="picker">
+  <div class="picker-in">
+    <div class="seg" role="group">
+      <button id="tp4" aria-pressed="true">4년제 대학</button>
+      <button id="tp2" aria-pressed="false">전문대학</button>
     </div>
-    <div class="field">
-      <label for="dept">모집단위(학과·학부)</label>
-      <input type="text" id="dept" placeholder="예: 컴퓨터공학부" autocomplete="off">
+    <div class="fields">
+      <div class="f wide hits">
+        <label for="uq">대학</label>
+        <input id="uq" autocomplete="off" placeholder="대학 이름을 입력하세요 (예: 부산대)">
+        <div id="ud" class="dropdown" hidden></div>
+      </div>
+      <div class="f">
+        <label for="fld">계열</label>
+        <select id="fld"></select>
+      </div>
+      <div class="f">
+        <label for="maj">학과 · 모집단위</label>
+        <input id="maj" list="majors" autocomplete="off" placeholder="예: 컴퓨터공학과">
+        <datalist id="majors"></datalist>
+      </div>
+      <div class="f">
+        <label for="adm">전형</label>
+        <select id="adm"></select>
+      </div>
     </div>
+    <div class="chosen" id="chosen"></div>
   </div>
+</section>
 
-  <div class="field">
-    <label>면접 유형</label>
-    <div class="chips" id="types">
-      <button class="chip" data-v="서류기반" aria-pressed="true">서류 기반<small>학생부 확인·심화</small></button>
-      <button class="chip" data-v="제시문기반" aria-pressed="false">제시문 기반<small>자료 분석·논증</small></button>
-      <button class="chip" data-v="MMI" aria-pressed="false">MMI<small>상황·윤리 판단</small></button>
-      <button class="chip" data-v="인성" aria-pressed="false">인성<small>공동체역량</small></button>
-    </div>
-    <p class="hint">여러 개를 고르면 한 면접 안에서 유형이 섞여 나옵니다. 지원 대학이 실제로 어떤 유형을 실시하는지는 그 대학 입학처의 선행학습 영향평가 결과보고서에서 확인하세요.</p>
-  </div>
+<nav class="tabs" role="tablist">
+  <button role="tab" data-tab="q" aria-selected="true">기출 문항<span class="n" id="nQ">0</span></button>
+  <button role="tab" data-tab="t" aria-selected="false">면접 후기 · 팁</button>
+  <button role="tab" data-tab="r" aria-selected="false">입시 결과</button>
+  <button role="tab" data-tab="s" aria-selected="false">공식 원문 자료</button>
+  <button role="tab" data-tab="d" aria-selected="false">자료 관리</button>
+</nav>
 
-  <div class="row narrow">
-    <div class="field">
-      <label for="count">문항 수</label>
-      <select id="count">
-        <option value="4">4문항</option>
-        <option value="6" selected>6문항</option>
-        <option value="8">8문항</option>
-        <option value="10">10문항</option>
-      </select>
-    </div>
-    <div class="field">
-      <label for="level">난이도</label>
-      <select id="level">
-        <option value="기본">기본 — 꼬리질문 최대 1회</option>
-        <option value="표준" selected>표준 — 꼬리질문 최대 2회</option>
-        <option value="심화">심화 — 꼬리질문 최대 3회</option>
-      </select>
-    </div>
-    <div class="field">
-      <label for="pace">진행 속도</label>
-      <select id="pace">
-        <option value="fast" selected>빠르게 — 질문을 미리 준비</option>
-        <option value="adaptive">맞춤형 — 직전 답변까지 반영</option>
-      </select>
-    </div>
-  </div>
-  <p class="hint" style="margin:-20px 0 30px">맞춤형은 앞선 답변 내용을 이어받아 다음 질문을 만들지만, 그만큼 질문이 나오기까지 기다려야 합니다.</p>
-
-  <div class="field">
-    <label for="file">학교생활기록부 (선택)</label>
-    <div class="drop" id="drop">
-      <strong>PDF를 끌어다 놓거나 눌러서 선택</strong><br>
-      올리면 학생부 내용을 근거로 한 확인·심화 질문이 나옵니다
-      <input type="file" id="file" accept="application/pdf" hidden>
-      <div class="filename" id="fname"></div>
-    </div>
-    <p class="hint">학생부가 없으면 아래 칸에 직접 적어도 됩니다.</p>
-  </div>
-
-  <div class="field">
-    <label for="manual">직접 입력하는 활동 요약 (선택)</label>
-    <textarea id="manual" placeholder="진로희망, 관심 분야, 세특·동아리·독서 중 면접에서 다뤄지길 바라는 내용을 적어 주세요."></textarea>
-  </div>
-
-  <div class="field">
-    <label>답변 제한 시간</label>
-    <div class="chips" id="timed">
-      <button class="chip" data-v="on" aria-pressed="true">제한 있음</button>
-      <button class="chip" data-v="off" aria-pressed="false">제한 없음</button>
-    </div>
-    <p class="hint">시간이 지나도 자동 제출되지는 않습니다. 남은 시간만 보여 줍니다.</p>
-  </div>
-
-  <p class="notice">
-    입력한 내용과 학생부 파일은 질문을 만들기 위해 인공지능 모델로 전송됩니다.
-    실제 학생에게 쓸 때는 이름·학교명·주민등록번호를 가린 사본을 올리게 하세요.
-    블라인드 면접 원칙과도 맞고 개인정보 노출도 줄일 수 있습니다.
-  </p>
-
-  <button class="start" id="go">면접 시작</button>
-  <div id="setupErr"></div>
-</div></section>
-
-<!-- ═══════ 면접실 ═══════ -->
-<section id="room"><div class="wrap">
-  <div class="roombar"><span id="rmLeft">면접 진행 중</span><span id="rmRight"></span></div>
-  <div class="dots" id="dots"></div>
-  <div class="station" id="station"></div>
-  <div class="stimulus" id="stimulus" style="display:none"></div>
-  <div class="qtag" id="qtag" style="display:none">꼬리질문</div>
-  <div class="q" id="question">면접위원이 자료를 살펴보고 있습니다…</div>
-  <div class="timer" id="timerBox" style="display:none">
-    <span class="clock" id="clock">00:00</span>
-    <span class="bar" id="bar"><span id="barFill"></span></span>
-  </div>
-  <textarea id="answer" placeholder="답변을 입력하세요. 실제 면접처럼 소리 내어 말한 뒤 옮겨 적어도 좋습니다."></textarea>
-  <div class="controls">
-    <button class="ctl rec" id="mic" aria-pressed="false">음성으로 답하기</button>
-    <button class="ctl" id="quit">면접 중단하고 평가 받기</button>
-    <button class="send" id="send">답변 제출</button>
-  </div>
-  <div class="thinking" id="thinking"></div>
-  <div class="ready" id="ready"></div>
-  <div id="roomErr"></div>
-</div></section>
-
-<!-- ═══════ 평가서 ═══════ -->
-<section id="report"><div class="wrap">
-  <h1 class="rtitle">면접 평가서</h1>
-  <p class="rmeta" id="rMeta"></p>
-  <div id="rBody"></div>
-  <div class="rbtns">
-    <button class="rbtn" onclick="window.print()">인쇄 · PDF로 저장</button>
-    <button class="rbtn" id="again">새 면접 시작</button>
-  </div>
-</div></section>
+<main>
+  <div id="pane-q"></div>
+  <div id="pane-t" hidden></div>
+  <div id="pane-r" hidden></div>
+  <div id="pane-s" hidden></div>
+  <div id="pane-d" hidden></div>
+</main>
 
 <script>
-/* ═══════════ 대학 목록 ═══════════ */
-const UNIVS = {
-  "서울":["서울대학교","연세대학교","고려대학교","서강대학교","성균관대학교","한양대학교","중앙대학교","경희대학교","한국외국어대학교","서울시립대학교","건국대학교","동국대학교","홍익대학교","숙명여자대학교","이화여자대학교","성신여자대학교","덕성여자대학교","동덕여자대학교","서울여자대학교","광운대학교","국민대학교","명지대학교","상명대학교","서경대학교","서울과학기술대학교","세종대학교","숭실대학교","한성대학교","삼육대학교","가톨릭대학교","총신대학교","성공회대학교","장로회신학대학교","감리교신학대학교","서울기독대학교","한국성서대학교","추계예술대학교","서울한영대학교","한국체육대학교","한국예술종합학교","서울신학대학교"],
-  "경기·인천":["인하대학교","인천대학교","아주대학교","가천대학교","단국대학교","한양대학교 ERICA","경희대학교 국제캠퍼스","중앙대학교 다빈치캠퍼스","한국외국어대학교 글로벌캠퍼스","경기대학교","한국항공대학교","한국공학대학교","을지대학교","차의과학대학교","수원대학교","한신대학교","성결대학교","안양대학교","강남대학교","용인대학교","대진대학교","신한대학교","한세대학교","평택대학교","협성대학교","루터대학교","칼빈대학교","경동대학교","인천가톨릭대학교","청운대학교","동양대학교"],
-  "강원":["강원대학교","강릉원주대학교","한림대학교","연세대학교 미래캠퍼스","가톨릭관동대학교","상지대학교","한라대학교","경동대학교","한국폴리텍대학"],
-  "대전·세종·충청":["충남대학교","충북대학교","한밭대학교","공주대학교","한국교원대학교","한국기술교육대학교","순천향대학교","단국대학교 천안캠퍼스","호서대학교","선문대학교","남서울대학교","상명대학교 천안캠퍼스","백석대학교","나사렛대학교","한서대학교","중부대학교","세명대학교","건국대학교 글로컬캠퍼스","서원대학교","청주대학교","대전대학교","배재대학교","목원대학교","우송대학교","한남대학교","건양대학교","을지대학교 대전캠퍼스","침례신학대학교","금강대학교","극동대학교","유원대학교","한국교통대학교","한국전통문화대학교","고려대학교 세종캠퍼스","홍익대학교 세종캠퍼스"],
-  "광주·전라·제주":["전북대학교","전남대학교","군산대학교","목포대학교","순천대학교","목포해양대학교","조선대학교","호남대학교","광주대학교","남부대학교","송원대학교","광주여자대학교","동신대학교","초당대학교","세한대학교","원광대학교","전주대학교","우석대학교","호원대학교","예수대학교","한일장신대학교","광신대학교","제주대학교","제주국제대학교","한국에너지공과대학교"],
-  "부산·울산·경남":["부산대학교","부경대학교","한국해양대학교","경성대학교","동아대학교","동의대학교","부산외국어대학교","신라대학교","동서대학교","영산대학교","고신대학교","부산장신대학교","경상국립대학교","창원대학교","경남대학교","인제대학교","가야대학교","창신대학교","울산대학교"],
-  "대구·경북":["경북대학교","영남대학교","계명대학교","대구대학교","대구가톨릭대학교","금오공과대학교","안동대학교","대구한의대학교","경일대학교","위덕대학교","한동대학교","동국대학교 WISE캠퍼스","대구예술대학교","경운대학교","김천대학교"],
-  "과학기술원·특수대학":["KAIST 한국과학기술원","POSTECH 포항공과대학교","GIST 광주과학기술원","UNIST 울산과학기술원","DGIST 대구경북과학기술원","한국에너지공과대학교","한국방송통신대학교","한국농수산대학교","육군사관학교","해군사관학교","공군사관학교","국군간호사관학교","경찰대학","한국전통문화대학교","한국예술종합학교"],
-  "교육대학":["서울교육대학교","경인교육대학교","춘천교육대학교","청주교육대학교","공주교육대학교","전주교육대학교","광주교육대학교","대구교육대학교","부산교육대학교","진주교육대학교","제주대학교 교육대학","한국교원대학교","이화여자대학교 사범대학"]
-};
-function fillUnivs(region){
-  const list = region==='전체' ? Object.values(UNIVS).flat() : (UNIVS[region]||[]);
-  const uniq = [...new Set(list)].sort((a,b)=>a.localeCompare(b,'ko'));
-  document.getElementById('univs').innerHTML = uniq.map(u=>`<option>${u}</option>`).join('');
-  document.getElementById('univCount').textContent =
-    `${uniq.length}개 대학이 목록에 있습니다. 없는 대학은 직접 입력하면 그대로 반영됩니다.`;
+/* ═══════════════════════════════════════════════════════════
+   1. 학년도 자동 계산
+   선행학습 영향평가 결과보고서는 법정 공개일이 매년 3월 31일.
+   따라서 4월부터는 당해 학년도 보고서가 열람 가능하다.
+   이 계산 하나로 내년, 내후년에도 수록 범위가 자동으로 밀린다.
+═══════════════════════════════════════════════════════════ */
+const NOW = new Date();
+const LATEST = NOW.getMonth() + 1 >= 4 ? NOW.getFullYear() : NOW.getFullYear() - 1;
+const YEARS = [0,1,2,3,4].map(i => LATEST - i);            // 최근 5개년
+const YMIN = YEARS[YEARS.length-1];
+
+/* ═══════════════════════════════════════════════════════════
+   2. 공식 원문 링크 생성기  ★ 이 앱의 핵심
+   서울시교육청 서울진로진학정보센터가 전국 4년제 대학의
+   '선행학습 영향평가 결과보고서'를 해마다 같은 규칙의 주소로 모아 둔다.
+   보고서 부록에 그 해 면접·구술 기출문항과 출제의도가 그대로 들어 있다.
+   주소에 들어가는 변수는 '대학명'과 '학년도' 둘뿐이라,
+   연도만 바꾸면 해마다 새 자료가 자동으로 연결된다.
+═══════════════════════════════════════════════════════════ */
+const ARCHIVE = 'https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info';
+function reportUrl(name, year){
+  const n = encodeURIComponent(name);
+  return `${ARCHIVE}${year}/${n}/${encodeURIComponent(name+'_'+year+'학년도_선행학습영향평가')}.pdf`;
 }
+const g = q => 'https://www.google.com/search?q=' + encodeURIComponent(q);
+const nv = q => 'https://search.naver.com/search.naver?query=' + encodeURIComponent(q);
+const cafe = q => 'https://cafe.naver.com/f-e/cafes/11736355/menus/0?q=' + encodeURIComponent(q); // 수만휘
 
-/* ═══════════ 상태 ═══════════ */
-const S = {
-  univ:'', dept:'', types:['서류기반'], total:6, level:'표준', pace:'fast',
-  timed:true, profile:'', log:[], asked:[], current:null,
-  mainDone:0, fuUsed:0, busy:false, pending:null, ended:false
-};
-const $ = id => document.getElementById(id);
-const show = id => { ['setup','room','report'].forEach(s => $(s).style.display = s===id?'block':'none'); window.scrollTo(0,0); };
-const FU_MAX = { '기본':1, '표준':2, '심화':3 };
+/* ═══════════════════════════════════════════════════════════
+   3. 대학 목록
+═══════════════════════════════════════════════════════════ */
+const U4 = `서울:가톨릭대학교,감리교신학대학교,건국대학교,경기대학교,경희대학교,고려대학교,광운대학교,국민대학교,덕성여자대학교,동국대학교,동덕여자대학교,명지대학교,삼육대학교,상명대학교,서강대학교,서경대학교,서울과학기술대학교,서울교육대학교,서울대학교,서울시립대학교,서울여자대학교,성공회대학교,성균관대학교,성신여자대학교,세종대학교,숙명여자대학교,숭실대학교,연세대학교,이화여자대학교,장로회신학대학교,중앙대학교,총신대학교,추계예술대학교,한국성서대학교,한국외국어대학교,한국체육대학교,한성대학교,한양대학교,홍익대학교,서울기독대학교,KC대학교,한영신학대학교
+경기·인천:가천대학교,강남대학교,경동대학교,단국대학교,대진대학교,루터대학교,서울신학대학교,성결대학교,수원대학교,신한대학교,아주대학교,안양대학교,용인대학교,을지대학교,인천대학교,인천가톨릭대학교,인하대학교,차의과학대학교,평택대학교,한경국립대학교,한국공학대학교,한국항공대학교,한세대학교,한신대학교,협성대학교,경인교육대학교,칼빈대학교,중앙승가대학교,한양대학교(ERICA),명지대학교(자연),상명대학교(천안)
+강원:가톨릭관동대학교,강릉원주대학교,강원대학교,상지대학교,연세대학교(미래),춘천교육대학교,한라대학교,한림대학교
+대전·충남·충북·세종:건국대학교(글로컬),건양대학교,고려대학교(세종),공주대학교,공주교육대학교,극동대학교,금강대학교,꽃동네대학교,나사렛대학교,남서울대학교,단국대학교(천안),대전대학교,목원대학교,배재대학교,백석대학교,서원대학교,선문대학교,세명대학교,순천향대학교,우송대학교,유원대학교,을지대학교(대전),중부대학교,중원대학교,청주대학교,청주교육대학교,충남대학교,충북대학교,침례신학대학교,한국교원대학교,한국기술교육대학교,한국전통문화대학교,한국과학기술원,한남대학교,한밭대학교,한서대학교,호서대학교,홍익대학교(세종)
+광주·전남·전북:광주과학기술원,광주교육대학교,광주대학교,광주여자대학교,군산대학교,남부대학교,동신대학교,목포대학교,목포가톨릭대학교,목포해양대학교,세한대학교,순천대학교,예수대학교,우석대학교,원광대학교,전남대학교,전북대학교,전주대학교,전주교육대학교,조선대학교,초당대학교,한일장신대학교,호남대학교,호원대학교
+부산·울산·경남:경남대학교,경상국립대학교,경성대학교,고신대학교,동명대학교,동서대학교,동아대학교,동의대학교,부경대학교,부산대학교,부산가톨릭대학교,부산교육대학교,부산외국어대학교,신라대학교,영산대학교,울산대학교,울산과학기술원,인제대학교,진주교육대학교,창원대학교,한국해양대학교
+대구·경북:가야대학교,경북대학교,경일대학교,경운대학교,경주대학교,계명대학교,구미대학교,금오공과대학교,김천대학교,대구가톨릭대학교,대구교육대학교,대구대학교,대구경북과학기술원,대구한의대학교,대신대학교,동국대학교(WISE),동양대학교,안동대학교,영남대학교,영남신학대학교,위덕대학교,포항공과대학교,한동대학교
+제주:제주대학교,제주국제대학교`;
 
-/* ═══════════ API ═══════════ */
-async function ask(system, messages){
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method:"POST", headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:1000, system, messages })
+const U2 = `서울:국제예술대학교,동양미래대학교,명지전문대학,배화여자대학교,백석예술대학교,삼육보건대학교,서울여자간호대학교,서일대학교,숭의여자대학교,인덕대학교,정화예술대학교,한양여자대학교
+경기·인천:경기과학기술대학교,경민대학교,경인여자대학교,계원예술대학교,국제대학교,김포대학교,농협대학교,동남보건대학교,동서울대학교,두원공과대학교,부천대학교,서영대학교,수원과학대학교,수원여자대학교,신구대학교,신안산대학교,안산대학교,여주대학교,연성대학교,오산대학교,용인예술과학대학교,유한대학교,인천재능대학교,인하공업전문대학,장안대학교,청강문화산업대학교,한국관광대학교
+강원:강릉영동대학교,강원도립대학교,세경대학교,송호대학교,한림성심대학교
+대전·충남·충북·세종:강동대학교,대덕대학교,대원대학교,대전과학기술대학교,대전보건대학교,백석문화대학교,신성대학교,아주자동차대학교,연암대학교,우송정보대학,충남도립대학교,충북도립대학교,충북보건과학대학교,충청대학교,한국영상대학교,혜전대학교
+광주·전남·전북:광주보건대학교,군장대학교,기독간호대학교,동강대학교,백제예술대학교,서영대학교(광주),원광보건대학교,전남과학대학교,전남도립대학교,전북과학대학교,전주기전대학,전주비전대학교,조선간호대학교,조선이공대학교,청암대학교,한영대학교
+부산·울산·경남:거제대학교,경남도립거창대학,경남정보대학교,김해대학교,대동대학교,동원과학기술대학교,동의과학대학교,동주대학교,마산대학교,부산경상대학교,부산과학기술대학교,부산여자대학교,연암공과대학교,울산과학대학교,진주보건대학교,춘해보건대학교
+대구·경북:가톨릭상지대학교,경북과학대학교,경북전문대학교,계명문화대학교,구미대학교,대구공업대학교,대구과학대학교,대구보건대학교,문경대학교,선린대학교,수성대학교,안동과학대학교,영남이공대학교,영진전문대학교,포항대학교,호산대학교
+제주:제주관광대학교,제주한라대학교`;
+
+function parseU(block, type){
+  const out = [];
+  block.trim().split('\n').forEach(line => {
+    const [region, names] = line.split(':');
+    names.split(',').forEach(n => out.push({name:n.trim(), region:region.trim(), type}));
   });
-  if(!res.ok) throw new Error("응답 실패 "+res.status);
-  const data = await res.json();
-  return (data.content||[]).filter(b=>b.type==="text").map(b=>b.text).join("\n");
+  return out;
 }
-function parseJSON(text){
-  let t = text.replace(/```json/gi,'').replace(/```/g,'').trim();
-  const a = t.indexOf('{'), b = t.lastIndexOf('}');
-  if(a<0||b<0) throw new Error("형식 해석 실패");
-  return JSON.parse(t.slice(a,b+1));
-}
-function errBox(where,msg){ $(where).innerHTML = '<div class="err">'+msg+'</div>'; }
+const UNIVS = [...parseU(U4,'4년제'), ...parseU(U2,'전문대')];
 
-/* ═══════════ 설정 화면 ═══════════ */
-$('region').addEventListener('change', e=>{ fillUnivs(e.target.value); $('univ').value=''; });
-fillUnivs('전체');
+/* ═══════════════════════════════════════════════════════════
+   4. 계열 · 전형 · 학과
+═══════════════════════════════════════════════════════════ */
+const FIELDS = ['인문','사회','자연','공학','정보·SW','의약·보건','교육','예체능','농림·수산'];
+const ADMS = ['학생부종합(면접형)','학생부종합(서류형·면접)','학생부교과(면접)','지역인재','논술','특기자','실기·실적','재외국민·외국인','정시(면접)','고른기회·사회통합','수시(전문대 일반)','수시(전문대 특별)'];
+const MAJORS = ['간호학과','건축학과','경영학과','경제학과','교육학과','국어국문학과','기계공학과','디자인학과','물리학과','미디어커뮤니케이션학과','법학과','사회복지학과','사회학과','생명공학과','소프트웨어학과','수학교육과','신소재공학과','심리학과','약학과','유아교육과','응급구조과','의예과','인공지능학과','전기전자공학과','정치외교학과','조리과','컴퓨터공학과','치위생과','치의예과','통계학과','한의예과','항공서비스과','화학공학과','환경공학과'];
 
-function bindChips(boxId, multi, onChange){
-  $(boxId).addEventListener('click', e=>{
-    const c = e.target.closest('.chip'); if(!c) return;
-    if(multi){
-      const on = c.getAttribute('aria-pressed')==='true';
-      const others = [...$(boxId).querySelectorAll('.chip')].filter(x=>x!==c && x.getAttribute('aria-pressed')==='true');
-      if(on && others.length===0) return;
-      c.setAttribute('aria-pressed', on?'false':'true');
-    } else {
-      $(boxId).querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed','false'));
-      c.setAttribute('aria-pressed','true');
+/* ═══════════════════════════════════════════════════════════
+   5. 수록 문항 (기본 제공분)
+   src.k : 'official' 대학 공식 보고서 / 'office' 시도교육청 발간 / 'school' 학교 자체 정리
+═══════════════════════════════════════════════════════════ */
+const SEED_Q = [
+{univ:'부산대학교',type:'4년제',year:2026,adm:'학생부종합(지역인재)',major:'치의예과',field:'의약·보건',
+ method:'면접관 2명, 수험생 1명 개별면접 · 블라인드 · 10분 내외',
+ qs:['책을 읽고 스트레스와 질병 간의 상관관계에 대해 심층적으로 이해했다고 하셨는데 구체적으로 설명해주세요.',
+     '그럼 그 탐구에서 새롭게 알게 된 점이 또 있나요?',
+     '슬로건 제작 활동을 하셨다고 했는데 어떤 슬로건이었나요?',
+     '도전하다보면 가끔 실패하기 마련인데, 그런 점에 대해서는 어떻게 생각하나요?'],
+ note:'인성면접 비중이 높음. 대부분의 질문이 꼬리질문 형태로 이어짐.',
+ src:{k:'office',t:'울산광역시교육청 2026 대입 면접 후기 자료집 ②(부산대·홍익대)',p:'p.148'}},
+
+{univ:'부산대학교',type:'4년제',year:2026,adm:'학생부종합(지역인재)',major:'IT응용공학과',field:'정보·SW',
+ method:'면접관 3명 · 블라인드 면접',
+ qs:['IT응용공학과에 지원한 이유는 무엇인가요.',
+     '3학년 학업과 직업시간에 미래에 나는 반도체 관련 직종에서 일하고 싶을 것 같다고 하였는데 반도체 직종에서 일하고 싶은 이유를 설명해주세요.',
+     '2학년 화학시간에 발표했던 화학전지에 대하여 설명해주세요.'],
+ note:'반도체 관련 질문이 많음.',
+ src:{k:'office',t:'울산광역시교육청 2026 대입 면접 후기 자료집 ②(부산대·홍익대)',p:'p.148'}},
+
+{univ:'부산대학교',type:'4년제',year:2026,adm:'학생부종합(학생부종합전형)',major:'독어독문학과',field:'인문',
+ method:'개별면접 · 교과와 진로 관련 질문 위주',
+ qs:['환경 시간에 동물 실험에 대해서 보고서를 작성했다고 했는데 동물 실험에 대한 자신의 입장을 말해보세요.',
+     '생활과 윤리 시간에 인간의 자유에 대해 탐구했다고 했는데 이에 대해 설명해보세요.',
+     '마지막으로 하고 싶은 말 있으면 해보세요.'],
+ note:'동아리 관련 질문은 거의 없고 교과와 진로 관련 질문이 대부분.',
+ src:{k:'office',t:'울산광역시교육청 2026 대입 면접 후기 자료집 ②(부산대·홍익대)',p:'p.156'}},
+
+{univ:'부산대학교',type:'4년제',year:2026,adm:'학생부종합(학생부종합전형)',major:'교육학과',field:'교육',
+ method:'면접관 2명 : 수험생 1명 · 12시 30분까지 입실 후 대기',
+ qs:['반장경험이 있던데, 반장을 하면서 학생이 생각하는 팔로우십은 무엇인가요? 그리고 해당 경험이 있나요?',
+     '동아리 활동 중에 아쉬운 활동이 있으면 말해주고 어떻게 더 해보고 싶은지 말해주세요.',
+     '지원자의 이수 교과목을 확인해보면 이과계열 과목을 이수했는데 교육학에 대해 탐구하기 어려웠을 것 같아요. 혹시 이과계열 과목을 고른 이유가 있나요?'],
+ note:'',
+ src:{k:'office',t:'울산광역시교육청 2026 대입 면접 후기 자료집 ②(부산대·홍익대)',p:'p.156'}},
+
+{univ:'홍익대학교',type:'4년제',year:2026,adm:'실기·실적',major:'디자인학부(패션디자인)',field:'예체능',
+ method:'포트폴리오 기반 면접',
+ qs:['자신의 작품에 대해 설명해 보세요.',
+     '왜 쿠키를 사용했는가?',
+     '패션디자인과 사회 문제 중에 어디에 더 관심이 많은가?',
+     '좋아하는 디자이너에 대해 얘기해주세요.',
+     '좋아하는 브랜드에 대해 얘기해주세요.',
+     '마지막으로 할 말이 있다면 말해 보세요.'],
+ note:'질문의 핵심을 잘못 파악해 대답한 부분이 있었는데 다시 자세히 질문해 주심. 내용 보완을 위해 추가로만 묻고 압박 질문으로는 이어지지 않았음.',
+ src:{k:'office',t:'울산광역시교육청 2026 대입 면접 후기 자료집 ②(부산대·홍익대)',p:'p.278'}},
+
+{univ:'서울대학교',type:'4년제',year:2026,adm:'학생부종합(일반전형)',major:'정치외교학부',field:'사회',
+ method:'제출서류 기반 확인면접 · 꼬리질문 중심',
+ qs:['정치가가 아닌 행정가가 되고 싶은 이유는 무엇인가요?|다수가 원하는 것이 옳은 것이 아니라면 옳은 선택이란 무엇인가요? 독선적인 생각은 아닌가요?|다수가 원하지만 옳지 않은 것의 구체적인 예를 들어보세요.|다수가 원하지 않는 것을 추구하려면 다수를 설득해야 할 텐데 어떻게 하겠습니까?|존경하는 행정가가 있나요?',
+     '사회적 약자에 관심이 많은 것 같은데 사회적 약자를 위해 가장 필요하다고 생각하는 정책은 무엇인가요?',
+     '샌델 교수의 책을 읽으며 가치관을 정립했다고 했는데, 당연히 옳다고 생각했던 것이 그렇지 않을 수도 있다는 구체적인 예는 무엇인가요?|능력주의는 잘못된 것인가요?|그렇다면 옳다는 것은 무엇인가요?',
+     '2학년 동아리 활동에서 공공 외교에 관심을 가졌다고 되어 있는데 공공 외교란 무엇인가요? 디지털 외교에 대해 작성한 기사는 어떤 내용인가요?',
+     '3학년 자율활동에서 기후 위기에 대한 실효성 있는 국제 협력 방안을 어떻게 마련할 수 있는가?',
+     '3학년 진로활동에서 다룬 정치인은 어떤 법을 따라야 하는가에 대해 설명해 보세요. 본인이 생각하는 국가란 무엇인가요?',
+     '교과융합 활동에서 인공지능에 따른 행정 분야 변화는 무엇인가요? 공무원을 감축해야 하는가? 인공지능으로 인한 실업 문제에 대한 행정 정책적 대응책은?',
+     '확률과 통계에서 다룬 데이터 기반 행정법 시행에 대해 설명해 보세요. 민원통계 분석을 기반으로 한 민원앱 개선 방안은?',
+     '사회문화 탐구에서 정치적 양극화와 극단주의는 항상 심했던 것 아닌가요? 심해지는 이유는? 차이를 인정하는 태도가 필요하다는 것은 식상한데 더 현실적이고 구체적인 방안은?',
+     '수학과제탐구에서 여론조사의 응답률이 저조하게 나타나는 근본적인 원인과 이를 해결할 수 있는 방안은?'],
+ note:'생활기록부 전 항목(자율·진로·동아리·교과 세특)에서 고르게 질문이 나오며, 모든 답변에 2~3단계 꼬리질문이 붙음. 자기 주장에 대한 반례를 제시하고 재반박을 요구하는 형태가 반복됨.',
+ src:{k:'school',t:'교내 정리 자료 – 서울대 정외과 면접 준비',p:''}}
+];
+
+/* 계열별 빈출 문항 — 수록 자료가 없는 대학·학과의 기본 연습용 */
+const COMMON = {
+ '공통':['우리 학교(학과)에 지원한 동기를 말해 보세요.','고등학교 생활 중 가장 의미 있었던 활동 하나와 그 이유는?','자신의 장점과 단점, 단점을 보완하려 한 노력은?','갈등을 겪은 경험과 해결 과정은?','입학 후 학업 계획과 졸업 후 진로 계획은?','마지막으로 하고 싶은 말이 있나요?'],
+ '인문':['가장 인상 깊게 읽은 책과 그 이유는?','전공과 관련해 관심을 가진 사회 현상은?','인문학을 왜 배워야 한다고 생각하나요?'],
+ '사회':['최근 관심 있게 본 사회 문제와 자신의 견해는?','탐구에서 사용한 자료의 출처와 신뢰성은 어떻게 확인했나요?','자신의 주장과 반대되는 입장을 설명해 보세요.'],
+ '자연':['가장 흥미로웠던 과학 실험과 그 원리는?','탐구 결과가 예상과 달랐던 경험이 있나요?','전공 관련 최신 연구 중 아는 것을 말해 보세요.'],
+ '공학':['공학자에게 가장 필요한 역량은 무엇이라고 생각하나요?','세특에 기록된 설계·제작 활동의 원리를 설명해 보세요.','기술이 사회에 미친 부정적 영향의 사례는?'],
+ '정보·SW':['프로그래밍을 처음 접한 계기와 만든 산출물을 설명해 보세요.','자신이 작성한 코드에서 가장 어려웠던 문제와 해결 과정은?','인공지능 활용에서 생길 수 있는 윤리적 문제는?','데이터를 수집·전처리할 때 주의해야 할 점은?'],
+ '의약·보건':['이 직업에서 가장 중요한 자질은 무엇이라고 생각하나요?','의료인과 환자의 바람직한 관계는?','의료 자원이 부족한 상황에서 우선순위를 어떻게 정하겠습니까?','봉사 활동에서 배운 점은?'],
+ '교육':['좋은 교사란 어떤 교사라고 생각하나요?','학생 간 갈등이 생겼을 때 어떻게 지도하겠습니까?','교육 격차를 줄이기 위해 필요한 것은?'],
+ '예체능':['자신의 작품(연주·연기)을 설명해 보세요.','영향을 받은 작가나 작품은?','창작 과정에서 가장 어려웠던 점은?'],
+ '농림·수산':['전공 분야와 기후 변화의 관계를 설명해 보세요.','식량 안보에 대한 자신의 생각은?']
+};
+
+/* 면접 지도 체크리스트 */
+const GUIDE = [
+ {t:'① 면접 유형부터 가른다', b:['서류 기반 확인면접 — 학생부에 적힌 것만 묻는다. 준비의 대상은 학생부 그 자체다.','제시문 기반 구술면접 — 현장에서 자료를 읽고 답한다. 기출 풀이와 사고 훈련이 핵심.','인·적성 면접 — 상황 판단과 가치관을 묻는다. 정답이 아니라 근거를 본다.','대학·전형마다 다르므로 모집요강의 면접 항목을 먼저 확인한다.']},
+ {t:'② 답변은 네 단계로', b:['결론 먼저 한 문장 — 질문에 바로 답한다.','근거 — 학생부에 실제로 있는 경험 하나를 든다.','구체 — 무엇을 어떻게 했고 무엇이 달라졌는지 수치·장면으로 말한다.','연결 — 그 경험이 지원 학과와 어떻게 이어지는지 닫는다.','1문항 답변 40~60초, 길어야 90초.']},
+ {t:'③ 꼬리질문에 대비한다', b:['모든 활동에 "왜 그렇게 했나 / 어려움은 / 다시 한다면"의 3단 질문을 스스로 붙여 본다.','모르는 것은 아는 데까지 말하고 모른다고 인정한다. 지어내면 그 자리에서 무너진다.','반대 입장을 물으면 반박이 아니라 그 입장의 타당한 지점을 먼저 인정한다.']},
+ {t:'④ 블라인드 — 말하면 안 되는 것', b:['출신 고등학교 이름, 지역이 드러나는 표현','부모 직업·직위, 친인척 관련 정보','교외 수상 실적, 공인어학성적, 자격증명','교복 착용 금지. 학교 표식이 있는 옷·가방 금지.']},
+ {t:'⑤ 자주 나오는 실수', b:['학생부에 없는 활동을 말한다.','활동 이름만 나열하고 배운 것을 말하지 않는다.','"열심히 했습니다" 같은 평가어로 끝낸다 — 무엇을 했는지가 빠진다.','질문을 끝까지 듣지 않고 답을 시작한다.','외운 문장을 그대로 읊어 시선이 위로 향한다.','시간을 재지 않아 답변이 3분을 넘는다.']}
+];
+
+/* 시도교육청 진로진학 자료 */
+const OFFICES = [
+ {n:'서울 – 서울진로진학정보센터', u:'https://www.jinhak.or.kr/subList/20000000267', d:'대학별고사·구술면접·선행학습영향평가 보고서 모음'},
+ {n:'부산 – 부산진로진학지원센터', u:g('부산광역시교육청 진로진학지원센터 대입 면접 자료집')},
+ {n:'대구 – 대구진학진로정보센터', u:g('대구광역시교육청 진학진로정보센터 면접 자료집')},
+ {n:'인천 – 인천진로교육원', u:g('인천광역시교육청 진로교육원 대입 면접 자료집')},
+ {n:'광주 – 광주진로진학센터', u:g('광주광역시교육청 진로진학센터 면접 후기 자료집')},
+ {n:'대전 – 대전진로진학지원센터', u:g('대전광역시교육청 진로진학지원센터 면접 자료집')},
+ {n:'울산 – 울산진로진학센터', u:g('울산광역시교육청 대입 면접 후기 자료집')},
+ {n:'세종 – 세종진로진학지원센터', u:g('세종특별자치시교육청 진로진학 면접 자료집')},
+ {n:'경기 – 경기도교육청 진학포털', u:g('경기도교육청 진학 면접 자료집')},
+ {n:'강원 – 강원진로교육원', u:g('강원특별자치도교육청 진로교육원 면접 자료집')},
+ {n:'충북 – 충북진로교육원', u:g('충청북도교육청 진로교육원 대입 면접 자료집')},
+ {n:'충남 – 충남진학지원센터', u:g('충청남도교육청 진학지원센터 면접 자료집')},
+ {n:'전북 – 전북진로진학센터', u:g('전북특별자치도교육청 진로진학센터 면접 자료집')},
+ {n:'전남 – 전남진로진학지원센터', u:g('전라남도교육청 진로진학지원센터 면접 자료집')},
+ {n:'경북 – 경북진학지원센터', u:g('경상북도교육청 진학지원센터 대입 면접 자료집')},
+ {n:'경남 – 경남진학지원센터', u:g('경상남도교육청 진학지원센터 면접 자료집')},
+ {n:'제주 – 제주진로진학지원센터', u:g('제주특별자치도교육청 진로진학지원센터 면접 자료집')}
+];
+
+/* ═══════════════════════════════════════════════════════════
+   6. 저장소 (window.storage → localStorage → 메모리)
+═══════════════════════════════════════════════════════════ */
+const KEY = 'iv:data';
+const mem = {};
+const store = {
+  async get(){
+    try{ if(window.storage){ const r = await window.storage.get(KEY); if(r && r.value) return JSON.parse(r.value); } }catch(e){}
+    try{ const s = localStorage.getItem(KEY); if(s) return JSON.parse(s); }catch(e){}
+    return mem[KEY] || null;
+  },
+  async set(v){
+    const s = JSON.stringify(v);
+    mem[KEY] = v;
+    try{ if(window.storage){ await window.storage.set(KEY, s); return true; } }catch(e){}
+    try{ localStorage.setItem(KEY, s); return true; }catch(e){}
+    return false;
+  }
+};
+
+let DATA = { questions: [], tips: [], results: [] };
+let AUTO = [];          // 깃허브 액션이 매년 수집한 문항
+let AUTOINFO = null;    // 수집 결과 요약
+let GIVEN = {questions:[], tips:[], results:[]};  // 구글 시트에서 올린 자료
+
+/* ═══════════════════════════════════════════════════════════
+   7. 상태
+═══════════════════════════════════════════════════════════ */
+const S = { type:'4년제', univ:null, field:'', major:'', adm:'', tab:'q', years:new Set(YEARS) };
+const $  = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function allQ(){ return [...SEED_Q, ...AUTO, ...GIVEN.questions, ...DATA.questions]; }
+
+function matchQ(){
+  return allQ().filter(q => {
+    if(S.univ && q.univ !== S.univ.name) return false;
+    if(!S.univ && q.type !== S.type) return false;
+    if(!S.years.has(q.year)) return false;
+    if(S.field && q.field && q.field !== S.field) return false;
+    if(S.adm && q.adm && !q.adm.includes(S.adm.split('(')[0])) return false;
+    if(S.major){
+      const k = S.major.replace(/(학과|학부|전공|과)$/,'');
+      if(k && !(q.major||'').includes(k)) return false;
     }
-    onChange();
+    return true;
+  }).sort((a,b) => b.year - a.year);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   8. 대학 선택
+═══════════════════════════════════════════════════════════ */
+let dIdx = -1, dList = [];
+function searchUniv(){
+  const q = $('#uq').value.trim();
+  const pool = UNIVS.filter(u => u.type === S.type);
+  dList = (q ? pool.filter(u => u.name.includes(q) || u.region.includes(q)) : pool).slice(0,60);
+  const d = $('#ud');
+  if(!dList.length){ d.hidden = true; return; }
+  d.innerHTML = dList.map((u,i) =>
+    `<div data-i="${i}" class="${i===dIdx?'on':''}">${esc(u.name)}<em>${esc(u.region)}</em></div>`).join('');
+  d.hidden = false;
+}
+function pickUniv(u){
+  S.univ = u; $('#uq').value = u.name; $('#ud').hidden = true; dIdx = -1; render();
+}
+$('#uq').addEventListener('input', () => { dIdx = -1; S.univ = null; searchUniv(); render(); });
+$('#uq').addEventListener('focus', searchUniv);
+$('#uq').addEventListener('keydown', e => {
+  if($('#ud').hidden) return;
+  if(e.key === 'ArrowDown'){ dIdx = Math.min(dIdx+1, dList.length-1); searchUniv(); e.preventDefault(); }
+  else if(e.key === 'ArrowUp'){ dIdx = Math.max(dIdx-1, 0); searchUniv(); e.preventDefault(); }
+  else if(e.key === 'Enter'){ if(dList[dIdx<0?0:dIdx]) pickUniv(dList[dIdx<0?0:dIdx]); e.preventDefault(); }
+  else if(e.key === 'Escape'){ $('#ud').hidden = true; }
+});
+$('#ud').addEventListener('mousedown', e => {
+  const el = e.target.closest('[data-i]'); if(el) pickUniv(dList[+el.dataset.i]);
+});
+document.addEventListener('click', e => { if(!e.target.closest('.hits')) $('#ud').hidden = true; });
+
+function setType(t){
+  S.type = t; S.univ = null; $('#uq').value = '';
+  $('#tp4').setAttribute('aria-pressed', t === '4년제');
+  $('#tp2').setAttribute('aria-pressed', t === '전문대');
+  render();
+}
+$('#tp4').onclick = () => setType('4년제');
+$('#tp2').onclick = () => setType('전문대');
+
+$('#fld').innerHTML = '<option value="">전체</option>' + FIELDS.map(f => `<option>${f}</option>`).join('');
+$('#adm').innerHTML = '<option value="">전체</option>' + ADMS.map(a => `<option>${a}</option>`).join('');
+$('#majors').innerHTML = MAJORS.map(m => `<option value="${m}">`).join('');
+$('#fld').onchange = e => { S.field = e.target.value; render(); };
+$('#adm').onchange = e => { S.adm  = e.target.value; render(); };
+$('#maj').oninput  = e => { S.major = e.target.value.trim(); render(); };
+
+$$('.tabs button').forEach(b => b.onclick = () => {
+  S.tab = b.dataset.tab;
+  $$('.tabs button').forEach(x => x.setAttribute('aria-selected', x === b));
+  ['q','t','r','s','d'].forEach(k => $('#pane-'+k).hidden = (k !== S.tab));
+  render();
+});
+
+/* ═══════════════════════════════════════════════════════════
+   9. 렌더
+═══════════════════════════════════════════════════════════ */
+function srcBadge(s){
+  const map = {official:'대학 공식 보고서', office:'시도교육청 발간 자료', school:'학교 자체 정리'};
+  return `<span class="tag t-src">${map[s.k]||'출처'}</span>`;
+}
+function qCard(q){
+  return `<article class="card">
+    <div class="card-hd">
+      <span class="tag t-year">${q.year}학년도</span>
+      <span class="who">${esc(q.univ)} · ${esc(q.major||'모집단위 미상')}</span>
+      <span class="tag t-adm">${esc(q.adm||'전형 미상')}</span>
+      ${q.field?`<span class="tag t-gray">${esc(q.field)}</span>`:''}
+    </div>
+    <div class="card-bd">
+      ${q.qs.map((t,i) => {
+        const parts = String(t).split('|');
+        return `<div class="qline"><div class="qnum">${i+1}</div><div class="qtext">${esc(parts[0])}
+          ${parts.slice(1).map(f => `<span class="follow">↳ ${esc(f)}</span>`).join('')}</div></div>`;
+      }).join('')}
+      <div class="meta">
+        ${q.method?`<div><b>면접 방법</b> · ${esc(q.method)}</div>`:''}
+        ${q.note?`<div><b>유의 사항</b> · ${esc(q.note)}</div>`:''}
+        <div style="margin-top:7px">${srcBadge(q.src)} ${esc(q.src.t)}${q.src.p?' · '+esc(q.src.p):''}
+        ${q.src.u?` · <a href="${esc(q.src.u)}" target="_blank" rel="noopener">원문 열기</a>`:''}</div>
+      </div>
+    </div></article>`;
+}
+
+function paneQ(){
+  const list = matchQ();
+  $('#nQ').textContent = list.length;
+  const chips = `<div class="chips">${YEARS.map(y =>
+    `<button class="chip" data-y="${y}" aria-pressed="${S.years.has(y)}">${y}학년도</button>`).join('')}</div>`;
+
+  let body;
+  if(list.length){
+    body = list.map(qCard).join('');
+  }else{
+    const f = S.field || '';
+    const pool = [...(COMMON[f]||[]), ...COMMON['공통']];
+    body = `<div class="empty"><b>선택한 조건에 수록된 문항이 없습니다</b>
+      아래 공식 원문에서 직접 확인하거나, 확인한 문항을 자료 관리 탭에서 추가하세요.</div>
+      ${S.univ ? reportPanel(S.univ, true) : ''}
+      <h2 class="sec">${f?f+' 계열':'공통'} 빈출 문항 — 연습용</h2>
+      <article class="card"><div class="card-bd">
+      ${pool.map((t,i) => `<div class="qline"><div class="qnum">${i+1}</div><div class="qtext">${esc(t)}</div></div>`).join('')}
+      <div class="meta"><div>대학별 실제 기출이 아니라 계열 공통으로 반복되는 유형입니다. 학생부 기반 답변 연습에 사용하세요.</div></div>
+      </div></article>`;
+  }
+  $('#pane-q').innerHTML = chips + body;
+  $$('#pane-q .chip').forEach(c => c.onclick = () => {
+    const y = +c.dataset.y;
+    S.years.has(y) ? S.years.delete(y) : S.years.add(y);
+    if(!S.years.size) YEARS.forEach(v => S.years.add(v));
+    render();
   });
 }
-const chipVals = id => [...$(id).querySelectorAll('.chip[aria-pressed="true"]')].map(c=>c.dataset.v);
-bindChips('types', true, ()=>{ S.types = chipVals('types'); });
-bindChips('timed', false, ()=>{ S.timed = chipVals('timed')[0]==='on'; });
 
-let pdfB64 = null;
-$('drop').addEventListener('click', ()=> $('file').click());
-$('drop').addEventListener('dragover', e=>{ e.preventDefault(); $('drop').classList.add('on'); });
-$('drop').addEventListener('dragleave', ()=> $('drop').classList.remove('on'));
-$('drop').addEventListener('drop', e=>{ e.preventDefault(); $('drop').classList.remove('on'); const f=e.dataTransfer.files[0]; if(f) takeFile(f); });
-$('file').addEventListener('change', e=>{ if(e.target.files[0]) takeFile(e.target.files[0]); });
-function takeFile(f){
-  if(f.type!=='application/pdf'){ $('fname').textContent='PDF 파일만 읽을 수 있습니다.'; return; }
-  if(f.size > 12*1024*1024){ $('fname').textContent='파일이 너무 큽니다. 12MB 이하로 줄여 주세요.'; return; }
-  const r = new FileReader();
-  r.onload = () => { pdfB64 = r.result.split(',')[1]; $('fname').textContent = f.name + ' — 읽을 준비 완료'; };
-  r.onerror = () => { $('fname').textContent = '파일을 읽지 못했습니다.'; };
-  r.readAsDataURL(f);
-}
-$('go').addEventListener('click', startInterview);
-
-/* ═══════════ 프롬프트 ═══════════ */
-const RULES = `[반드시 지킬 것]
-- 고등학교 교육과정의 범위와 수준을 벗어나지 않는다. 선행학습이나 사교육이 있어야 답할 수 있는 문항은 내지 않는다.
-- 블라인드 면접 원칙: 출신 고교명, 부모의 직업·학력, 교외 수상 실적, 공인어학성적은 묻지 않는다.
-- 질문은 한 번에 하나만. 말투는 면접위원답게 정중하고 건조하게.
-- 평가·칭찬·격려·조언을 하지 않는다.`;
-
-function planSystem(){
-  return `당신은 대한민국 대학입학 면접의 면접위원이다.
-대학 ${S.univ} / 모집단위 ${S.dept} / 면접 유형 ${S.types.join(', ')} / 난이도 ${S.level} / 본 질문 총 ${S.total}개
-
-[유형별 출제 원칙]
-- 서류기반: 지원자 학교생활기록부 내용에 근거해 사실을 확인하고 깊이를 묻는다. 자료에 없는 활동은 지어내지 않는다.
-- 제시문기반: 500~800자 제시문(글·표·사례)을 직접 작성해 stimulus에 담고, 그에 근거한 분석·적용·비판 질문을 한다. 기존 저작물을 인용하지 않는다.
-- MMI: 상황 시나리오를 stimulus에 담고 판단과 근거를 묻는다. 전공 전문지식이 아니라 의사소통·윤리적 판단·상황 대처를 본다.
-- 인성: 공동체역량(협업과 소통능력, 나눔과 배려, 성실성과 규칙준수, 리더십)이 드러나는 구체적 경험을 묻는다.
-
-${RULES}
-
-[출력] 다른 말 없이 아래 JSON만 출력한다. 설명을 덧붙이지 않는다.
-{"type":"서류기반|제시문기반|MMI|인성","station":"짧은 맥락 표시","stimulus":"제시문 전문 또는 null","question":"질문 한 개","prepSeconds":정수,"answerSeconds":정수}`;
-}
-
-function fuSystem(){
-  return `당신은 대학입학 면접의 면접위원이다. 방금 받은 답변에 꼬리질문이 필요한지 판단한다.
-필요한 경우: 주장만 있고 근거가 없음 / 추상적이고 구체적 경험이 없음 / 사실 확인이 필요함 / 제시문 논리에 빈틈이 있음.
-이 문항에서 꼬리질문은 최대 ${FU_MAX[S.level]}회까지 가능하며 현재 ${S.fuUsed}회 사용했다.
-답변이 충분하거나 한도를 채웠으면 꼬리질문 없이 넘어간다.
-${RULES}
-[출력] 다른 말 없이 JSON만. {"followup":"꼬리질문 한 문장" 또는 null}`;
-}
-
-/* ═══════════ 학생부 요약 ═══════════ */
-async function buildProfile(){
-  const manual = $('manual').value.trim();
-  if(!pdfB64 && !manual) return '';
-  const sys = `당신은 대학 입학사정관이다. 지원자의 학교생활기록부에서 면접 문항 제작에 필요한 정보만 뽑아 요약한다.
-개인 식별 정보(이름, 학교명, 주민등록번호, 주소, 부모 정보)는 요약에 포함하지 않는다.
-아래 항목으로 나눠 개조식으로 정리한다. 없는 항목은 생략. 전체 600자 이내.
-- 진로희망 / 관련 교과 이수와 성취 특징 / 세부능력 및 특기사항의 탐구 활동 / 동아리·자율·진로 활동 / 독서 / 공동체역량이 드러나는 장면 / 면접에서 사실 확인이 필요한 지점`;
-  const content = [];
-  if(pdfB64) content.push({ type:"document", source:{ type:"base64", media_type:"application/pdf", data:pdfB64 } });
-  let txt = "이 지원자의 자료를 요약해 주세요.";
-  if(manual) txt += `\n\n[지원자가 직접 적은 내용]\n${manual}`;
-  content.push({ type:"text", text: txt });
-  return await ask(sys, [{ role:"user", content }]);
-}
-
-/* ═══════════ 질문 생성 ═══════════ */
-function planUserMsg(){
-  let m = `다음 본 질문 1개를 만들어 주세요. 지금 만들 질문은 ${S.mainDone+1}번째이고 전체는 ${S.total}개입니다.`;
-  if(S.asked.length){
-    m += `\n\n[이미 낸 본 질문]\n` + S.asked.map((q,i)=>`${i+1}. (${q.type}) ${q.question}`).join('\n');
-    m += `\n같은 소재나 같은 유형이 반복되지 않게 하세요.`;
+function reportPanel(u, compact){
+  if(u.type === '전문대'){
+    return `<div class="note"><b>전문대학은 각 대학 입학처에 직접 공개합니다.</b>
+      선행학습 영향평가 보고서 또는 면접 예상문항을 입학처 공지사항·입학자료실에 올리는 경우가 많습니다.</div>
+      <div class="links">
+        <a class="lk" href="${g(u.name+' 입학처 면접 기출문항')}" target="_blank" rel="noopener"><strong>${esc(u.name)} 입학처 면접 문항</strong><span>검색으로 바로 이동</span></a>
+        <a class="lk" href="${g(u.name+' 선행학습 영향평가 보고서')}" target="_blank" rel="noopener"><strong>선행학습 영향평가 보고서</strong><span>전문대학도 법정 공개 대상</span></a>
+        <a class="lk" href="https://www.procollege.kr" target="_blank" rel="noopener"><strong>프로칼리지</strong><span>전문대학 입학정보 포털</span></a>
+      </div>`;
   }
-  const left = S.types.filter(t=>!S.asked.some(q=>q.type===t));
-  if(left.length) m += `\n아직 나오지 않은 유형: ${left.join(', ')}. 이 중에서 고르세요.`;
-  if(S.profile) m += `\n\n[지원자 제출 자료 요약]\n${S.profile}`;
-  else m += `\n\n제출 서류는 없습니다. 서류기반 문항은 지원동기·진로계획·학업계획 질문으로 대신하세요.`;
-  if(S.pace==='adaptive' && S.log.length){
-    const last = S.log.slice(-2).map(t=>`Q: ${t.q}\nA: ${t.a}`).join('\n\n');
-    m += `\n\n[직전 답변]\n${last}\n이 답변에서 드러난 관심사나 빈틈을 고려해 다음 질문을 정하세요.`;
-  }
-  return m;
-}
-function fetchNextQuestion(){
-  return ask(planSystem(), [{ role:"user", content: planUserMsg() }]).then(parseJSON);
-}
-function prefetch(){
-  if(S.pace!=='fast') return;
-  if(S.mainDone >= S.total) { S.pending = null; return; }
-  S.pending = fetchNextQuestion().catch(()=>null);
-  $('ready').textContent = '다음 질문을 미리 준비하는 중';
-  S.pending.then(v=>{ $('ready').textContent = v ? '다음 질문 준비 완료' : ''; });
+  return `${compact?'<h2 class="sec">공식 원문 — 선행학습 영향평가 결과보고서</h2>':''}
+    <div class="links">${YEARS.map(y =>
+      `<a class="lk" href="${reportUrl(u.name,y)}" target="_blank" rel="noopener"><strong>${y}학년도 보고서</strong><span>${esc(u.name)} · 면접 기출문항 수록</span></a>`).join('')}
+    </div>`;
 }
 
-/* ═══════════ 면접 시작 ═══════════ */
-async function startInterview(){
-  S.univ = $('univ').value.trim(); S.dept = $('dept').value.trim();
-  if(!S.univ || !S.dept){ errBox('setupErr','대학과 모집단위를 입력해 주세요.'); return; }
-  S.types = chipVals('types'); S.timed = chipVals('timed')[0]==='on';
-  S.total = parseInt($('count').value,10); S.level = $('level').value; S.pace = $('pace').value;
-  S.log=[]; S.asked=[]; S.mainDone=0; S.fuUsed=0; S.ended=false; S.pending=null;
-  $('setupErr').innerHTML='';
-  $('go').disabled = true;
-  $('go').textContent = pdfB64 ? '학생부를 읽는 중…' : '면접위원이 준비하는 중…';
+function paneT(){
+  const u = S.univ, maj = S.major || (u ? '' : '');
+  const q = [u?u.name:'', maj, '면접 후기'].filter(Boolean).join(' ');
+  $('#pane-t').innerHTML = `
+    <h2 class="sec">면접 지도 체크리스트</h2>
+    ${GUIDE.map(gd => `<details><summary>${esc(gd.t)}</summary><div class="dbody"><ul>${gd.b.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div></details>`).join('')}
 
-  try{ S.profile = await buildProfile(); }
-  catch(e){ $('go').disabled=false; $('go').textContent='면접 시작'; errBox('setupErr','학생부를 읽지 못했습니다. 잠시 뒤 다시 시도해 주세요.'); return; }
+    <h2 class="sec">선배 면접 후기 찾기</h2>
+    <div class="note"><b>후기 글은 작성자에게 저작권이 있어 이 앱이 본문을 가져와 저장하지 않습니다.</b>
+      대신 아래 버튼이 선택한 대학·학과에 맞는 검색어를 넣어 원 글로 바로 보냅니다.
+      읽은 내용 중 쓸 만한 것은 자료 관리 탭에서 요약해 직접 남기세요.</div>
+    <div class="links">
+      <a class="lk" href="${cafe(q||'면접 후기')}" target="_blank" rel="noopener"><strong>수만휘 카페에서 찾기</strong><span>${esc(q||'면접 후기')}</span></a>
+      <a class="lk" href="${nv((q||'면접 후기')+' 블로그')}" target="_blank" rel="noopener"><strong>네이버 블로그·카페 통합검색</strong><span>후기 글이 가장 많은 곳</span></a>
+      <a class="lk" href="${g((q||'면접 후기')+' 후기 질문')}" target="_blank" rel="noopener"><strong>구글에서 찾기</strong><span>디시·오르비 등 포함</span></a>
+      <a class="lk" href="https://www.youtube.com/results?search_query=${encodeURIComponent((q||'면접')+' 모의면접')}" target="_blank" rel="noopener"><strong>유튜브 면접 영상</strong><span>대학 제작 안내 영상 포함</span></a>
+    </div>
 
-  show('room');
-  $('rmLeft').textContent = `${S.univ} ${S.dept}`;
-  $('answer').style.display=''; $('mic').style.display=''; $('send').style.display='';
-  $('quit').textContent='면접 중단하고 평가 받기';
-  $('roomErr').innerHTML='';
-  drawDots();
-  $('question').textContent = '면접위원이 자료를 살펴보고 있습니다…';
-  $('thinking').innerHTML = '<b>첫 질문을 준비하는 중…</b>';
-
-  try{
-    const q = await fetchNextQuestion();
-    deliverMain(q);
-  }catch(e){
-    $('thinking').textContent=''; errBox('roomErr','질문을 받아오지 못했습니다. 새로고침 후 다시 시도해 주세요.');
-  }finally{
-    $('go').disabled=false; $('go').textContent='면접 시작';
-  }
+    <h2 class="sec">기록해 둔 후기${u?' — '+esc(u.name):''}</h2>
+    ${(() => {
+      const t = [...GIVEN.tips, ...DATA.tips].filter(x => !u || x.univ === u.name);
+      if(!t.length) return `<div class="empty">아직 기록된 후기가 없습니다. 자료 관리 탭에서 추가하세요.</div>`;
+      return t.map(x => `<article class="card"><div class="card-hd">
+        <span class="tag t-year">${x.year}</span><span class="who">${esc(x.univ)} · ${esc(x.major||'')}</span></div>
+        <div class="card-bd">${esc(x.text).replace(/\n/g,'<br>')}
+        <div class="meta">${esc(x.src||'출처 미기재')}</div></div></article>`).join('');
+    })()}`;
 }
 
-/* ═══════════ 질문 표시 ═══════════ */
-function deliverMain(q){
-  S.current = { ...q, phase:'question' };
-  S.asked.push(q); S.mainDone++; S.fuUsed = 0;
-  render(S.current, true);
-  drawDots();
-  prefetch();
-}
-function deliverFollowup(text){
-  S.fuUsed++;
-  S.current = { ...S.current, phase:'followup', question:text, stimulus:null, prepSeconds:0, answerSeconds:60 };
-  render(S.current, false);
-}
-function render(obj, newStimulus){
-  $('thinking').textContent='';
-  $('station').textContent = obj.station || '';
-  $('qtag').style.display = obj.phase==='followup' ? 'block' : 'none';
-  if(newStimulus){
-    if(obj.stimulus){ $('stimulus').textContent = obj.stimulus; $('stimulus').style.display='block'; }
-    else $('stimulus').style.display='none';
-  }
-  $('question').textContent = obj.question;
-  $('question').style.animation='none'; void $('question').offsetWidth; $('question').style.animation='';
-  $('rmRight').textContent = `본 질문 ${S.mainDone} / ${S.total}`;
-  $('answer').value=''; $('answer').disabled=false; $('send').disabled=false; $('answer').focus();
-  if(S.timed) startTimer((obj.prepSeconds||0)+(obj.answerSeconds||90));
-  else $('timerBox').style.display='none';
-}
-function drawDots(){
-  $('dots').innerHTML = Array.from({length:S.total},(_,i)=>{
-    const cls = i < S.mainDone-1 ? 'done' : (i === S.mainDone-1 ? 'now' : '');
-    return `<span class="dot ${cls}"></span>`;
-  }).join('');
+function paneR(){
+  const u = S.univ;
+  const rows = [...GIVEN.results, ...DATA.results].filter(r => !u || r.univ === u.name);
+  $('#pane-r').innerHTML = `
+    <div class="info">입시 결과는 대학이 <b>매년 5월경</b> 대학어디가와 입학처에 전년도 수치를 공개합니다.
+      수치는 대학이 직접 내는 것이 정확하므로, 이 앱은 저장보다 <b>원자료로 바로 가는 것</b>을 먼저 권합니다.</div>
+    <div class="links">
+      <a class="lk" href="https://www.adiga.kr" target="_blank" rel="noopener"><strong>대학어디가</strong><span>교육부·대교협 공식 입시결과</span></a>
+      <a class="lk" href="https://www.academyinfo.go.kr" target="_blank" rel="noopener"><strong>대학알리미</strong><span>충원율·경쟁률 등 공시자료</span></a>
+      ${u?`<a class="lk" href="${g(u.name+' '+(S.major||'')+' 입시결과 경쟁률 충원율')}" target="_blank" rel="noopener"><strong>${esc(u.name)} 입시결과</strong><span>${esc(S.major||'학과 미지정')}</span></a>`:''}
+      ${u?`<a class="lk" href="${g(u.name+' 수시 모집요강')}" target="_blank" rel="noopener"><strong>모집요강</strong><span>면접 반영 비율·평가 항목 확인</span></a>`:''}
+    </div>
+    <h2 class="sec">기록해 둔 입시 결과${u?' — '+esc(u.name):''}</h2>
+    ${rows.length ? `<div class="scroll"><table>
+      <thead><tr><th>학년도</th><th>대학</th><th>전형</th><th>모집단위</th><th>모집</th><th>경쟁률</th><th>충원율</th><th>교과 70%컷</th><th>출처</th></tr></thead>
+      <tbody>${rows.sort((a,b)=>b.year-a.year).map(r => `<tr>
+        <td>${r.year}</td><td>${esc(r.univ)}</td><td>${esc(r.adm)}</td><td>${esc(r.major)}</td>
+        <td class="num">${esc(r.cap)}</td><td class="num">${esc(r.comp)}</td><td class="num">${esc(r.fill)}</td>
+        <td class="num">${esc(r.cut)}</td><td>${esc(r.src)}</td></tr>`).join('')}</tbody></table></div>`
+      : `<div class="empty">저장된 입시 결과가 없습니다. 자료 관리 탭에서 추가하세요.</div>`}`;
 }
 
-/* ═══════════ 답변 제출 ═══════════ */
-$('send').addEventListener('click', submitAnswer);
-$('answer').addEventListener('keydown', e=>{ if((e.metaKey||e.ctrlKey)&&e.key==='Enter') submitAnswer(); });
+function paneS(){
+  const u = S.univ;
+  $('#pane-s').innerHTML = `
+    <div class="info"><b>면접 기출은 법으로 공개하게 되어 있습니다.</b>
+      「공교육 정상화 촉진 및 선행교육 규제에 관한 특별법」 제10조에 따라, 면접·구술고사를 치른 모든 대학은
+      그 해 문항과 출제 의도를 담은 <b>선행학습 영향평가 결과보고서</b>를 <b>매년 3월 31일까지</b> 입학처 홈페이지에 공개해야 합니다.
+      아래 링크는 그 보고서를 연도별로 모아 둔 주소로, 해가 바뀌면 이 앱이 학년도를 자동으로 올립니다.</div>
 
-async function submitAnswer(){
-  if(S.busy || S.ended) return;
-  const a = $('answer').value.trim();
-  if(!a){ $('answer').focus(); return; }
-  stopTimer();
-  S.log.push({ q:S.current.question, station:S.current.station, type:S.current.type, phase:S.current.phase, a });
+    <h2 class="sec">${u?esc(u.name)+' — ':''}선행학습 영향평가 결과보고서 5개년</h2>
+    ${u ? reportPanel(u,false) : '<div class="empty">위에서 대학을 먼저 선택하세요.</div>'}
+    ${u && u.type==='4년제' ? `<div class="note" style="margin-top:12px">링크가 열리지 않으면 아카이브에 등록된 대학 표기가 다른 경우입니다
+      (예: 상명대학교(천안), 한양대학교(ERICA)). 아래에서 표기를 바꿔 다시 시도하세요.
+      <div class="row" style="margin-top:9px"><div class="f"><input id="fixName" value="${esc(u.name)}"></div>
+      <div class="f"><button class="btn ghost" id="fixGo">이 표기로 다시 열기</button></div></div></div>` : ''}
 
-  S.busy = true; $('send').disabled = true; $('answer').disabled = true;
-  $('thinking').innerHTML = '<b>면접위원이 답변을 검토하는 중…</b>';
-  $('roomErr').innerHTML='';
+    <h2 class="sec">시도교육청 진로진학 자료</h2>
+    <div class="links">${OFFICES.map(o =>
+      `<a class="lk" href="${o.u}" target="_blank" rel="noopener"><strong>${esc(o.n)}</strong><span>${esc(o.d||'면접 후기 자료집·진학 자료')}</span></a>`).join('')}</div>
 
-  let fu = null;
-  if(S.fuUsed < FU_MAX[S.level]){
-    try{
-      const body = `[질문] ${S.current.question}\n[학생 답변] ${a}`;
-      fu = (parseJSON(await ask(fuSystem(), [{role:"user", content: body}]))||{}).followup || null;
-    }catch(e){ fu = null; }
-  }
-
-  S.busy = false; $('answer').disabled = false;
-  if(fu){ deliverFollowup(fu); return; }
-
-  if(S.mainDone >= S.total){ finish(); return; }
-
-  $('thinking').innerHTML = '<b>다음 질문…</b>';
-  let q = null;
-  if(S.pace==='fast' && S.pending){ q = await S.pending; }
-  if(!q){ try{ q = await fetchNextQuestion(); }catch(e){} }
-  if(!q){ errBox('roomErr','다음 질문을 받아오지 못했습니다. 답변 제출을 다시 눌러 주세요.'); $('send').disabled=false; $('thinking').textContent=''; return; }
-  deliverMain(q);
-}
-
-function finish(){
-  S.ended = true; stopTimer();
-  $('stimulus').style.display='none'; $('qtag').style.display='none'; $('timerBox').style.display='none';
-  $('answer').style.display='none'; $('mic').style.display='none'; $('send').style.display='none';
-  $('ready').textContent=''; $('thinking').textContent='';
-  $('station').textContent=''; $('question').textContent='수고하셨습니다. 면접을 마치겠습니다.';
-  setTimeout(makeReport, 1000);
-}
-$('quit').addEventListener('click', ()=>{
-  if(S.log.length===0){ show('setup'); return; }
-  stopTimer(); S.ended=true; makeReport();
-});
-
-/* ═══════════ 타이머 ═══════════ */
-let tId=null;
-function startTimer(total){
-  stopTimer(); let left=total;
-  $('timerBox').style.display='flex'; paint(left,total);
-  tId = setInterval(()=>{ left--; if(left<=0){ left=0; stopTimer(); } paint(left,total); },1000);
-}
-function paint(left,total){
-  $('clock').textContent = `${String(Math.floor(left/60)).padStart(2,'0')}:${String(left%60).padStart(2,'0')} 남음`;
-  $('barFill').style.width = (left/total*100)+'%';
-  const warn = left <= Math.min(20, total*0.2);
-  $('clock').classList.toggle('warn',warn); $('bar').classList.toggle('warn',warn);
-}
-function stopTimer(){ if(tId){ clearInterval(tId); tId=null; } }
-
-/* ═══════════ 음성 입력 ═══════════ */
-const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-let rec=null;
-if(!SR){ $('mic').disabled=true; $('mic').textContent='음성 입력 미지원 브라우저'; }
-$('mic').addEventListener('click', ()=>{
-  if(!SR) return;
-  if(rec){ rec.stop(); return; }
-  rec = new SR(); rec.lang='ko-KR'; rec.continuous=true; rec.interimResults=false;
-  const base = $('answer').value; let acc='';
-  rec.onresult = e => {
-    for(let i=e.resultIndex;i<e.results.length;i++) if(e.results[i].isFinal) acc += e.results[i][0].transcript+' ';
-    $('answer').value = (base? base+' ':'') + acc;
+    <h2 class="sec">공통 자료</h2>
+    <div class="links">
+      <a class="lk" href="https://www.adiga.kr" target="_blank" rel="noopener"><strong>대학어디가</strong><span>전형 정보·입시결과</span></a>
+      <a class="lk" href="https://www.procollege.kr" target="_blank" rel="noopener"><strong>프로칼리지</strong><span>전문대학 입학정보</span></a>
+      <a class="lk" href="https://addon.kcue.or.kr" target="_blank" rel="noopener"><strong>대교협 대입정보포털</strong><span>전형 시행계획</span></a>
+    </div>`;
+  const fg = $('#fixGo');
+  if(fg) fg.onclick = () => {
+    const n = $('#fixName').value.trim(); if(!n) return;
+    YEARS.forEach(y => window.open(reportUrl(n, y), '_blank', 'noopener'));
   };
-  const off = () => { rec=null; $('mic').setAttribute('aria-pressed','false'); $('mic').textContent='음성으로 답하기'; };
-  rec.onend = off; rec.onerror = off;
-  rec.start(); $('mic').setAttribute('aria-pressed','true'); $('mic').textContent='● 녹음 중 — 누르면 종료';
-});
-
-/* ═══════════ 평가서 ═══════════ */
-function transcript(){
-  return S.log.map((t,i)=>`[${i+1}] (${t.phase==='followup'?'꼬리질문':'본질문'} / ${t.type}) ${t.q}\n답변: ${t.a}`).join('\n\n');
-}
-async function makeReport(){
-  show('report');
-  const mains = S.log.filter(t=>t.phase!=='followup');
-  $('rMeta').textContent = `${S.univ} ${S.dept} · ${S.types.join('·')} · 본 질문 ${mains.length}개 · ${new Date().toLocaleDateString('ko-KR')}`;
-  $('rBody').innerHTML = '<p style="color:var(--muted)">답변을 평가하는 중입니다…</p>';
-
-  const sysA = `당신은 대학 입학사정관이자 면접평가위원이다. 모의 면접 기록을 읽고 평가한다.
-평가 기준은 학생부종합전형 공통 평가요소다.
-- 학업역량: 학업성취도, 학업태도, 탐구력
-- 진로역량: 전공(계열) 관련 교과 이수 노력, 교과 성취도, 진로 탐색 활동과 경험
-- 공동체역량: 협업과 소통능력, 나눔과 배려, 성실성과 규칙준수, 리더십
-여기에 면접 수행 기준을 더한다. 논리성(주장과 근거의 연결), 구체성(자기 경험과 사실에 기반), 표현력(질문 대응과 전달).
-답변에서 실제로 드러난 근거만으로 평가한다. 드러나지 않은 역량은 점수를 낮추고 근거가 부족했다고 명시한다.
-막연한 칭찬은 쓰지 않는다. 학생이 무엇을 바꾸면 되는지 알 수 있게 구체적으로 쓴다.
-[출력] 다른 말 없이 JSON만.
-{"grade":"A+|A|B+|B|C+|C|D","headline":"한 문장 총평","overall":"3~4문장","competencies":[{"name":"학업역량","score":0~100,"comment":"2문장"},{"name":"진로역량","score":0~100,"comment":"2문장"},{"name":"공동체역량","score":0~100,"comment":"2문장"},{"name":"논리성","score":0~100,"comment":"1~2문장"},{"name":"구체성","score":0~100,"comment":"1~2문장"},{"name":"표현력","score":0~100,"comment":"1~2문장"}],"nextSteps":["고칠 점 3~4개, 각 한 문장"]}`;
-
-  const sysB = `당신은 대학 입학사정관이다. 모의 면접의 본 질문별 답변을 하나씩 짚어 준다.
-각 문항마다 (1) 무엇을 보려던 문항인지, (2) 답변에서 좋았던 점과 부족했던 점, (3) 어떻게 고쳐 말하면 되는지 한 문장 예시를 쓴다.
-막연한 칭찬 금지. 답변에 실제로 있던 내용만 근거로 삼는다.
-[출력] 다른 말 없이 JSON만.
-{"items":[{"n":1,"intent":"출제 의도 한 문장","feedback":"2~3문장","rewrite":"이렇게 말했다면 더 좋았을 한 문장"}],"followupsToExpect":["실제 면접에서 이어질 예상 꼬리질문 3개"]}`;
-
-  const body = `[면접 정보] ${S.univ} ${S.dept} / 유형 ${S.types.join(', ')}\n\n[면접 기록]\n${transcript()}`;
-  const [rA, rB] = await Promise.allSettled([
-    ask(sysA, [{role:"user", content: body}]),
-    ask(sysB, [{role:"user", content: body}])
-  ]);
-  let A=null, B=null;
-  try{ if(rA.status==='fulfilled') A = parseJSON(rA.value); }catch(e){}
-  try{ if(rB.status==='fulfilled') B = parseJSON(rB.value); }catch(e){}
-
-  if(!A && !B){ $('rBody').innerHTML = '<div class="err">평가를 생성하지 못했습니다. 잠시 뒤 다시 시도해 주세요.</div>'; return; }
-
-  let h='';
-  if(A){
-    h += `<div class="overall"><p class="grade">${A.grade||'-'}<small>${A.headline||''}</small></p><p>${A.overall||''}</p></div>`;
-    h += `<h2 class="sec">평가요소별 진단</h2>`;
-    (A.competencies||[]).forEach(c=>{
-      h += `<div class="comp"><div class="comp-head"><span>${c.name}</span><em>${c.score}</em></div>
-      <div class="gauge"><span style="width:${Math.max(0,Math.min(100,c.score))}%"></span></div><p>${c.comment||''}</p></div>`;
-    });
-  }
-  if(B && B.items){
-    h += `<h2 class="sec">문항별 피드백</h2>`;
-    B.items.forEach(it=>{
-      const t = mains[it.n-1] || S.log[it.n-1] || {};
-      h += `<div class="qa"><p class="qq">${it.n}. ${t.q||''}</p>
-      <p class="aa">${(t.a||'').slice(0,300)}</p>
-      <p class="ff">${it.feedback||''}</p>
-      <p class="kk">출제 의도 — ${it.intent||''}<br>이렇게 말했다면 — “${it.rewrite||''}”</p></div>`;
-    });
-  }
-  if(A && A.nextSteps) h += `<h2 class="sec">다음 연습에서 고칠 것</h2><ul class="tips">${A.nextSteps.map(s=>`<li>${s}</li>`).join('')}</ul>`;
-  if(B && B.followupsToExpect) h += `<h2 class="sec">대비해 둘 예상 꼬리질문</h2><ul class="tips">${B.followupsToExpect.map(s=>`<li>${s}</li>`).join('')}</ul>`;
-  $('rBody').innerHTML = h;
 }
 
-$('again').addEventListener('click', ()=>{
-  S.log=[]; S.asked=[]; S.mainDone=0; S.fuUsed=0; S.current=null; S.pending=null; S.ended=false;
-  $('ready').textContent=''; $('thinking').textContent=''; $('roomErr').innerHTML='';
-  show('setup');
-});
+function paneD(){
+  $('#pane-d').innerHTML = `
+    <div class="info">추가한 자료는 이 기기에 저장됩니다. 다른 선생님·학생과 나누거나 학교 컴퓨터를 옮길 때는
+      <b>내보내기</b>로 파일을 만들어 전달하세요. 연도는 앱이 자동으로 갱신하므로 따로 손댈 것이 없습니다.</div>
+
+    <h2 class="sec">기출 문항 추가</h2>
+    <article class="card"><div class="card-bd">
+      <div class="row">
+        <div class="f"><label>대학</label><input id="aU" placeholder="예: 부산대학교"></div>
+        <div class="f"><label>학년도</label><input id="aY" type="number" value="${LATEST}"></div>
+        <div class="f"><label>계열</label><select id="aF"><option value=""></option>${FIELDS.map(f=>`<option>${f}</option>`).join('')}</select></div>
+      </div>
+      <div class="row">
+        <div class="f"><label>학과 · 모집단위</label><input id="aM" placeholder="예: 정보컴퓨터공학부"></div>
+        <div class="f"><label>전형</label><input id="aA" list="admlist" placeholder="예: 학생부종합(면접형)"><datalist id="admlist">${ADMS.map(a=>`<option value="${a}">`).join('')}</datalist></div>
+        <div class="f"><label>면접 방법</label><input id="aMe" placeholder="예: 면접관 2명, 10분 개별면접"></div>
+      </div>
+      <div class="f"><label>질문 — 한 줄에 하나씩. 꼬리질문은 <code>|</code>로 이어 쓰세요.</label>
+        <textarea id="aQ" placeholder="지원 동기를 말해 보세요.|그 경험에서 무엇이 가장 어려웠나요?&#10;가장 인상 깊은 탐구 활동은?"></textarea></div>
+      <div class="row" style="margin-top:10px">
+        <div class="f"><label>유의 사항</label><input id="aN" placeholder="예: 꼬리질문이 많음"></div>
+        <div class="f"><label>출처</label><input id="aS" placeholder="예: 2026학년도 ○○대 선행학습 영향평가 보고서 p.42"></div>
+        <div class="f"><label>출처 구분</label><select id="aK"><option value="official">대학 공식 보고서</option><option value="office">시도교육청 발간 자료</option><option value="school">학교 자체 정리</option></select></div>
+      </div>
+      <div class="btns"><button class="btn" id="addQ">문항 저장</button></div>
+    </div></article>
+
+    <h2 class="sec">면접 후기 기록</h2>
+    <article class="card"><div class="card-bd">
+      <div class="row">
+        <div class="f"><label>대학</label><input id="tU"></div>
+        <div class="f"><label>학년도</label><input id="tY" type="number" value="${LATEST}"></div>
+        <div class="f"><label>학과</label><input id="tM"></div>
+      </div>
+      <div class="f"><label>후기 요약 — 읽은 글을 그대로 붙이지 말고 요점만 정리하세요.</label><textarea id="tT"></textarea></div>
+      <div class="row" style="margin-top:10px"><div class="f"><label>출처</label><input id="tS" placeholder="예: 수만휘 카페 2026.1. 게시글"></div></div>
+      <div class="btns"><button class="btn" id="addT">후기 저장</button></div>
+    </div></article>
+
+    <h2 class="sec">입시 결과 기록</h2>
+    <article class="card"><div class="card-bd">
+      <div class="row">
+        <div class="f"><label>대학</label><input id="rU"></div>
+        <div class="f"><label>학년도</label><input id="rY" type="number" value="${LATEST}"></div>
+        <div class="f"><label>전형</label><input id="rA"></div>
+        <div class="f"><label>모집단위</label><input id="rM"></div>
+      </div>
+      <div class="row">
+        <div class="f"><label>모집인원</label><input id="rC"></div>
+        <div class="f"><label>경쟁률</label><input id="rP" placeholder="8.4:1"></div>
+        <div class="f"><label>충원율</label><input id="rF" placeholder="120%"></div>
+        <div class="f"><label>교과 70%컷</label><input id="rT" placeholder="2.8"></div>
+        <div class="f"><label>출처</label><input id="rS" placeholder="대학어디가"></div>
+      </div>
+      <div class="btns"><button class="btn" id="addR">결과 저장</button></div>
+    </div></article>
+
+    <h2 class="sec">파일로 주고받기</h2>
+    <div class="btns">
+      <button class="btn ghost" id="exp">내보내기 (JSON)</button>
+      <button class="btn ghost" id="impBtn">가져오기</button>
+      <input type="file" id="imp" accept=".json" hidden>
+      <button class="btn danger" id="wipe">추가분 전체 삭제</button>
+    </div>
+    <p style="font-size:13px;color:var(--ink3);margin-top:10px">
+      직접 추가한 자료 · 문항 ${DATA.questions.length}건 / 후기 ${DATA.tips.length}건 / 입시결과 ${DATA.results.length}건</p>
+
+    <h2 class="sec">자동 수집 현황</h2>
+    ${AUTOINFO ? `<div class="info">마지막 실행 <b>${esc(AUTOINFO.updated.slice(0,16).replace('T',' '))}</b> ·
+      기준 <b>${AUTOINFO.latestYear}학년도</b> · 자동 수집 문항 <b>${AUTO.reduce((a,q)=>a+q.qs.length,0)}</b>건<br>
+      수집 ${AUTOINFO.counts['수집']||0}건 · 보고서 없음 ${AUTOINFO.counts['보고서없음']||0}건</div>
+      <details><summary>대학별 수집 기록 (${(AUTOINFO.rows||[]).length}행)</summary><div class="dbody"><div class="scroll">
+      <table><thead><tr><th>대학</th><th>학년도</th><th>결과</th></tr></thead><tbody>
+      ${(AUTOINFO.rows||[]).slice(0,400).map(r=>`<tr><td>${esc(r.univ)}</td><td>${r.year||'-'}</td><td>${esc(r.status)}</td></tr>`).join('')}
+      </tbody></table></div></div></details>`
+    : `<div class="empty">아직 자동 수집이 돌지 않았습니다.<br>깃허브 저장소의 Actions 탭에서 <b>면접 기출 수집</b>을 한 번 실행하세요.</div>`}`;
+
+  const v = id => $('#'+id).value.trim();
+  $('#addQ').onclick = async () => {
+    const qs = v('aQ').split('\n').map(x => x.trim()).filter(Boolean);
+    if(!v('aU') || !qs.length) return toast('대학과 질문은 반드시 입력하세요.');
+    DATA.questions.push({univ:v('aU'), type:S.type, year:+v('aY')||LATEST, adm:v('aA'), major:v('aM'),
+      field:v('aF'), method:v('aMe'), qs, note:v('aN'), src:{k:v('aK'), t:v('aS')||'직접 입력', p:''}});
+    await save(); toast('문항을 저장했습니다.'); render();
+  };
+  $('#addT').onclick = async () => {
+    if(!v('tU') || !v('tT')) return toast('대학과 내용을 입력하세요.');
+    DATA.tips.push({univ:v('tU'), year:+v('tY')||LATEST, major:v('tM'), text:v('tT'), src:v('tS')});
+    await save(); toast('후기를 저장했습니다.'); render();
+  };
+  $('#addR').onclick = async () => {
+    if(!v('rU')) return toast('대학을 입력하세요.');
+    DATA.results.push({univ:v('rU'), year:+v('rY')||LATEST, adm:v('rA'), major:v('rM'),
+      cap:v('rC'), comp:v('rP'), fill:v('rF'), cut:v('rT'), src:v('rS')});
+    await save(); toast('입시 결과를 저장했습니다.'); render();
+  };
+  $('#exp').onclick = () => {
+    const blob = new Blob([JSON.stringify(DATA,null,2)], {type:'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `면접기출_${LATEST}학년도_${new Date().toISOString().slice(0,10)}.json`;
+    a.click(); URL.revokeObjectURL(a.href);
+  };
+  $('#impBtn').onclick = () => $('#imp').click();
+  $('#imp').onchange = e => {
+    const f = e.target.files[0]; if(!f) return;
+    const rd = new FileReader();
+    rd.onload = async () => {
+      try{
+        const j = JSON.parse(rd.result);
+        DATA.questions = [...DATA.questions, ...(j.questions||[])];
+        DATA.tips      = [...DATA.tips,      ...(j.tips||[])];
+        DATA.results   = [...DATA.results,   ...(j.results||[])];
+        await save(); toast('자료를 불러왔습니다.'); render();
+      }catch(err){ toast('파일을 읽지 못했습니다. JSON 형식인지 확인하세요.'); }
+    };
+    rd.readAsText(f);
+  };
+  $('#wipe').onclick = async () => {
+    if(!confirm('직접 추가한 자료를 모두 지웁니다. 계속할까요?')) return;
+    DATA = {questions:[], tips:[], results:[]};
+    await save(); toast('추가분을 삭제했습니다.'); render();
+  };
+}
+
+async function save(){
+  const ok = await store.set(DATA);
+  if(!ok) toast('이 환경에서는 저장이 되지 않습니다. 내보내기로 파일을 받아 두세요.');
+}
+let tT;
+function toast(m){
+  clearTimeout(tT);
+  let el = $('.toast');
+  if(!el){ el = document.createElement('div'); el.className = 'toast'; document.body.appendChild(el); }
+  el.textContent = m;
+  tT = setTimeout(() => el.remove(), 2800);
+}
+
+function render(){
+  $('#mYear').textContent  = LATEST;
+  $('#mRange').textContent = `${YMIN}~${LATEST}학년도`;
+  $('#mCount').textContent = allQ().length;
+  const sy = $('#mSync');
+  if(sy) sy.innerHTML = AUTOINFO
+    ? ` · 자동 수집 <b>${esc(AUTOINFO.updated.slice(0,10))}</b>`
+    : '';
+
+  const u = S.univ;
+  $('#chosen').innerHTML = u
+    ? `<b>${esc(u.name)}</b> <span class="tag t-gray">${esc(u.region)}</span> <span class="tag t-gray">${esc(u.type)}</span>
+       ${S.major?`<span class="tag t-adm">${esc(S.major)}</span>`:''}
+       <button class="clear" id="clr">선택 해제</button>`
+    : `<span style="color:var(--ink3)">대학을 선택하면 그 대학의 공식 기출 원문과 입시결과 링크가 함께 나옵니다.</span>`;
+  const c = $('#clr'); if(c) c.onclick = () => { S.univ = null; $('#uq').value = ''; render(); };
+
+  if(S.tab === 'q') paneQ(); else $('#nQ').textContent = matchQ().length;
+  if(S.tab === 't') paneT();
+  if(S.tab === 'r') paneR();
+  if(S.tab === 's') paneS();
+  if(S.tab === 'd') paneD();
+}
+
+async function loadAuto(){
+  try{
+    const r = await fetch('./data/questions.json', {cache:'no-cache'});
+    if(r.ok) AUTO = await r.json();
+  }catch(e){ /* 파일 없이 단독 실행하는 경우 */ }
+  try{
+    const r = await fetch('./data/report.json', {cache:'no-cache'});
+    if(r.ok) AUTOINFO = await r.json();
+  }catch(e){}
+  try{
+    const r = await fetch('./data/contributed.json', {cache:'no-cache'});
+    if(r.ok){ const j = await r.json();
+      GIVEN = {questions:j.questions||[], tips:j.tips||[], results:j.results||[]}; }
+  }catch(e){}
+}
+
+(async () => {
+  const saved = await store.get();
+  if(saved) DATA = Object.assign({questions:[],tips:[],results:[]}, saved);
+  render();
+  await loadAuto();
+  render();
+})();
 </script>
+</body>
+</html>
