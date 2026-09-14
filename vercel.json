@@ -3,6 +3,7 @@
   "buildCommand": "node scripts/build.js",
   "outputDirectory": "public",
   "functions": {
+    "api/resolve-search.js": { "maxDuration": 60 },
     "api/search-overview.js": { "maxDuration": 60 },
     "api/search-questions.js": { "maxDuration": 60 },
     "api/search-reviews.js": { "maxDuration": 60 }

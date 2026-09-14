@@ -3,6 +3,7 @@ const http = require("node:http");
 const fs = require("node:fs/promises");
 const path = require("node:path");
 const handlers = {
+  "/api/resolve-search": require("../api/resolve-search"),
   "/api/search-overview": require("../api/search-overview"),
   "/api/search-questions": require("../api/search-questions"),
   "/api/search-reviews": require("../api/search-reviews")
