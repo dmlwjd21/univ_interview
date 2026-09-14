@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="대학·학과·전형별 최근 5개년 면접 기출, 면접후기, 입결을 출처와 함께 찾아보는 대입 면접 아카이브">
+<title>대입 면접 아카이브</title>
+<style>
+:root{
+  --bg:#f4f6f8;--panel:#fff;--ink:#18212b;--muted:#687384;--line:#e1e6eb;
+  --navy:#17375e;--blue:#2f6fed;--blue2:#eaf1ff;--green:#14805e;--green2:#e8f6f1;
+  --orange:#b86211;--orange2:#fff2e3;--red:#b64242;--shadow:0 10px 30px rgba(20,42,70,.07);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.top{
+  background:linear-gradient(130deg,#102b4d 0%,#173f72 58%,#2363a6 100%);
+  color:#fff;padding:38px 20px 32px
+}
+.hero{max-width:1180px;margin:auto}
+.brand{font-size:13px;font-weight:800;letter-spacing:.12em;opacity:.8}
+h1{font-size:clamp(30px,5vw,48px);line-height:1.15;margin:9px 0 12px;letter-spacing:-.04em}
+.hero p{max-width:740px;margin:0;color:#d9e7f7;font-size:16px}
+.hero-meta{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
+.pill{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);padding:7px 11px;border-radius:999px;font-size:12px}
+main{max-width:1180px;margin:0 auto;padding:22px 20px 70px}
+.search-panel{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:var(--radius);padding:20px;margin-top:-12px}
+.type-tabs{display:flex;gap:8px;margin-bottom:18px}
+.tab{border:1px solid var(--line);background:#fff;color:var(--muted);padding:10px 15px;border-radius:11px;font-weight:750}
+.tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.filters{display:grid;grid-template-columns:1fr 1.4fr 1.25fr 1.25fr;gap:12px}
+.field label{display:block;font-size:12px;font-weight:800;color:var(--muted);margin:0 0 6px}
+select,input[type="search"]{width:100%;height:45px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);padding:0 12px;outline:none}
+select:focus,input:focus{border-color:#7aa2ef;box-shadow:0 0 0 3px rgba(47,111,237,.11)}
+.keyword{display:flex;gap:10px;margin-top:12px}
+.keyword input{flex:1}
+.search-btn{border:0;background:var(--blue);color:#fff;border-radius:10px;padding:0 18px;font-weight:800}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 17px}
+.stat b{font-size:24px;color:var(--navy);display:block;line-height:1.2}
+.stat span{font-size:12px;color:var(--muted)}
+.notice{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:12px;padding:13px 15px;font-size:13px;color:#4f5d6d;margin:12px 0 18px}
+.notice strong{color:var(--ink)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px;align-items:start}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:8px 0 12px}
+.section-title h2{font-size:20px;margin:0}
+.section-title small{color:var(--muted)}
+.cards{display:grid;gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 5px 18px rgba(20,42,70,.035)}
+.card-head{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.card h3{font-size:18px;margin:0 0 3px;letter-spacing:-.02em}
+.card .sub{font-size:13px;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.badge{font-size:11px;font-weight:800;border-radius:999px;padding:5px 8px;background:#eef2f5;color:#52606e}
+.badge.official{background:var(--green2);color:var(--green)}
+.badge.public{background:var(--blue2);color:#315fb5}
+.badge.review{background:var(--orange2);color:var(--orange)}
+.year{font-weight:900;color:var(--navy);white-space:nowrap}
+.qs{margin:15px 0 0;padding:0;list-style:none}
+.qs li{position:relative;padding:10px 0 10px 24px;border-top:1px dashed var(--line);font-size:14px}
+.qs li:before{content:"Q";position:absolute;left:0;top:10px;font-size:11px;font-weight:900;color:var(--blue)}
+.source-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px;padding-top:12px;border-top:1px solid var(--line)}
+.source-row span{font-size:12px;color:var(--muted)}
+.source-btn{display:inline-block;text-decoration:none;border:1px solid #cfd8e5;background:#fff;border-radius:9px;padding:7px 10px;font-size:12px;font-weight:800;color:var(--navy)}
+.source-btn:hover{border-color:#8fa9cf;background:#f7faff}
+.side{display:grid;gap:12px;position:sticky;top:14px}
+.sidebox{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px}
+.sidebox h3{font-size:15px;margin:0 0 10px}
+.sidebox p,.sidebox li{font-size:13px;color:#536171}
+.sidebox ul{padding-left:18px;margin:0}
+.tip{background:#fbfcfe}
+.tip strong{color:var(--navy)}
+.result-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.result-table th,.result-table td{text-align:left;border-top:1px solid var(--line);padding:8px 4px;vertical-align:top}
+.result-table th{color:var(--muted);font-weight:700;width:34%}
+.empty{background:#fff;border:1px dashed #c7d0db;border-radius:16px;text-align:center;padding:40px 18px;color:var(--muted)}
+.empty strong{display:block;color:var(--ink);font-size:17px;margin-bottom:7px}
+.fallbacks{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.fallbacks a{font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;background:#fff}
+.legend-row{display:flex;gap:8px;align-items:center;margin:7px 0}
+.footer{margin-top:30px;color:var(--muted);font-size:12px;text-align:center}
+.update-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#51d38b;margin-right:6px}
+@media(max-width:900px){
+  .filters{grid-template-columns:1fr 1fr}.layout{grid-template-columns:1fr}.side{position:static;grid-template-columns:1fr 1fr}.summary{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .top{padding-top:28px}.filters{grid-template-columns:1fr}.keyword{flex-direction:column}.search-btn{height:44px}.side{grid-template-columns:1fr}.summary{gap:8px}.stat{padding:13px}.card{padding:15px}.source-row{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="hero">
+    <div class="brand">UNIVERSITY INTERVIEW ARCHIVE</div>
+    <h1>대입 면접 아카이브</h1>
+    <p>대학 · 학과 · 전형을 고르면 최근 5개년 면접 문항, 공식 출처, 교육청 면접후기, 전년도 입결과 준비 팁을 한 번에 확인합니다.</p>
+    <div class="hero-meta">
+      <span class="pill"><span class="update-dot"></span>자료 최종 확인 2026.09.14</span>
+      <span class="pill">대학 공식자료 우선</span>
+      <span class="pill">4년제 · 전문대 분리</span>
+      <span class="pill">최근 5개년 중심</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="search-panel">
+    <div class="type-tabs">
+      <button class="tab on" data-type="4년제">4년제 대학</button>
+      <button class="tab" data-type="전문대">전문대학</button>
+    </div>
+
+    <div class="filters">
+      <div class="field">
+        <label for="region">지역</label>
+        <select id="region"></select>
+      </div>
+      <div class="field">
+        <label for="univ">희망 대학</label>
+        <select id="univ"></select>
+      </div>
+      <div class="field">
+        <label for="major">학과 · 모집단위</label>
+        <select id="major"></select>
+      </div>
+      <div class="field">
+        <label for="track">전형</label>
+        <select id="track"></select>
+      </div>
+    </div>
+
+    <div class="keyword">
+      <input id="keyword" type="search" placeholder="질문 내용이나 키워드 검색: 지원동기, 전공, 인성, 화학, 간호, AI …">
+      <button class="search-btn" id="searchBtn">검색</button>
+    </div>
+  </section>
+
+  <section class="summary">
+    <div class="stat"><b id="schoolCount">0</b><span>현재 선택 가능한 대학</span></div>
+    <div class="stat"><b id="recordCount">0</b><span>등록된 면접 자료 세트</span></div>
+    <div class="stat"><b id="questionCount">0</b><span>검색 가능한 면접 문항</span></div>
+    <div class="stat"><b>5년</b><span>기본 검색 범위</span></div>
+  </section>
+
+  <div class="notice">
+    <strong>자료 신뢰도 원칙</strong> — 대학 입학처의 모집요강·전형안내·선행학습 영향평가를 가장 우선하고, 교육청·공공기관 자료를 그다음으로 사용합니다. 블로그·카페 후기는 사실 확인이 가능한 범위에서 요약만 제공합니다.
+  </div>
+
+  <div class="layout">
+    <section>
+      <div class="section-title">
+        <h2 id="resultTitle">면접 자료</h2>
+        <small id="resultMeta"></small>
+      </div>
+      <div id="results" class="cards"></div>
+    </section>
+
+    <aside class="side">
+      <div class="sidebox tip">
+        <h3>선택 대학 면접 팁</h3>
+        <div id="tips"><p>대학을 선택하면 자료에서 반복되는 질문 경향을 정리해 보여줍니다.</p></div>
+      </div>
+      <div class="sidebox">
+        <h3>전년도 입결</h3>
+        <div id="admission"><p style="margin:0">대학·학과·전형을 선택하면 확인 가능한 입결을 표시합니다.</p></div>
+      </div>
+      <div class="sidebox">
+        <h3>출처 등급</h3>
+        <div class="legend-row"><span class="badge official">대학 공식</span><span style="font-size:12px;color:var(--muted)">입학처·선행학습 영향평가</span></div>
+        <div class="legend-row"><span class="badge public">공공 자료</span><span style="font-size:12px;color:var(--muted)">교육청·대입정보포털</span></div>
+        <div class="legend-row"><span class="badge review">응시 후기</span><span style="font-size:12px;color:var(--muted)">공개 후기 요약·교차확인</span></div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="footer">이 사이트는 지원 전형의 최신 모집요강을 대체하지 않습니다. 실제 지원·면접 일정과 평가방식은 반드시 해당 대학 입학처의 최신 공지를 다시 확인하세요.</div>
+</main>
+
+<script>
+/* =========================================================
+   대학 마스터
+   - 학생 선택창은 전국 학교를 최대한 폭넓게 제공
+   - 통폐합/교명 변경은 매년 대학알리미 기준으로 점검
+   ========================================================= */
+const SCHOOLS = {
+"4년제": {
+"서울":["가톨릭대학교","감리교신학대학교","건국대학교","경희대학교","고려대학교","광운대학교","국민대학교","덕성여자대학교","동국대학교","동덕여자대학교","명지대학교","삼육대학교","상명대학교","서강대학교","서경대학교","서울과학기술대학교","서울기독대학교","서울대학교","서울시립대학교","서울여자대학교","서울한영대학교","성공회대학교","성균관대학교","성신여자대학교","세종대학교","숙명여자대학교","숭실대학교","연세대학교","이화여자대학교","장로회신학대학교","중앙대학교","총신대학교","추계예술대학교","한국성서대학교","한국외국어대학교","한국체육대학교","한성대학교","한양대학교","홍익대학교"],
+"경기·인천":["가천대학교","강남대학교","경기대학교","경동대학교","경인교육대학교","경희대학교 국제캠퍼스","단국대학교","대진대학교","루터대학교","서울신학대학교","성결대학교","수원대학교","신한대학교","아주대학교","안양대학교","용인대학교","을지대학교","인천가톨릭대학교","인천대학교","인하대학교","중앙대학교 다빈치캠퍼스","차의과학대학교","칼빈대학교","평택대학교","한경국립대학교","한국공학대학교","한국외국어대학교 글로벌캠퍼스","한국항공대학교","한세대학교","한신대학교","한양대학교 ERICA","협성대학교"],
+"강원":["가톨릭관동대학교","강원대학교","경동대학교","상지대학교","연세대학교 미래캠퍼스","춘천교육대학교","한라대학교","한림대학교"],
+"대전·세종·충청":["건국대학교 글로컬캠퍼스","건양대학교","고려대학교 세종캠퍼스","공주교육대학교","공주대학교","극동대학교","금강대학교","나사렛대학교","남서울대학교","단국대학교 천안캠퍼스","대전대학교","목원대학교","배재대학교","백석대학교","상명대학교 천안캠퍼스","서원대학교","선문대학교","세명대학교","순천향대학교","우송대학교","유원대학교","중부대학교","청주교육대학교","청주대학교","충남대학교","충북대학교","한국교원대학교","한국교통대학교","한국기술교육대학교","한남대학교","한밭대학교","한서대학교","호서대학교","홍익대학교 세종캠퍼스"],
+"광주·전라·제주":["광신대학교","광주교육대학교","광주대학교","광주여자대학교","군산대학교","남부대학교","동신대학교","목포해양대학교","국립목포대학교","세한대학교","송원대학교","순천대학교","예수대학교","우석대학교","원광대학교","전남대학교","전북대학교","전주교육대학교","전주대학교","제주국제대학교","제주대학교","조선대학교","초당대학교","한국에너지공과대학교","한일장신대학교","호남대학교","호원대학교"],
+"부산·울산·경남":["가야대학교","경남대학교","경상국립대학교","경성대학교","고신대학교","국립부경대학교","국립창원대학교","동명대학교","동서대학교","동아대학교","동의대학교","부산가톨릭대학교","부산교육대학교","부산대학교","부산외국어대학교","부산장신대학교","신라대학교","울산대학교","인제대학교","진주교육대학교","창신대학교","한국해양대학교","영산대학교"],
+"대구·경북":["경북대학교","경운대학교","경일대학교","계명대학교","국립경국대학교","국립금오공과대학교","김천대학교","대구가톨릭대학교","대구교육대학교","대구대학교","대구예술대학교","대구한의대학교","동국대학교 WISE캠퍼스","신경주대학교","영남대학교","위덕대학교","한동대학교"],
+"과학기술원·특수":["DGIST 대구경북과학기술원","GIST 광주과학기술원","KAIST 한국과학기술원","POSTECH 포항공과대학교","UNIST 울산과학기술원","경찰대학","공군사관학교","국군간호사관학교","육군사관학교","한국예술종합학교","한국전통문화대학교","해군사관학교"]
+},
+"전문대": {
+"서울":["동양미래대학교","명지전문대학","배화여자대학교","삼육보건대학교","서울여자간호대학교","서일대학교","숭의여자대학교","인덕대학교","한양여자대학교"],
+"경기·인천":["경민대학교","경복대학교","경인여자대학교","계원예술대학교","국제대학교","김포대학교","농협대학교","대림대학교","동남보건대학교","동서울대학교","동아방송예술대학교","두원공과대학교","부천대학교","수원과학대학교","수원여자대학교","신구대학교","안산대학교","연성대학교","여주대학교","오산대학교","용인예술과학대학교","유한대학교","인천재능대학교","인하공업전문대학","장안대학교","청강문화산업대학교","한국관광대학교"],
+"강원":["강릉영동대학교","강원도립대학교","세경대학교","송곡대학교","송호대학교","한림성심대학교"],
+"대전·세종·충청":["강동대학교","대덕대학교","대원대학교","대전과학기술대학교","대전보건대학교","백석문화대학교","신성대학교","아주자동차대학교","연암대학교","우송정보대학","충남도립대학교","충북보건과학대학교","충청대학교","한국영상대학교","혜전대학교"],
+"광주·전라·제주":["광주보건대학교","군산간호대학교","군장대학교","기독간호대학교","동강대학교","목포과학대학교","서영대학교","순천제일대학교","전남과학대학교","전북과학대학교","전주기전대학","전주비전대학교","제주관광대학교","제주한라대학교","청암대학교"],
+"부산·울산·경남":["거제대학교","경남정보대학교","김해대학교","대동대학교","동원과학기술대학교","동의과학대학교","마산대학교","부산경상대학교","부산과학기술대학교","부산보건대학교","부산여자대학교","부산예술대학교","연암공과대학교","울산과학대학교","진주보건대학교","창원문성대학교","춘해보건대학교"],
+"대구·경북":["가톨릭상지대학교","경북과학대학교","경북보건대학교","경북전문대학교","계명문화대학교","구미대학교","대경대학교","대구공업대학교","대구과학대학교","대구보건대학교","문경대학교","선린대학교","성운대학교","수성대학교","안동과학대학교","영남이공대학교","영진전문대학교","호산대학교"]
+}
+};
+
+/* =========================================================
+   DATA_START
+   공개 자료로 확인한 초기 데이터.
+   향후 갱신 작업은 이 DATA 블록을 중심으로 누적한다.
+   ========================================================= */
+const DB = [
+  {
+    schoolType:"4년제", region:"부산·울산·경남", university:"부산대학교",
+    major:"치의예과", track:"학생부종합(지역인재전형)", year:2026,
+    interviewType:"서류 기반 · 블라인드", sourceGrade:"공공 자료",
+    sourceName:"울산광역시교육청 2026 대입 면접후기 자료집2",
+    sourceUrl:"https://use.go.kr/jinhak/user/bbs/BD_selectBbs.do?q_bbsDocNo=20260810142853413&q_bbsSn=1095",
+    questions:[
+      "책을 읽고 스트레스 질환 간의 상관관계에 대해 심층적으로 이해했다고 했는데 구체적으로 설명해 주세요.",
+      "왜 해당 분야의 호기심을 가지고 관련 탐구를 진행했으며, 어떤 부분을 알게 되었나요?",
+      "그 탐구에서 새롭게 알게 된 점이 또 있나요?",
+      "슬로건 제작 활동을 했다고 했는데 어떤 슬로건이었나요?",
+      "도전하다 보면 가끔 실패하기 마련인데, 그런 점에 대해서는 어떻게 생각하나요?"
+    ],
+    tips:["학생부 독서·탐구활동에서 ‘왜 했는지 → 무엇을 알았는지 → 다시 무엇을 보게 됐는지’로 꼬리질문이 이어지는 흐름을 대비할 것.","짧은 답변보다 활동의 계기·과정·새롭게 알게 된 점을 연결해 말하는 연습이 유리함."],
+    result:null
+  },
+  {
+    schoolType:"4년제", region:"부산·울산·경남", university:"부산대학교",
+    major:"IT응용공학과", track:"학생부종합(지역인재전형)", year:2026,
+    interviewType:"서류 기반 · 블라인드", sourceGrade:"공공 자료",
+    sourceName:"울산광역시교육청 2026 대입 면접후기 자료집2",
+    sourceUrl:"https://use.go.kr/jinhak/user/bbs/BD_selectBbs.do?q_bbsDocNo=20260810142853413&q_bbsSn=1095",
+    questions:[
+      "IT응용공학과에 지원한 이유는 무엇인가요?",
+      "학생부에 미래에 나는 반도체 관련 직종에서 일하고 있을 것 같다고 했는데, 반도체 직종에서 일하고 싶은 이유를 설명해 주세요.",
+      "화학시간에 발표했던 화학전지에 대해 설명해 주세요."
+    ],
+    tips:["지원동기를 단순 적성으로 끝내지 말고 학생부의 자격증·활동·진로 변화와 연결할 것.","학과와 연관된 교과 개념은 정의와 실제 활용 사례까지 말할 수 있도록 준비할 것."],
+    result:null
+  },
+  {
+    schoolType:"4년제", region:"부산·울산·경남", university:"부산대학교",
+    major:"건축학과", track:"학생부종합(학생부종합전형)", year:2026,
+    interviewType:"서류 기반 · 블라인드", sourceGrade:"공공 자료",
+    sourceName:"울산광역시교육청 2026 대입 면접후기 자료집2",
+    sourceUrl:"https://use.go.kr/jinhak/user/bbs/BD_selectBbs.do?q_bbsDocNo=20260810142853413&q_bbsSn=1095",
+    questions:[
+      "건축을 기능·접근성·심미성이 종합된 공공예술이라고 생각한 근거를 설명해 주세요.",
+      "학교 공간조성 프로젝트 경험에서 학생의 입장과 건축가의 입장을 어떻게 경험했나요?",
+      "프로젝트를 혼자 진행하며 생각하지 못했던 부분은 무엇이었나요?",
+      "부산의 도시 특징을 건축학과에서 어떻게 더 탐구하고 싶나요?"
+    ],
+    tips:["건축 관련 활동은 결과물보다 사용자 관점, 공간 문제 발견, 설계 의사결정 과정이 질문으로 확장될 가능성이 큼.","지원 대학이 위치한 지역의 도시·건축 맥락까지 연결하면 지원동기의 구체성이 높아짐."],
+    result:null
+  },
+  {
+    schoolType:"4년제", region:"부산·울산·경남", university:"부산대학교",
+    major:"화학과", track:"학생부종합(학생부종합전형)", year:2026,
+    interviewType:"서류 기반 · 교과 확인", sourceGrade:"공공 자료",
+    sourceName:"울산광역시교육청 2026 대입 면접후기 자료집2",
+    sourceUrl:"https://use.go.kr/jinhak/user/bbs/BD_selectBbs.do?q_bbsDocNo=20260810142853413&q_bbsSn=1095",
+    questions:[
+      "산화와 환원을 산소와 전자의 관점에서 각각 설명해 보세요.",
+      "리튬이온전지의 작동 원리를 설명해 보세요.",
+      "전고체전지는 무엇인가요?",
+      "화학과 진학을 위해 물리학 학습이 필요한 이유는 무엇이라고 생각하나요?",
+      "학생회 활동에서 갈등을 어떻게 중재했나요?"
+    ],
+    tips:["학생부에 적힌 실험·교과 개념은 정의 수준을 넘어 원리 설명과 오류 수정까지 대비할 것.","모르는 내용은 억지로 이어가기보다 현재 아는 범위를 분명히 하고 보완 계획을 제시하는 연습이 필요함."],
+    result:null
+  },
+  {
+    schoolType:"4년제", region:"부산·울산·경남", university:"부산대학교",
+    major:"독어독문학과", track:"학생부종합(학생부종합전형)", year:2026,
+    interviewType:"서류 기반", sourceGrade:"공공 자료",
+    sourceName:"울산광역시교육청 2026 대입 면접후기 자료집2",
+    sourceUrl:"https://use.go.kr/jinhak/user/bbs/BD_selectBbs.do?q_bbsDocNo=20260810142853413&q_bbsSn=1095",
+    questions:[
+      "독일과 독일어에 관심을 갖게 된 이유와 진로 목표를 연결해서 말해 보세요.",
+      "공공외교 또는 국제사회 소통과 관련한 경험을 설명해 보세요.",
+      "팔로우십이 무엇이라고 생각하나요?",
+      "다문화교육 관련 탐구에서 아쉬웠던 점과 더 탐구하고 싶은 내용을 말해 보세요."
+    ],
+    tips:["어문계열은 언어 자체의 흥미뿐 아니라 문화·지역학·진로와의 연결을 구체적으로 준비할 것.","탐구의 한계나 아쉬움을 묻는 질문에는 후속 탐구 계획까지 연결해 답하면 좋음."],
+    result:null
+  },
+  {
+    schoolType:"4년제", region:"부산·울산·경남", university:"부산대학교",
+    major:"무역학부", track:"학생부종합(학생부종합전형)", year:2026,
+    interviewType:"서류 기반", sourceGrade:"공공 자료",
+    sourceName:"울산광역시교육청 2026 대입 면접후기 자료집2",
+    sourceUrl:"https://use.go.kr/jinhak/user/bbs/BD_selectBbs.do?q_bbsDocNo=20260810142853413&q_bbsSn=1095",
+    questions:[
+      "효율적 시장 가설이 무엇인지 설명해 보세요.",
+      "반장 활동에서 힘들었던 상황과 교과 시간에 배운 개념을 활용해 해결한 경험을 설명해 보세요.",
+      "디지털 콘텐츠와 같은 새로운 산업의 해외 진출에서 발생할 수 있는 통상 이슈는 무엇이라고 생각하나요?"
+    ],
+    tips:["경제·무역 개념을 학생부 활동이나 실제 산업 사례와 연결해서 말할 수 있어야 함.","학과 지원동기에는 대학에서 탐구하고 싶은 구체적인 통상 이슈를 한두 개 준비할 것."],
+    result:null
+  }
+];
+/* DATA_END */
+
+const OFFICIAL_LINKS = {
+  "대학알리미":"https://www.academyinfo.go.kr/",
+  "대입정보포털 어디가":"https://www.adiga.kr/",
+  "전문대학포털":"https://www.procollege.kr/"
+};
+
+let schoolType = "4년제";
+const els = {
+  region:document.getElementById("region"), univ:document.getElementById("univ"),
+  major:document.getElementById("major"), track:document.getElementById("track"),
+  keyword:document.getElementById("keyword"), results:document.getElementById("results"),
+  resultTitle:document.getElementById("resultTitle"), resultMeta:document.getElementById("resultMeta"),
+  tips:document.getElementById("tips"), admission:document.getElementById("admission"),
+  schoolCount:document.getElementById("schoolCount"), recordCount:document.getElementById("recordCount"),
+  questionCount:document.getElementById("questionCount")
+};
+
+function esc(s=""){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function uniq(arr){return [...new Set(arr.filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),"ko"))}
+function allSchools(type=schoolType){return Object.values(SCHOOLS[type]||{}).flat()}
+function optionList(el, values, first){
+  el.innerHTML = `<option value="">${first}</option>` + values.map(v=>`<option>${esc(v)}</option>`).join("");
+}
+function syncRegions(){
+  optionList(els.region,Object.keys(SCHOOLS[schoolType]||{}),"전체 지역");
+  syncUniversities();
+}
+function syncUniversities(){
+  const reg=els.region.value;
+  const schools=reg ? (SCHOOLS[schoolType][reg]||[]) : allSchools();
+  optionList(els.univ,uniq(schools),"대학 선택");
+  syncMajors();
+  els.schoolCount.textContent=uniq(allSchools()).length;
+}
+function syncMajors(){
+  const u=els.univ.value;
+  const rows=DB.filter(x=>x.schoolType===schoolType && (!u || x.university===u));
+  optionList(els.major,uniq(rows.map(x=>x.major)),"전체 학과");
+  syncTracks();
+}
+function syncTracks(){
+  const u=els.univ.value, m=els.major.value;
+  const rows=DB.filter(x=>x.schoolType===schoolType && (!u||x.university===u) && (!m||x.major===m));
+  optionList(els.track,uniq(rows.map(x=>x.track)),"전체 전형");
+  render();
+}
+function sourceClass(g){
+  if(g==="대학 공식") return "official";
+  if(g==="공공 자료") return "public";
+  return "review";
+}
+function matchRows(){
+  const reg=els.region.value,u=els.univ.value,m=els.major.value,t=els.track.value,k=els.keyword.value.trim().toLowerCase();
+  return DB.filter(x=>{
+    if(x.schoolType!==schoolType) return false;
+    if(reg && x.region!==reg) return false;
+    if(u && x.university!==u) return false;
+    if(m && x.major!==m) return false;
+    if(t && x.track!==t) return false;
+    if(k){
+      const hay=[x.university,x.major,x.track,x.interviewType,x.sourceName,...x.questions,...(x.tips||[])].join(" ").toLowerCase();
+      if(!hay.includes(k)) return false;
+    }
+    return true;
+  }).sort((a,b)=>b.year-a.year || a.university.localeCompare(b.university,"ko"));
+}
+function render(){
+  const rows=matchRows();
+  const selected=els.univ.value;
+  els.recordCount.textContent=DB.length;
+  els.questionCount.textContent=DB.reduce((n,x)=>n+x.questions.length,0);
+  els.resultTitle.textContent = selected ? `${selected} 면접 자료` : `${schoolType} 면접 자료`;
+  els.resultMeta.textContent = `${rows.length}개 자료 세트`;
+
+  if(!rows.length){
+    const label=selected || "선택한 조건";
+    const q=encodeURIComponent(`${selected||""} ${els.major.value||""} ${els.track.value||""} 입학처 면접 기출 선행학습 영향평가`);
+    els.results.innerHTML=`<div class="empty">
+      <strong>${esc(label)}의 등록된 자료가 아직 없습니다.</strong>
+      현재 아카이브에 수집된 자료가 없는 경우입니다. 해당 대학에 면접이 없다는 뜻은 아닙니다.
+      <div class="fallbacks">
+        <a target="_blank" rel="noopener" href="https://www.google.com/search?q=${q}">입학처 자료 검색</a>
+        <a target="_blank" rel="noopener" href="${OFFICIAL_LINKS["대입정보포털 어디가"]}">대입정보포털 어디가</a>
+        ${schoolType==="전문대"?`<a target="_blank" rel="noopener" href="${OFFICIAL_LINKS["전문대학포털"]}">전문대학포털</a>`:""}
+      </div></div>`;
+  }else{
+    els.results.innerHTML=rows.map(x=>`<article class="card">
+      <div class="card-head">
+        <div>
+          <h3>${esc(x.university)} · ${esc(x.major)}</h3>
+          <div class="sub">${esc(x.track)} · ${esc(x.interviewType)}</div>
+          <div class="badges">
+            <span class="badge ${sourceClass(x.sourceGrade)}">${esc(x.sourceGrade)}</span>
+            <span class="badge">${esc(x.interviewType)}</span>
+          </div>
+        </div>
+        <div class="year">${x.year}</div>
+      </div>
+      <ul class="qs">${x.questions.map(q=>`<li>${esc(q)}</li>`).join("")}</ul>
+      <div class="source-row">
+        <span>출처: ${esc(x.sourceName)}</span>
+        <a class="source-btn" target="_blank" rel="noopener" href="${esc(x.sourceUrl)}">원문 출처 보기 ↗</a>
+      </div>
+    </article>`).join("");
+  }
+  renderTips(rows);
+  renderAdmission(rows);
+}
+function renderTips(rows){
+  const tips=uniq(rows.flatMap(x=>x.tips||[])).slice(0,7);
+  if(!tips.length){els.tips.innerHTML="<p>현재 선택 조건에서 정리된 면접 팁이 없습니다.</p>";return}
+  els.tips.innerHTML=`<ul>${tips.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`;
+}
+function renderAdmission(rows){
+  const r=rows.find(x=>x.result);
+  if(r && r.result){
+    const v=r.result;
+    els.admission.innerHTML=`<table class="result-table">
+      ${Object.entries(v).filter(([k])=>k!=="sourceUrl").map(([k,val])=>`<tr><th>${esc(k)}</th><td>${esc(val)}</td></tr>`).join("")}
+    </table>${v.sourceUrl?`<p style="margin:10px 0 0"><a class="source-btn" target="_blank" href="${esc(v.sourceUrl)}">입결 원문 보기 ↗</a></p>`:""}`;
+  }else{
+    const u=els.univ.value,m=els.major.value,t=els.track.value;
+    if(!u){els.admission.innerHTML='<p style="margin:0">대학을 선택하면 입결 연결 상태를 확인할 수 있습니다.</p>';return}
+    const q=encodeURIComponent(`${u} ${m||""} ${t||""} 2026 입시결과 수시`);
+    els.admission.innerHTML=`<p style="margin:0 0 10px">현재 이 조건의 검증된 입결 수치가 아직 연결되지 않았습니다. 숫자를 임의로 추정하지 않고 공식 결과가 확인된 경우에만 표시합니다.</p>
+      <a class="source-btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=${q}">공식 입결 검색 ↗</a>`;
+  }
+}
+
+document.querySelectorAll(".tab").forEach(btn=>btn.addEventListener("click",()=>{
+  document.querySelectorAll(".tab").forEach(b=>b.classList.remove("on"));
+  btn.classList.add("on"); schoolType=btn.dataset.type; els.keyword.value=""; syncRegions();
+}));
+els.region.addEventListener("change",syncUniversities);
+els.univ.addEventListener("change",syncMajors);
+els.major.addEventListener("change",syncTracks);
+els.track.addEventListener("change",render);
+els.keyword.addEventListener("keydown",e=>{if(e.key==="Enter")render()});
+document.getElementById("searchBtn").addEventListener("click",render);
+
+syncRegions();
+</script>
+</body>
+</html>
