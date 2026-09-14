@@ -2,7 +2,11 @@
 const http = require("node:http");
 const fs = require("node:fs/promises");
 const path = require("node:path");
-const handler = require("../api/search");
+const handlers = {
+  "/api/search-overview": require("../api/search-overview"),
+  "/api/search-questions": require("../api/search-questions"),
+  "/api/search-reviews": require("../api/search-reviews")
+};
 const root = path.resolve(__dirname, "..");
 const routes = {
   "/": ["index.html", "text/html; charset=utf-8"],
@@ -12,7 +16,7 @@ const routes = {
 };
 http.createServer(async (req, res) => {
   const pathname = new URL(req.url, "http://localhost").pathname;
-  if (pathname === "/api/search") return handler(req, res);
+  if (handlers[pathname]) return handlers[pathname](req, res);
   const route = routes[pathname];
   if (!route || !["GET", "HEAD"].includes(req.method)) { res.writeHead(404); return res.end("Not found"); }
   try {

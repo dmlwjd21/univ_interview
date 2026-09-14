@@ -2,7 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "node scripts/build.js",
   "outputDirectory": "public",
-  "functions": { "api/search.js": { "maxDuration": 240 } },
+  "functions": {
+    "api/search-overview.js": { "maxDuration": 60 },
+    "api/search-questions.js": { "maxDuration": 60 },
+    "api/search-reviews.js": { "maxDuration": 60 }
+  },
   "headers": [
     {
       "source": "/(.*)",
