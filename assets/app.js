@@ -27,6 +27,7 @@ function sourceLinks(urls, sources) {
 }
 function progressList(progress) {
   const rows = [
+    ["overview", "면접 개요 조사"],
     ["official", "대학 공식 입학처 확인"], ["guide", "최신 모집요강 확인"], ["admission", "전년도 입결 확인"],
     ["questions", "최근 5개년 기출 조사"], ["reviews", "공개 면접후기 조사"]
   ];
@@ -171,65 +172,103 @@ function init() {
     const button = event.target.closest?.(".resolve-choice");
     if (!button || !pendingSelection) return;
     const group = button.dataset.group, field = button.dataset.field, name = button.dataset.value;
-    if ({ universities: "university", majors: "major", tracks: "admissionTrack" }[group] !== field ||
-        !pendingSelection.data.candidates?.[group]?.some((item) => item.name === name)) return;
-    const { original, query, data } = pendingSelection;
-    const corrected = Object.fromEntries(Object.entries(data.resolved || {}).filter(([, value]) => value));
+    const candidate = pendingSelection.data.candidates?.[group]?.find((item) => item.name === name);
+    if ({ universities: "university", majors: "major", tracks: "admissionTrack" }[group] !== field || !candidate) return;
+    const { original, data } = pendingSelection;
+    const nextData = { ...data, resolved: { ...data.resolved, [field]: name },
+      aliases: { ...data.aliases, [field]: [...new Set([...(data.aliases?.[field] || []), ...(candidate.aliases || [])])] },
+      notes: (data.notes || []).filter((note) => note !== `${{ university: "대학", major: "모집단위", admissionTrack: "전형" }[field]} 공식 후보를 확인하고 선택해 주세요.`) };
+    const notice = '<p class="selection-feedback" role="status">✓ ' + esc(name) + '을(를) 선택했습니다. ' +
+      (isComplete(nextData.resolved) ? '공식 면접자료를 조사하고 있습니다...' : '나머지 공식 명칭 후보도 선택해 주세요.') + '</p>';
     pendingSelection = null;
-    startSearch(original, { ...query, ...corrected, [field]: name }, { data, group, name });
+    if (isComplete(nextData.resolved)) {
+      void continueResolvedSearch(original, nextData, notice);
+    } else {
+      pendingSelection = { original, data: nextData };
+      $("results").innerHTML = renderResolution(nextData, original) + notice;
+      $("data-status").textContent = "공식 명칭 후보 선택 필요";
+    }
   });
-  async function startSearch(original, query, selection = null) {
-    let input = query;
-    if (Object.values(input).some((value) => !value)) return;
+  const isComplete = (resolved) => ["schoolType", "university", "major", "admissionTrack"].every((key) => resolved?.[key]);
+  async function startSearch(original) {
     const current = ++requestNumber;
     pendingSelection = null;
     controller?.abort();
     controller = new AbortController();
     const activeController = controller;
     setBusy(true);
-    const progress = { official: "loading", guide: "waiting", admission: "waiting", questions: "waiting", reviews: "waiting" };
-    let state = emptyResult(input);
-    let cacheStatus = null, expiresAt = null;
-    const selectionNotice = selection ? '<p class="selection-feedback" role="status">✓ ' + esc(selection.name) + '을(를) 선택했습니다. 공식 면접자료를 조사하고 있습니다...</p>' : "";
-    let resolutionMarkup = selection ? renderResolution(selection.data, original, selection) + selectionNotice : "";
-    const render = () => { if (current === requestNumber) $("results").innerHTML = resolutionMarkup + renderResearch(state, cacheStatus, expiresAt, progress); };
     $("data-status").textContent = "공식 대학·모집단위·전형명 확인 중";
-    $("results").innerHTML = resolutionMarkup + (selection ? progressList(progress) : "") +
-      box('<span class="spinner" aria-hidden="true"></span><strong>최신 공식 모집요강에서 명칭을 확인하고 있습니다...</strong>', "section loading card");
+    $("results").innerHTML = box('<span class="spinner" aria-hidden="true"></span><strong>최신 공식 모집요강에서 명칭을 확인하고 있습니다...</strong>', "section loading card");
     try {
       try {
-        const response = await fetchStage("resolve", input, activeController.signal);
+        const response = await fetchStage("resolve", original, activeController.signal);
         if (current !== requestNumber) return;
         const resolution = response.data;
-        resolutionMarkup = renderResolution(resolution, original) + selectionNotice;
-        if (!["schoolType", "university", "major", "admissionTrack"].every((key) => resolution.resolved?.[key])) {
-          pendingSelection = { original, query, data: resolution };
-          $("results").innerHTML = resolutionMarkup;
+        if (!isComplete(resolution.resolved)) {
+          pendingSelection = { original, data: resolution };
+          $("results").innerHTML = renderResolution(resolution, original);
           $("data-status").textContent = "공식 명칭 후보 선택 필요";
           return;
         }
-        input = { ...resolution.resolved, aliases: resolution.aliases };
-        state = emptyResult(input);
-        $("results").innerHTML = resolutionMarkup + progressList(progress) + box('<span class="spinner" aria-hidden="true"></span><strong>대학 입학처와 공개 자료를 조사하고 있습니다...</strong><p class="muted">기본 결과가 도착하면 먼저 표시합니다.</p>', "section loading card");
+        await runResearch(original, resolution, current, activeController);
       } catch (error) {
         if (current !== requestNumber || activeController.signal.aborted) return;
         $("results").innerHTML = box('<div role="alert"><strong class="error">공식 명칭을 확인하지 못했습니다</strong><p>' + esc(error.name === "TimeoutError" ? "명칭 확인 시간이 초과되었습니다." : error.message) + '</p></div>', "section card");
         $("data-status").textContent = "명칭 확인 실패";
-        return;
       }
+    } finally {
+      if (current === requestNumber) setBusy(false);
+    }
+  }
+  async function continueResolvedSearch(original, resolution, notice) {
+    const current = ++requestNumber;
+    pendingSelection = null;
+    controller?.abort();
+    controller = new AbortController();
+    const activeController = controller;
+    setBusy(true);
+    try { await runResearch(original, resolution, current, activeController, notice); }
+    catch (error) {
+      if (current === requestNumber && !activeController.signal.aborted) {
+        $("results").innerHTML = renderResolution(resolution, original) + notice +
+          box('<div role="alert"><strong class="error">자료 조사에 실패했습니다</strong><p>' + esc(error.message) + '</p></div>', "section card");
+        $("data-status").textContent = "자료 조사 실패";
+      }
+    }
+    finally { if (current === requestNumber) setBusy(false); }
+  }
+  async function runResearch(original, resolution, current, activeController, notice = "") {
+    const input = { ...resolution.resolved, aliases: resolution.aliases };
+    const progress = { overview: "loading", official: resolution.officialOffice?.url ? "done" : "waiting",
+      guide: resolution.guide?.url ? "done" : "waiting", admission: "waiting", questions: "waiting", reviews: "waiting" };
+    let state = { ...emptyResult(input), officialOffice: resolution.officialOffice?.url ?
+      { title: resolution.officialOffice.name, url: resolution.officialOffice.url } : null,
+    guide: resolution.guide || null, sources: resolution.sources || [] };
+    let cacheStatus = null, expiresAt = null;
+    const resolutionMarkup = renderResolution(resolution, original) + notice;
+    const render = () => { if (current === requestNumber) $("results").innerHTML = resolutionMarkup + renderResearch(state, cacheStatus, expiresAt, progress); };
+    $("data-status").textContent = "공식 면접자료 조사 중";
+    $("results").innerHTML = resolutionMarkup + progressList(progress) +
+      box('<span class="spinner" aria-hidden="true"></span><strong>대학 입학처와 공개 자료를 조사하고 있습니다...</strong><p class="muted">기본 결과가 도착하면 먼저 표시합니다.</p>', "section loading card");
       try {
         const overview = await fetchStage("overview", input, activeController.signal);
         if (current !== requestNumber) return;
         const data = overview.data;
-        state = { ...state, ...data, sources: mergeSources(state.sources, data.sources),
+        state = { ...state, ...data,
+          officialOffice: data.officialOffice?.url ? data.officialOffice : state.officialOffice,
+          guide: data.guide?.url ? data.guide : state.guide,
+          sources: mergeSources(state.sources, data.sources || []),
           questions: data.latestQuestions.length ? [{ year: data.admissionResults.year, note: "", items: data.latestQuestions }] : [] };
         cacheStatus = overview.cacheStatus; expiresAt = overview.expiresAt;
-        progress.official = data.officialOffice?.url ? "done" : "failed";
-        progress.guide = data.guide?.url ? "done" : "failed";
+        progress.overview = "done";
+        progress.official = state.officialOffice?.url ? "done" : "failed";
+        progress.guide = state.guide?.url ? "done" : "failed";
         progress.admission = data.admissionResults.status === "found" ? "done" : "failed";
       } catch (error) {
         if (current !== requestNumber || activeController.signal.aborted) return;
-        progress.official = progress.guide = progress.admission = "failed";
+        progress.overview = progress.admission = "failed";
+        progress.official = state.officialOffice?.url ? "done" : "failed";
+        progress.guide = state.guide?.url ? "done" : "failed";
         state.interviewOverview.notes = [error.name === "TimeoutError" ? "기본 검색 시간이 초과되었습니다." : "기본 검색을 완료하지 못했습니다. 추가 자료를 계속 조사합니다."];
       }
       if (current !== requestNumber) return;
@@ -259,15 +298,12 @@ function init() {
       ];
       await Promise.allSettled(jobs);
       if (current === requestNumber) $("data-status").textContent = "조사 완료 · " + dateLabel(state.searchedAt);
-    } finally {
-      if (current === requestNumber) setBusy(false);
-    }
   }
   $("search-form").addEventListener("submit", (event) => {
     event.preventDefault();
     if (!$("search-form").reportValidity()) return;
     const original = { schoolType, university: $("university").value.trim(), major: $("major").value.trim(), admissionTrack: $("track").value.trim() };
-    return startSearch(original, original);
+    return startSearch(original);
   });
 }
 if (typeof document !== "undefined") init();
