@@ -92,6 +92,8 @@ class Question:
     track: str | None
     question: str
     intent: str | None = None
+    # 제시문 기반 면접의 지문. 문항과 반드시 따로 둔다. 한 칸에 합치면 정작 물음이 묻힌다.
+    passage: str | None = None
     page: int = 0
     sourceUrl: str = ""
     sourceName: str = ""
@@ -340,12 +342,19 @@ def llm_refine(report: dict, section_text: str) -> list[dict] | None:
     """구획 텍스트를 통째로 넘겨 구조화시킨다. 키가 없으면 None."""
     prompt = (
         "다음은 한국 대학의 「선행학습 영향평가 결과보고서」에서 뽑아낸 면접고사 관련 텍스트다.\n"
-        "실제로 수험생에게 주어진 **면접 문항만** 찾아 JSON 배열로 정리하라.\n"
-        "각 원소: {\"department\": 학과/모집단위 or null, \"admissionType\": 전형명 or null, "
-        "\"track\": 인문/자연/의학 등 계열 or null, \"question\": 문항 원문, "
-        "\"intent\": 대학이 밝힌 출제 의도 or null}\n"
-        "규칙: 논술·실기 문항, 보고서의 자체 서술(위원 구성·일정·심의 의견)은 제외한다. "
-        "문항 원문은 요약하지 말고 그대로 옮긴다. 문항이 없으면 빈 배열 []을 반환한다. "
+        "실제로 수험생에게 주어진 **면접 문항만** 찾아 JSON 배열로 정리하라.\n\n"
+        "각 원소:\n"
+        '{"department": 학과/모집단위 or null, "admissionType": 전형명 or null, '
+        '"track": 인문/자연/의학 등 계열 or null, "question": 수험생이 답해야 하는 물음, '
+        '"passage": 그 물음에 딸린 제시문 원문 or null, "intent": 대학이 밝힌 출제 의도 or null}\n\n'
+        "가장 중요한 규칙 — 제시문과 물음을 절대 한 칸에 합치지 마라.\n"
+        "제시문 기반 면접에서는 (가) (나) (다) 로 시작하는 긴 지문이 먼저 나오고 그 뒤에 "
+        "'…을 설명하시오', '…에 대해 말해 보시오' 같은 물음이 따라온다. "
+        "이때 question 에는 **물음만** 넣고 지문은 passage 에 넣는다. "
+        "지문 하나에 물음이 여러 개면 원소를 여러 개 만들고 같은 passage 를 각각 붙인다. "
+        "question 이 '(가)' 로 시작하거나 300자가 넘는다면 십중팔구 지문을 잘못 넣은 것이다.\n\n"
+        "그 밖의 규칙: 논술·실기 문항과 보고서의 자체 서술(위원 구성·일정·심의 의견)은 제외한다. "
+        "원문을 요약하지 말고 그대로 옮긴다. 문항이 없으면 빈 배열 []을 반환한다. "
         "JSON 외의 텍스트는 출력하지 마라.\n\n"
         f"[{report['univName']} {report['year']}학년도]\n{section_text[:60000]}"
     )
@@ -407,15 +416,49 @@ def _parse_json_array(text: str) -> list[dict]:
         return []
 
 
+def locate_page(question: str, pages: list[str], fallback: int) -> int:
+    """
+    LLM 이 돌려준 문항이 원문 몇 쪽에 있는지 되찾는다.
+
+    쪽 번호는 이 앱의 핵심이다. 학생이 "정말 이 대학이 물어본 게 맞나"를 원문으로 확인할 수
+    있어야 하기 때문이다. LLM 은 쪽 번호를 모르므로 문항 글자를 도로 찾아 대조한다.
+    PDF 는 줄바꿈 위치가 제각각이라 공백을 모두 지우고 비교한다.
+    """
+    needle = re.sub(r"\s+", "", question)[:40]
+    if len(needle) < 12:
+        return fallback
+    for index, text in enumerate(pages):
+        if needle in re.sub(r"\s+", "", text):
+            return index + 1
+    # 앞부분이 안 잡히면 가운데 토막으로 한 번 더 — LLM 이 앞머리를 다듬었을 수 있다.
+    middle = re.sub(r"\s+", "", question)[20:56]
+    if len(middle) >= 16:
+        for index, text in enumerate(pages):
+            if middle in re.sub(r"\s+", "", text):
+                return index + 1
+    return fallback
+
+
 # ── 실행 ────────────────────────────────────────────────────────────────────
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0, help="앞에서 N건만 처리(시험용)")
     ap.add_argument("--llm", action="store_true", help="LLM 보정 사용(API 키 필요)")
+    ap.add_argument("--only", default="", help="쉼표로 구분한 대학 id 만 처리")
+    ap.add_argument(
+        "--merge",
+        action="store_true",
+        help="처리한 대학만 갈아 끼우고 나머지는 기존 questions.json 을 유지",
+    )
     args = ap.parse_args()
 
     with open(os.path.join(DATA, "reports.json"), encoding="utf-8") as fh:
         reports = [r for r in json.load(fh) if r.get("url")]
+
+    only = {name.strip() for name in args.only.split(",") if name.strip()}
+    if only:
+        reports = [r for r in reports if r["univId"] in only]
+        print(f"  · {len(only)}개 대학, 보고서 {len(reports)}건만 처리합니다.")
     if args.limit:
         reports = reports[: args.limit]
 
@@ -446,7 +489,12 @@ def main() -> None:
                         track=item.get("track"),
                         question=(item.get("question") or "").strip(),
                         intent=item.get("intent"),
-                        page=sections[0].start_page if sections else 0,
+                        passage=(item.get("passage") or "").strip() or None,
+                        page=locate_page(
+                            item.get("question") or "",
+                            pages,
+                            sections[0].start_page if sections else 0,
+                        ),
                         sourceUrl=report["url"],
                         sourceName=report["sourceName"],
                         extractedBy="llm",
@@ -461,6 +509,19 @@ def main() -> None:
         print(f"  [{i}/{len(reports)}] {report['univName']} {report['year']} — 문항 {len(questions)}건", flush=True)
 
     dest = os.path.join(DATA, "questions.json")
+
+    if args.merge:
+        # 이번에 다시 뽑은 대학만 갈아 끼운다. 일부만 손볼 때 나머지를 통째로
+        # 다시 돌리지 않으려는 것이다.
+        touched = {r["univId"] for r in reports}
+        try:
+            with open(dest, encoding="utf-8") as fh:
+                kept = [q for q in json.load(fh) if q["univId"] not in touched]
+        except FileNotFoundError:
+            kept = []
+        all_questions = kept + all_questions
+        print(f"  · 기존 {len(kept)}건 유지 + 새로 뽑은 {len(all_questions) - len(kept)}건")
+
     with open(dest, "w", encoding="utf-8") as fh:
         json.dump(all_questions, fh, ensure_ascii=False, indent=2)
     print(f"\n  ✓ data/questions.json — 문항 {len(all_questions)}건 / 보고서 {ok}건")

@@ -117,6 +117,28 @@ export default function QuestionBrowser({ questions }: Props) {
             <article key={q.id} className="card" style={{ padding: 16, display: "grid", gap: 10 }}>
               <p style={{ fontSize: 15, lineHeight: 1.7 }}>{q.question}</p>
 
+              {q.passage && (
+                <details>
+                  <summary style={{ cursor: "pointer", fontSize: 13, fontWeight: 600, color: "var(--accent)" }}>
+                    제시문 보기
+                  </summary>
+                  <p
+                    style={{
+                      marginTop: 8,
+                      fontSize: 13,
+                      lineHeight: 1.8,
+                      color: "var(--ink-soft)",
+                      background: "var(--canvas)",
+                      borderRadius: 8,
+                      padding: "11px 13px",
+                      whiteSpace: "pre-wrap",
+                    }}
+                  >
+                    {q.passage}
+                  </p>
+                </details>
+              )}
+
               {q.intent && (
                 <p
                   style={{
@@ -135,7 +157,10 @@ export default function QuestionBrowser({ questions }: Props) {
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
                 {q.department && <span className="chip">{q.department}</span>}
                 {q.admissionType && <span className="chip">{q.admissionType}</span>}
-                {q.track && <span className="chip">{q.track}계열</span>}
+                {/* track 에 "인문" 처럼 계열만 오기도 하고 "사이버국방학과" 가 통째로 오기도 한다. */}
+                {q.track && q.track !== q.department && (
+                  <span className="chip">{/(계열|학과|학부|전공)$/.test(q.track) ? q.track : `${q.track}계열`}</span>
+                )}
                 <a
                   className="chip chip-accent"
                   href={`${q.sourceUrl}#page=${q.page}`}

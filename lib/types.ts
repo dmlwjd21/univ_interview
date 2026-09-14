@@ -22,6 +22,11 @@ export interface Question {
   question: string;
   /** 대학이 보고서에 스스로 적어 둔 출제 의도 */
   intent: string | null;
+  /**
+   * 제시문 기반 면접의 지문. 문항과 따로 둔다.
+   * 한 칸에 합치면 정작 답해야 할 물음이 긴 지문에 묻힌다.
+   */
+  passage?: string | null;
   /** 원본 PDF 안에서의 쪽 번호 */
   page: number;
   sourceUrl: string;
