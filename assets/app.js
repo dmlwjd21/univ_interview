@@ -102,20 +102,25 @@ function emptyResult(input) {
 function mergeSources(current, incoming) {
   return [...new Map([...current, ...incoming].map((source) => [source.url, source])).values()];
 }
-function renderResolution(data, original) {
+function renderResolution(data, original, selected = null) {
   const resolved = data.resolved || {};
   const changed = ["university", "major", "admissionTrack"].some((key) => resolved[key] && resolved[key] !== original[key]) ||
     resolved.schoolType !== original.schoolType;
   const labels = { universities: "대학·캠퍼스", majors: "모집단위", tracks: "전형" };
   const fields = { universities: "university", majors: "major", tracks: "admissionTrack" };
   let choices = "";
-  for (const [kind, title] of Object.entries(labels)) {
-    if (resolved[fields[kind]]) continue;
-    const list = data.candidates?.[kind] || [];
+  for (const [group, title] of Object.entries(labels)) {
+    const field = fields[group];
+    if (resolved[field]) continue;
+    const list = data.candidates?.[group] || [];
     choices += '<div class="resolve-options"><strong>' + title + ' 후보를 선택해 주세요</strong>' +
-      (list.length ? '<div class="choice-list">' + list.map((item) => '<button type="button" class="resolve-choice" data-kind="' + kind +
-        '" data-value="' + esc(item.name) + '">' + esc(item.name) +
-        (item.campus && !item.name.includes(item.campus) ? ' · ' + esc(item.campus) : '') + (item.interview === "yes" ? ' · 면접 실시' : '') + '</button>').join("") + '</div>' :
+      (list.length ? '<div class="choice-list">' + list.map((item) => {
+        const active = selected?.group === group && selected.name === item.name;
+        return '<button type="button" class="resolve-choice' + (active ? ' active' : '') + '" data-group="' + group +
+        '" data-field="' + field + '" data-value="' + esc(item.name) + '" aria-pressed="' + active + '">' +
+        (active ? '✓ ' : '') + esc(item.name) +
+        (item.campus && !item.name.includes(item.campus) ? ' · ' + esc(item.campus) : '') + (item.interview === "yes" ? ' · 면접 실시' : '') + '</button>';
+      }).join("") + '</div>' :
         '<p class="muted">확인 가능한 자료를 찾지 못했습니다. 공식 모집요강을 확인하거나 검색어를 바꿔 주세요.</p>') + '</div>';
   }
   return box('<h2>공식 명칭 확인</h2><div class="resolve-comparison"><div><span class="meta">입력 조건</span><p>' +
@@ -165,14 +170,15 @@ function init() {
   $("results").addEventListener("click", (event) => {
     const button = event.target.closest?.(".resolve-choice");
     if (!button || !pendingSelection) return;
-    const kind = button.dataset.kind, name = button.dataset.value;
-    const group = { university: "universities", major: "majors", admissionTrack: "tracks" }[kind];
-    if (!group || !pendingSelection.data.candidates[group].some((item) => item.name === name)) return;
-    const { original, query } = pendingSelection;
+    const group = button.dataset.group, field = button.dataset.field, name = button.dataset.value;
+    if ({ universities: "university", majors: "major", tracks: "admissionTrack" }[group] !== field ||
+        !pendingSelection.data.candidates?.[group]?.some((item) => item.name === name)) return;
+    const { original, query, data } = pendingSelection;
+    const corrected = Object.fromEntries(Object.entries(data.resolved || {}).filter(([, value]) => value));
     pendingSelection = null;
-    startSearch(original, { ...query, [kind]: name });
+    startSearch(original, { ...query, ...corrected, [field]: name }, { data, group, name });
   });
-  async function startSearch(original, query) {
+  async function startSearch(original, query, selection = null) {
     let input = query;
     if (Object.values(input).some((value) => !value)) return;
     const current = ++requestNumber;
@@ -184,16 +190,18 @@ function init() {
     const progress = { official: "loading", guide: "waiting", admission: "waiting", questions: "waiting", reviews: "waiting" };
     let state = emptyResult(input);
     let cacheStatus = null, expiresAt = null;
-    let resolutionMarkup = "";
+    const selectionNotice = selection ? '<p class="selection-feedback" role="status">✓ ' + esc(selection.name) + '을(를) 선택했습니다. 공식 면접자료를 조사하고 있습니다...</p>' : "";
+    let resolutionMarkup = selection ? renderResolution(selection.data, original, selection) + selectionNotice : "";
     const render = () => { if (current === requestNumber) $("results").innerHTML = resolutionMarkup + renderResearch(state, cacheStatus, expiresAt, progress); };
     $("data-status").textContent = "공식 대학·모집단위·전형명 확인 중";
-    $("results").innerHTML = box('<span class="spinner" aria-hidden="true"></span><strong>최신 공식 모집요강에서 명칭을 확인하고 있습니다...</strong>', "section loading card");
+    $("results").innerHTML = resolutionMarkup + (selection ? progressList(progress) : "") +
+      box('<span class="spinner" aria-hidden="true"></span><strong>최신 공식 모집요강에서 명칭을 확인하고 있습니다...</strong>', "section loading card");
     try {
       try {
         const response = await fetchStage("resolve", input, activeController.signal);
         if (current !== requestNumber) return;
         const resolution = response.data;
-        resolutionMarkup = renderResolution(resolution, original);
+        resolutionMarkup = renderResolution(resolution, original) + selectionNotice;
         if (!["schoolType", "university", "major", "admissionTrack"].every((key) => resolution.resolved?.[key])) {
           pendingSelection = { original, query, data: resolution };
           $("results").innerHTML = resolutionMarkup;

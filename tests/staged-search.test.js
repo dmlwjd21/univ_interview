@@ -280,32 +280,66 @@ test("frontend offers track candidates before overview and preserves original te
   assert.ok(html.includes("일반전형")); assert.ok(html.includes("지역균형전형"));
   assert.ok(html.includes("공식 명칭으로 자동 보정됨"));
 });
-test("candidate selection reruns resolution before any research API", async () => {
+for (const [group, field, selectedName] of [
+  ["universities", "university", "서울대학교"],
+  ["majors", "major", "컴퓨터공학부"],
+  ["tracks", "admissionTrack", "일반전형"]
+]) test(`${group} candidate button resumes canonical search and renders overview`, async () => {
+  const original = { schoolType: "4년제", university: "서울대", major: "컴공", admissionTrack: "학종" };
+  const canonical = { schoolType: "4년제", university: "서울대학교", major: "컴퓨터공학부", admissionTrack: "일반전형" };
   const elements = new Map();
   const element = (id) => { if (!elements.has(id)) elements.set(id, { value: "", innerHTML: "", listeners: {}, setAttribute() {}, reportValidity: () => true, addEventListener(name, fn) { this.listeners[name] = fn; } }); return elements.get(id); };
-  element("university").value = "서울대"; element("major").value = "컴공"; element("track").value = "학종";
-  const routes = [];
+  element("university").value = original.university; element("major").value = original.major; element("track").value = original.admissionTrack;
+  const firstResolution = {
+    original, resolved: { ...canonical, [field]: null },
+    candidates: { universities: [], majors: [], tracks: [], [group]: [{ name: selectedName }, ...(group === "tracks" ? [{ name: "지역균형전형" }] : [])] },
+    notes: [], aliases: { university: [], major: [], admissionTrack: [] }, guide: { title: "2027 수시모집 안내", url: guide }
+  };
+  const routes = [], requests = [];
+  let finishSecondResolve;
   const response = (data) => ({ ok: true, headers: { get: (name) => name === "content-type" ? "application/json" : null }, json: async () => data });
-  const fetchMock = async (route, options) => {
+  const fetchMock = (route, options) => {
     routes.push(route);
-    const submitted = JSON.parse(options.body);
-    if (route === "/api/resolve-search") return response(normalizeResolution(resolutionRaw(), evidenceOf(provider(resolutionRaw())), submitted, now));
+    requests.push(JSON.parse(options.body));
+    if (route === "/api/resolve-search") return routes.filter((item) => item === route).length === 1 ?
+      Promise.resolve(response(firstResolution)) : new Promise((resolve) => { finishSecondResolve = () => resolve(response({ ...firstResolution, resolved: canonical })); });
     if (route === "/api/search-overview") {
       const raw = overview();
-      return response(normalizeStage("overview", raw, evidenceOf(provider(raw)), submitted, window, now, "admission.snu.ac.kr"));
+      return Promise.resolve(response(normalizeStage("overview", raw, evidenceOf(provider(raw)), canonical, window, now, "admission.snu.ac.kr")));
     }
-    if (route === "/api/search-questions") return response({ questions: [], trends: [], sources: [] });
-    if (route === "/api/search-reviews") return response({ reviews: [], tips: [], sources: [] });
+    if (route === "/api/search-questions") return Promise.resolve(response({ questions: [], trends: [], sources: [] }));
+    if (route === "/api/search-reviews") return Promise.resolve(response({ reviews: [], tips: [], sources: [] }));
     throw new Error("unexpected route");
   };
   vm.runInNewContext(fs.readFileSync(path.join(__dirname, "../assets/app.js"), "utf8"), { document: { getElementById: element, querySelectorAll: () => [] }, fetch: fetchMock, AbortController, AbortSignal, URL, setTimeout, clearTimeout });
   await element("search-form").listeners.submit({ preventDefault() {} });
   assert.deepEqual(routes, ["/api/resolve-search"]);
-  assert.ok(element("results").innerHTML.includes("지역균형전형"));
-  const button = { dataset: { kind: "admissionTrack", value: "일반전형" } };
+  const html = element("results").innerHTML;
+  assert.ok(html.includes("서울대 / 컴공 / 학종"));
+  if (group === "tracks") assert.ok(html.includes("지역균형전형"));
+  const buttonMarkup = [...html.matchAll(/<button\b[^>]*class="[^"]*resolve-choice[^"]*"[^>]*>[^<]*<\/button>/g)]
+    .map((match) => match[0]).find((markup) => markup.includes(`data-value="${selectedName}"`));
+  assert.ok(buttonMarkup, `rendered ${group} candidate button missing`);
+  const attribute = (name) => new RegExp(`${name}="([^"]*)"`).exec(buttonMarkup)?.[1];
+  assert.equal(attribute("data-group"), group);
+  assert.equal(attribute("data-field"), field);
+  assert.equal(attribute("aria-pressed"), "false");
+  element("results").listeners.click({ target: { closest: () => ({ dataset: { group, field, value: "확인되지 않은 후보" } }) } });
+  assert.deepEqual(routes, ["/api/resolve-search"]);
+  const button = { dataset: { group: attribute("data-group"), field: attribute("data-field"), value: attribute("data-value") } };
   element("results").listeners.click({ target: { closest: () => button } });
+  assert.deepEqual(routes, ["/api/resolve-search", "/api/resolve-search"]);
+  assert.deepEqual(requests[1], canonical);
+  assert.ok(element("results").innerHTML.includes("resolve-choice active"));
+  assert.ok(element("results").innerHTML.includes('aria-pressed="true"'));
+  assert.ok(element("results").innerHTML.includes(`✓ ${selectedName}을(를) 선택했습니다`));
+  assert.ok(element("results").innerHTML.includes("조사 진행 상황"));
+  finishSecondResolve();
   await new Promise((resolve) => setImmediate(resolve));
   assert.deepEqual(routes, ["/api/resolve-search", "/api/resolve-search", "/api/search-overview", "/api/search-questions", "/api/search-reviews"]);
+  assert.deepEqual(requests[2], { ...canonical, aliases: firstResolution.aliases });
+  assert.ok(element("results").innerHTML.includes("1. 면접 개요"));
+  assert.ok(element("results").innerHTML.includes("제시문 기반 면접"));
   assert.ok(element("results").innerHTML.includes("서울대 / 컴공 / 학종"));
   assert.ok(element("results").innerHTML.includes("서울대학교 / 컴퓨터공학부 / 일반전형"));
 });
