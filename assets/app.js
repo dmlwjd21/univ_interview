@@ -178,6 +178,7 @@ function init() {
     const nextData = { ...data, resolved: { ...data.resolved, [field]: name },
       aliases: { ...data.aliases, [field]: [...new Set([...(data.aliases?.[field] || []), ...(candidate.aliases || [])])] },
       notes: (data.notes || []).filter((note) => note !== `${{ university: "대학", major: "모집단위", admissionTrack: "전형" }[field]} 공식 후보를 확인하고 선택해 주세요.`) };
+    completeUnambiguousFields(nextData, original);
     const notice = '<p class="selection-feedback" role="status">✓ ' + esc(name) + '을(를) 선택했습니다. ' +
       (isComplete(nextData.resolved) ? '공식 면접자료를 조사하고 있습니다...' : '나머지 공식 명칭 후보도 선택해 주세요.') + '</p>';
     pendingSelection = null;
@@ -190,6 +191,23 @@ function init() {
     }
   });
   const isComplete = (resolved) => ["schoolType", "university", "major", "admissionTrack"].every((key) => resolved?.[key]);
+  function completeUnambiguousFields(data, original) {
+    const groups = { universities: "university", majors: "major", tracks: "admissionTrack" };
+    for (const [group, candidateField] of Object.entries(groups)) {
+      if (data.resolved?.[candidateField]) continue;
+      const candidates = data.candidates?.[group] || [];
+      if (candidates.length === 1) {
+        data.resolved[candidateField] = candidates[0].name;
+        data.aliases[candidateField] = [...new Set([...(data.aliases?.[candidateField] || []), ...(candidates[0].aliases || [])])];
+      } else if (candidates.length === 0 && original[candidateField]) {
+        // The student already supplied a usable search term. If the resolver
+        // has no alternative to choose from, continue research with that term
+        // instead of forcing the student to type it again.
+        data.resolved[candidateField] = original[candidateField];
+      }
+    }
+    return data;
+  }
   async function startSearch(original) {
     const current = ++requestNumber;
     pendingSelection = null;

@@ -87,6 +87,18 @@ test("question years stay separate and repeated trends require two years", () =>
   assert.equal(data.questions[0].items.length, 1); assert.equal(data.questions[1].items.length, 1);
   assert.equal(data.trends.length, 1);
 });
+test("question published one calendar year before its admission year is retained", () => {
+  const q = overview().latestQuestions[0];
+  const raw = { groups: [{ year: 2026, items: [q] }], sources: [{ ...sources[1], year: 2025 }, sources[2]] };
+  const data = normalizeStage("questions", raw, evidenceOf(provider(raw, [past, results])), input, window, now, "admission.snu.ac.kr");
+  assert.equal(data.questions[0].items.length, 1);
+  assert.deepEqual(data.sources.map((source) => source.url), [past]);
+});
+test("stage output excludes verified sources that have no displayed content", () => {
+  const raw = { groups: [], sources: [sources[1], sources[2]] };
+  const data = normalizeStage("questions", raw, evidenceOf(provider(raw, [past, results])), input, window, now, "admission.snu.ac.kr");
+  assert.deepEqual(data.sources, []);
+});
 test("input, CORS, stage identity and 30-day cache", async () => {
   assert.equal(validateInput(input).university, "서울대학교");
   assert.throws(() => validateInput({ ...input, major: "<script>" }));
@@ -352,7 +364,7 @@ for (const [group, field, selectedName] of [
   assert.ok(element("results").innerHTML.includes(guide.replace(/&/g, "&amp;")));
   assert.ok(element("results").innerHTML.includes(office));
 });
-test("multiple candidate selections stay pinned and use one resolver call", async () => {
+test("a click pins the choice and automatically uses the sole remaining candidate", async () => {
   const original = { schoolType: "4년제", university: "서울대", major: "컴공", admissionTrack: "학종" };
   const canonical = { schoolType: "4년제", university: "서울대학교 관악캠퍼스", major: "컴퓨터공학부", admissionTrack: "일반전형" };
   const firstResolution = { original, resolved: { ...canonical, university: null, major: null },
@@ -383,9 +395,6 @@ test("multiple candidate selections stay pinned and use one resolver call", asyn
     element("results").listeners.click({ target: { closest: () => ({ dataset: { group, field, value } }) } });
   };
   choose("universities", "university", canonical.university);
-  assert.equal(calls.length, 1);
-  assert.ok(element("results").innerHTML.includes(`${canonical.university} / 모집단위 선택 필요 / 일반전형`));
-  choose("majors", "major", canonical.major);
   await new Promise((resolve) => setImmediate(resolve));
   assert.deepEqual(calls.map((call) => call.route), ["/api/resolve-search", "/api/search-overview", "/api/search-questions", "/api/search-reviews"]);
   assert.equal(calls[1].input.university, canonical.university);
@@ -393,6 +402,36 @@ test("multiple candidate selections stay pinned and use one resolver call", asyn
   assert.equal(calls[1].input.admissionTrack, canonical.admissionTrack);
   assert.deepEqual(calls[1].input.aliases, { university: ["옛 대학명"], major: ["옛 모집단위명"], admissionTrack: ["옛 전형명"] });
   assert.ok(element("results").innerHTML.includes("제시문 기반 면접"));
+});
+test("candidate clicks reuse an unresolved original term and continue automatically", async () => {
+  const original = { schoolType: "4년제", university: "서울대", major: "컴공", admissionTrack: "학종" };
+  const canonical = { schoolType: "4년제", university: "서울대학교", major: "컴공", admissionTrack: "일반전형" };
+  const resolution = { original, resolved: { schoolType: "4년제", university: null, major: null, admissionTrack: null },
+    candidates: { universities: [{ name: "서울대학교", aliases: [] }], majors: [], tracks: [{ name: "일반전형", aliases: [] }, { name: "지역균형전형", aliases: [] }] },
+    aliases: { university: [], major: [], admissionTrack: [] }, notes: [], officialOffice: null, guide: null, sources: [] };
+  const elements = new Map();
+  const element = (id) => { if (!elements.has(id)) elements.set(id, { value: "", innerHTML: "", listeners: {}, setAttribute() {}, reportValidity: () => true, addEventListener(name, fn) { this.listeners[name] = fn; } }); return elements.get(id); };
+  element("university").value = original.university; element("major").value = original.major; element("track").value = original.admissionTrack;
+  const calls = [];
+  const response = (data) => ({ ok: true, headers: { get: (name) => name === "content-type" ? "application/json" : null }, json: async () => data });
+  const fetchMock = async (route, options) => {
+    calls.push({ route, input: JSON.parse(options.body) });
+    if (route === "/api/resolve-search") return response(resolution);
+    if (route === "/api/search-overview") return response(normalizeStage("overview", overview(), evidenceOf(provider(overview())), canonical, window, now, "admission.snu.ac.kr"));
+    if (route === "/api/search-questions") return response({ questions: [], trends: [], sources: [] });
+    if (route === "/api/search-reviews") return response({ reviews: [], tips: [], sources: [] });
+    throw new Error("unexpected route");
+  };
+  vm.runInNewContext(fs.readFileSync(path.join(__dirname, "../assets/app.js"), "utf8"), { document: { getElementById: element, querySelectorAll: () => [] }, fetch: fetchMock, AbortController, AbortSignal, URL, setTimeout, clearTimeout });
+  await element("search-form").listeners.submit({ preventDefault() {} });
+  element("results").listeners.click({ target: { closest: () => ({ dataset: { group: "universities", field: "university", value: "서울대학교" } }) } });
+  assert.equal(calls.length, 1);
+  assert.ok(element("results").innerHTML.includes("서울대학교 / 컴공 / 전형 선택 필요"));
+  element("results").listeners.click({ target: { closest: () => ({ dataset: { group: "tracks", field: "admissionTrack", value: "일반전형" } }) } });
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.deepEqual(calls.map((call) => call.route), ["/api/resolve-search", "/api/search-overview", "/api/search-questions", "/api/search-reviews"]);
+  assert.deepEqual({ schoolType: calls[1].input.schoolType, university: calls[1].input.university, major: calls[1].input.major, admissionTrack: calls[1].input.admissionTrack }, canonical);
+  assert.ok(element("results").innerHTML.includes("1. 면접 개요"));
 });
 test("renderer escapes source content", () => {
   const state = emptyResult(input); state.interviewOverview.summary = '<img src=x onerror=alert(1)>';
